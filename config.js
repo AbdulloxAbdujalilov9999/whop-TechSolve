@@ -1,6 +1,6 @@
 // ── Edit this file to customise the site ─────────────────────────────
 window.SITE = {
-  brand: "Dispatching",
+  brand: "TechSolve",
 
   // Your public Whop store page (NOT the /dashboard/ link — that one is private).
   // Find it on Whop: your business → "View store". It looks like https://whop.com/your-store/
