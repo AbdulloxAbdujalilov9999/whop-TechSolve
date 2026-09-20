@@ -7,7 +7,7 @@ window.SITE = {
   whopUrl: "https://whop.com/",
 
   // Where "Message me" / "Start a project" goes. Telegram link, email (mailto:...), or Discord invite.
-  contactUrl: "https://t.me/your_username",
+  contactUrl: "https://t.me/Jordan_722",
 
   // Product cards. cat: "bots" | "apps" | "platforms" | "automation"
   // Give a product its own Whop link with `url`; otherwise it falls back to whopUrl.
