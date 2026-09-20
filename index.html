@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dispatching — Telegram bots, web apps & platforms, ready to launch</title>
+  <meta name="description" content="Ready-made Telegram bots, web apps and platforms — plus custom builds. Buy on Whop, get the source, launch in days.">
+  <meta name="theme-color" content="#08080d">
+  <meta property="og:title" content="Dispatching — Telegram bots, web apps & platforms">
+  <meta property="og:description" content="Ready-made bots, apps and platforms you can buy today, or have built for you.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="bg-glow" aria-hidden="true"></div>
+
+  <header class="nav" id="nav">
+    <div class="wrap nav-inner">
+      <a href="#top" class="brand"><span class="brand-mark"></span><span data-brand>Dispatching</span></a>
+      <nav class="nav-links" id="navLinks">
+        <a href="#products">Products</a>
+        <a href="#services">Custom builds</a>
+        <a href="#process">How it works</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="btn btn-sm btn-primary" data-whop href="#" target="_blank" rel="noopener">Open store</a>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero wrap">
+      <div class="hero-copy">
+        <span class="pill"><i class="dot"></i> New builds added every week</span>
+        <h1>Bots, apps & platforms <span class="grad">ready to launch.</span></h1>
+        <p class="lead">Skip months of development. Grab a finished Telegram bot, web app or platform from the store — or tell me what you need and I'll build it for you.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#products">Browse products</a>
+          <a class="btn btn-ghost" href="#services">Get a custom build</a>
+        </div>
+        <ul class="trust">
+          <li><b>Source included</b> on every product</li>
+          <li><b>Secure checkout</b> via Whop</li>
+          <li><b>Setup help</b> after purchase</li>
+        </ul>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="phone">
+          <div class="phone-head"><span class="avatar">B</span><div><b>ShopBot</b><small>bot · online</small></div></div>
+          <div class="chat">
+            <div class="msg in">Welcome! What would you like to order today?</div>
+            <div class="msg out">Show me the catalog</div>
+            <div class="msg in card-msg">
+              <b>Starter Pack</b>
+              <span>Instant delivery · $9</span>
+              <em>Buy now</em>
+            </div>
+            <div class="msg out">Pay with card</div>
+            <div class="msg in ok">✓ Payment received — delivering…</div>
+          </div>
+        </div>
+        <div class="float f1"><span class="mono">/start</span></div>
+        <div class="float f2"><span class="mono">$ deploy --prod</span></div>
+        <div class="float f3"><span class="mono">+ 24 orders</span></div>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Telegram bots</span><span>Web apps</span><span>Platforms</span><span>Automation</span><span>Discord bots</span><span>Dashboards</span><span>Landing pages</span><span>Payment integrations</span>
+        <span>Telegram bots</span><span>Web apps</span><span>Platforms</span><span>Automation</span><span>Discord bots</span><span>Dashboards</span><span>Landing pages</span><span>Payment integrations</span>
+      </div>
+    </div>
+
+    <!-- PRODUCTS -->
+    <section class="section wrap" id="products">
+      <div class="section-head reveal">
+        <span class="eyebrow">Products</span>
+        <h2>Pick one up today</h2>
+        <p>Every product ships with full source code and a setup guide. Buy on Whop, deploy in minutes.</p>
+      </div>
+      <div class="filters reveal" id="filters" role="tablist"></div>
+      <div class="grid" id="grid"></div>
+      <div class="center reveal"><a class="btn btn-ghost" data-whop href="#" target="_blank" rel="noopener">See everything in the store →</a></div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section wrap" id="services">
+      <div class="section-head reveal">
+        <span class="eyebrow">Custom builds</span>
+        <h2>Don't see what you need? I'll build it.</h2>
+        <p>Have an idea or a workflow that's eating your time? Tell me about it and get a fixed quote.</p>
+      </div>
+      <div class="services">
+        <article class="service reveal">
+          <div class="ico" data-icon="bot"></div>
+          <h3>Telegram bots</h3>
+          <p>Stores, paywalls, support desks, AI assistants, alerts, group tools.</p>
+        </article>
+        <article class="service reveal">
+          <div class="ico" data-icon="globe"></div>
+          <h3>Web apps</h3>
+          <p>Landing pages, booking, dashboards, internal tools, client portals.</p>
+        </article>
+        <article class="service reveal">
+          <div class="ico" data-icon="layers"></div>
+          <h3>Platforms</h3>
+          <p>Marketplaces, membership sites, course platforms, SaaS MVPs.</p>
+        </article>
+        <article class="service reveal">
+          <div class="ico" data-icon="zap"></div>
+          <h3>Automation</h3>
+          <p>Scrapers, integrations, auto-posting, reports — work that runs itself.</p>
+        </article>
+      </div>
+      <div class="cta-band reveal">
+        <div>
+          <h3>Tell me what you want to build</h3>
+          <p>Reply within a day with questions, a rough scope and a fixed price.</p>
+        </div>
+        <a class="btn btn-primary" data-contact href="#" target="_blank" rel="noopener">Start a project</a>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="section wrap" id="process">
+      <div class="section-head reveal">
+        <span class="eyebrow">How it works</span>
+        <h2>From idea to live in three steps</h2>
+      </div>
+      <ol class="steps">
+        <li class="step reveal"><span class="num">01</span><h3>Choose</h3><p>Pick a ready-made product from the store, or send me a description of a custom build.</p></li>
+        <li class="step reveal"><span class="num">02</span><h3>Get it</h3><p>Buy securely on Whop and receive the files instantly. For custom work, approve the quote and I start building.</p></li>
+        <li class="step reveal"><span class="num">03</span><h3>Launch</h3><p>Follow the setup guide, or ask me for help deploying. You own the code and run it your way.</p></li>
+      </ol>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section wrap narrow" id="faq">
+      <div class="section-head reveal">
+        <span class="eyebrow">FAQ</span>
+        <h2>Good questions</h2>
+      </div>
+      <div class="faq reveal">
+        <details><summary>Do I get the source code?</summary><p>Yes. Every product includes the full source and a setup guide, so you can host it wherever you like and change anything.</p></details>
+        <details><summary>How do I pay?</summary><p>Checkout runs through Whop, which supports cards and other popular payment methods. Custom builds are quoted upfront.</p></details>
+        <details><summary>Will you help me set it up?</summary><p>Setup guides come with each product. If you get stuck, message me and I'll help you get it running.</p></details>
+        <details><summary>Can you customise a product for me?</summary><p>Absolutely. Branding, extra features or a full rebuild — send me what you have in mind and I'll quote it.</p></details>
+        <details><summary>How long does a custom build take?</summary><p>Simple bots and pages usually take a few days; larger platforms take longer. You get a timeline with the quote.</p></details>
+        <details><summary>What if something doesn't work?</summary><p>Reach out and I'll sort it out. Your satisfaction matters more than a quick sale.</p></details>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final wrap">
+      <div class="final-card reveal">
+        <h2>Ready to launch something?</h2>
+        <p>Browse the store or tell me about your project — either way you'll be live sooner than you think.</p>
+        <div class="cta-row center-row">
+          <a class="btn btn-primary" data-whop href="#" target="_blank" rel="noopener">Shop on Whop</a>
+          <a class="btn btn-ghost" data-contact href="#" target="_blank" rel="noopener">Message me</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap foot-inner">
+      <a href="#top" class="brand"><span class="brand-mark"></span><span data-brand>Dispatching</span></a>
+      <p>© <span id="year"></span> <span data-brand>Dispatching</span>. All rights reserved.</p>
+      <div class="foot-links">
+        <a data-whop href="#" target="_blank" rel="noopener">Whop store</a>
+        <a data-contact href="#" target="_blank" rel="noopener">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
