@@ -95,7 +95,7 @@ const T: Record<string, Entry> = {
   b_prices: { uz: "💵 Narxlar", ru: "💵 Цены", en: "💵 Prices" },
   b_ask: { uz: "💬 Savol berish", ru: "💬 Задать вопрос", en: "💬 Ask a question" },
   b_site: { uz: "🌐 Sayt", ru: "🌐 Сайт", en: "🌐 Website" },
-  b_test: { uz: "📝 Bepul test — 3 daqiqa", ru: "📝 Бесплатный тест — 3 минуты", en: "📝 Free test — 3 minutes" },
+  b_test: { uz: "📝 Bepul test — 5 daqiqa", ru: "📝 Бесплатный тест — 5 минут", en: "📝 Free test — 5 minutes" },
   b_app: { uz: "📱 Ilova", ru: "📱 Приложение", en: "📱 The app" },
   b_su_tt: { uz: "✍️ Bepul darsga yozilish", ru: "✍️ Записаться на бесплатный урок", en: "✍️ Book a free class" },
   b_su_disp: { uz: "🚚 Dispetcherni ulash", ru: "🚚 Подключить диспетчера", en: "🚚 Start dispatch" },
@@ -261,11 +261,11 @@ const T: Record<string, Entry> = {
   },
   prices_dsl: {
     uz:
-      "💵 <b>DSL HELP narxlari</b>\n\n• 25 tagacha trak — <b>{small}/oy</b>\n• 25–100 trak — <b>{fleet}/oy</b>\n• 100 dan ko'p — kelishilgan narx\n• Sozlash {setup} dan, bir marta\n\n14 kunlik bepul sinovdan boshlang.",
+      "💵 <b>DSL HELP narxlari</b>\n\n• 25 tagacha trak — <b>{small}/oy</b>\n• 26–100 trak — <b>{fleet}/oy</b>\n• 100 dan ko'p — kelishilgan narx\n• Sozlash {setup} dan, bir marta\n\n14 kunlik bepul sinovdan boshlang.",
     ru:
-      "💵 <b>Цены DSL HELP</b>\n\n• До 25 траков — <b>{small}/мес</b>\n• 25–100 траков — <b>{fleet}/мес</b>\n• Больше 100 — индивидуально\n• Настройка от {setup}, один раз\n\nНачните с бесплатного пилота на 14 дней.",
+      "💵 <b>Цены DSL HELP</b>\n\n• До 25 траков — <b>{small}/мес</b>\n• 26–100 траков — <b>{fleet}/мес</b>\n• Больше 100 — индивидуально\n• Настройка от {setup}, один раз\n\nНачните с бесплатного пилота на 14 дней.",
     en:
-      "💵 <b>DSL HELP pricing</b>\n\n• Up to 25 trucks — <b>{small}/month</b>\n• 25–100 trucks — <b>{fleet}/month</b>\n• 100+ trucks — custom\n• Setup from {setup}, one time\n\nStart with a 14-day free pilot.",
+      "💵 <b>DSL HELP pricing</b>\n\n• Up to 25 trucks — <b>{small}/month</b>\n• 26–100 trucks — <b>{fleet}/month</b>\n• 100+ trucks — custom\n• Setup from {setup}, one time\n\nStart with a 14-day free pilot.",
   },
   prices_lc: {
     uz: "💵 <b>SpeakUp narxlari (oyiga)</b>\n\n{tiers}\n• IELTS CD Prep — o'quvchi boshiga <b>{ielts}</b>\n\nMarkazingiz uchun sayt — {site} dan.\nBirinchi 30 kun bepul.",
@@ -349,9 +349,9 @@ const T: Record<string, Entry> = {
     en: "Want to lock in your spot now? You can pay by card:",
   },
   next_tt_test: {
-    uz: "Darajangizni bilish uchun 3 daqiqalik bepul testni ishlab ko'ring:",
-    ru: "Чтобы узнать свой уровень, пройдите бесплатный тест на 3 минуты:",
-    en: "See where you stand with the free 3-minute test:",
+    uz: "Darajangizni bilish uchun 5 daqiqalik bepul testni ishlab ko'ring:",
+    ru: "Чтобы узнать свой уровень, пройдите бесплатный тест на 5 минут:",
+    en: "See where you stand with the free 5-minute test:",
   },
   next_disp: {
     uz: "📎 Tezroq boshlash uchun MC authority xati, W-9 va sug'urta sertifikatini (COI) shu yerga yuborishingiz mumkin.",
