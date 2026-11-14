@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sales bot setup</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#0f172a">
+<link rel="icon" href="../icons/favicon-32.png">
+<link rel="stylesheet" href="../base.css">
+<style>
+:root{
+  --bg:#F4F6FA; --bg-alt:#EBEFF5; --surface:#FFFFFF; --ink:#0F172A; --muted:#5B6474; --line:#E1E6EE; --line-strong:#C9D2DE;
+  --accent:#229ED9; --accent-ink:#FFFFFF; --accent-soft:#E3F3FB; --eyebrow:#1B7FB0; --danger:#C0392B;
+  --ok:#1E8E5A; --ok-soft:#E3F5EC; --warn-soft:#FFF4D6; --warn-line:#F2D58A; --warn-ink:#5A4300;
+  --header-bg:rgba(244,246,250,.9); --radius:16px; --btn-radius:12px;
+  --input-bg:#FFFFFF; --input-line:#C9D2DE;
+  --card-shadow:0 1px 2px rgba(15,23,42,.05),0 8px 24px rgba(15,23,42,.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0B1220; --bg-alt:#0F1829; --surface:#121C2E; --ink:#E8EEF7; --muted:#9AA8BC; --line:#22304A; --line-strong:#2E3F5E;
+    --accent:#35A9E1; --accent-ink:#06121F; --accent-soft:#12324A; --eyebrow:#6CC3EE; --danger:#FF7B6B;
+    --ok:#4CC38A; --ok-soft:#10301F; --warn-soft:#2E2508; --warn-line:#5C4A12; --warn-ink:#F4D98A;
+    --header-bg:rgba(11,18,32,.9); --input-bg:#0E1726; --input-line:#2E3F5E;
+    --card-shadow:none;
+  }
+}
+body{font-size:16px}
+main{padding:28px 0 64px}
+.narrow{max-width:760px}
+h1{font-size:clamp(28px,5vw,40px);margin-bottom:.3em}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--card-shadow);padding:22px;margin-top:18px}
+@media(min-width:720px){.panel{padding:28px}}
+.panel h2{font-size:22px;margin-bottom:.35em;display:flex;align-items:center;gap:10px}
+.num{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--accent-soft);color:var(--eyebrow);font-size:15px;font-weight:800;flex:none}
+.steps-mini{margin:12px 0 18px;padding-left:20px;color:var(--ink)}
+.steps-mini li{margin:6px 0}
+.steps-mini code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92em;background:var(--bg-alt);padding:1px 6px;border-radius:6px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+.row .field{flex:1 1 260px;margin:0}
+.pw{position:relative}
+.pw input{padding-right:74px}
+.pw button{position:absolute;right:6px;top:50%;transform:translateY(-50%);border:0;background:var(--bg-alt);color:var(--ink);font:inherit;font-size:13px;font-weight:700;border-radius:8px;padding:6px 10px;cursor:pointer}
+.status{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-top:14px}
+.tile{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--bg)}
+.tile small{display:block;color:var(--muted);font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.tile b{display:block;font-size:18px;margin-top:2px;word-break:break-word}
+.good{color:var(--ok)} .bad{color:var(--danger)}
+.note{margin-top:14px;padding:12px 14px;border-radius:12px;background:var(--warn-soft);border:1px solid var(--warn-line);color:var(--warn-ink);font-size:14.5px}
+.msg{margin-top:12px;font-weight:600;min-height:1.2em}
+.msg.err{color:var(--danger)} .msg.ok{color:var(--ok)}
+.done-box{margin-top:16px;padding:16px;border-radius:12px;background:var(--ok-soft);border:1px solid var(--ok)}
+.done-box p{margin:0 0 10px}
+.links{display:grid;gap:12px;margin-top:10px}
+.checks{list-style:none;margin:10px 0 0;padding:0}
+.checks li{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-top:1px solid var(--line)}
+.checks li:first-child{border-top:0}
+.checks input{width:20px;height:20px;margin-top:2px;accent-color:var(--accent);flex:none}
+.locked [data-needs-code]{opacity:.5;pointer-events:none}
+.top .brand span{font-weight:800}
+</style>
+</head>
+<body class="locked">
+<header class="top">
+  <div class="wrap narrow">
+    <a class="brand" href="../"><img src="../icons/icon-192.png" alt=""><span>Sales bot setup</span></a>
+    <div class="spacer"></div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap narrow">
+    <span class="eyebrow">Only for you</span>
+    <h1>Connect your sales bot</h1>
+    <p class="lede">One Telegram bot sells Truck Talk, dispatch, DSL HELP and SpeakUp, and every sign-up from the four sites lands in it. This page connects it. Keep the setup code private.</p>
+
+    <!-- 1. setup code -->
+    <section class="panel" aria-labelledby="h-code">
+      <h2 id="h-code"><span class="num">1</span>Your setup code</h2>
+      <p class="muted">It was in your Claude thread. If you opened this page from that link, it's already filled in.</p>
+      <form id="code-form" class="row" autocomplete="off">
+        <div class="field">
+          <label for="code">Setup code</label>
+          <div class="pw"><input id="code" name="code" type="password" inputmode="text" autocapitalize="off" spellcheck="false" required><button type="button" data-toggle="code">Show</button></div>
+        </div>
+        <button class="btn" type="submit">Check status</button>
+      </form>
+      <div class="msg" id="code-msg" role="status"></div>
+      <div class="status" id="status" hidden>
+        <div class="tile"><small>Bot</small><b id="st-bot">—</b></div>
+        <div class="tile"><small>Connection</small><b id="st-hook">—</b></div>
+        <div class="tile"><small>Admins</small><b id="st-admins">—</b></div>
+        <div class="tile"><small>Leads so far</small><b id="st-leads">—</b></div>
+      </div>
+      <div class="msg err" id="st-error" hidden></div>
+      <p id="admin-wrap" hidden style="margin:16px 0 0"><a class="btn btn-ghost" id="admin-link" href="#" target="_blank" rel="noopener">Open the bot as admin</a></p>
+    </section>
+
+    <!-- 2. connect bot -->
+    <section class="panel" data-needs-code aria-labelledby="h-bot">
+      <h2 id="h-bot"><span class="num">2</span>Create the bot and paste its token</h2>
+      <ol class="steps-mini">
+        <li>Open <a href="https://t.me/BotFather" target="_blank" rel="noopener">@BotFather</a> in Telegram and send <code>/newbot</code>.</li>
+        <li>Name it, for example <b>TechSolve Help</b>. Then pick a username that ends in <code>bot</code>, for example <code>techsolve_help_bot</code>.</li>
+        <li>BotFather replies with a token that looks like <code>123456789:AAH…</code>. Copy it.</li>
+        <li>Paste it below and press <b>Connect</b>. The page sends it straight to your Supabase server.</li>
+      </ol>
+      <form id="bot-form" autocomplete="off">
+        <div class="field">
+          <label for="token">Bot token from BotFather</label>
+          <div class="pw"><input id="token" name="token" type="password" autocapitalize="off" spellcheck="false" placeholder="123456789:AA..." required><button type="button" data-toggle="token">Show</button></div>
+        </div>
+        <button class="btn btn-block" type="submit" id="bot-btn">Connect</button>
+      </form>
+      <div class="msg" id="bot-msg" role="status"></div>
+      <div class="done-box" id="bot-done" hidden>
+        <p><b>Connected: <span id="done-bot"></span></b></p>
+        <p>Last step: open the bot with the button below and press <b>Start</b>. That makes your Telegram account the admin, so new leads come to you.</p>
+        <a class="btn" id="done-admin" href="#" target="_blank" rel="noopener">Open the bot and press Start</a>
+      </div>
+      <p class="note">Never paste the token into a chat, a document or a screenshot, including with Claude. If it leaks, send <code>/revoke</code> to BotFather and connect the new token here.</p>
+    </section>
+
+    <!-- 3. pay links -->
+    <section class="panel" data-needs-code aria-labelledby="h-pay">
+      <h2 id="h-pay"><span class="num">3</span>Payment links</h2>
+      <p class="muted">When you create the products on Whop, paste each checkout link here. Pay buttons then show up on the sites and in the bot within about a minute. Leave a box empty to hide its button.</p>
+      <form id="pay-form" autocomplete="off">
+        <div class="links">
+          <div class="field"><label for="w1">Truck Talk, 1 month ($149)</label><input id="w1" name="trucktalkMonthly" type="url" inputmode="url" placeholder="https://whop.com/..."></div>
+          <div class="field"><label for="w2">Truck Talk, 3 months ($399)</label><input id="w2" name="trucktalk3m" type="url" inputmode="url" placeholder="https://whop.com/..."></div>
+          <div class="field"><label for="w3">Dispatch Starter Kit ($47)</label><input id="w3" name="dispatchKit" type="url" inputmode="url" placeholder="https://whop.com/..."></div>
+        </div>
+        <button class="btn btn-block" type="submit" id="pay-btn" style="margin-top:14px">Save links</button>
+      </form>
+      <div class="msg" id="pay-msg" role="status"></div>
+    </section>
+
+    <!-- 4. test -->
+    <section class="panel" aria-labelledby="h-test">
+      <h2 id="h-test"><span class="num">4</span>Test it once</h2>
+      <ul class="checks">
+        <li><input type="checkbox" id="c1"><label for="c1">Send yourself a test sign-up from the <a href="../#join" target="_blank" rel="noopener">Truck Talk page</a>. A lead card should arrive in the bot within seconds.</label></li>
+        <li><input type="checkbox" id="c2"><label for="c2">Tap <b>Contacted</b> under the card. The status on the card changes.</label></li>
+        <li><input type="checkbox" id="c3"><label for="c3">From a second Telegram account (or ask a friend), open the bot, pick Truck Talk and send a question. It reaches you; reply to it and the answer goes back through the bot.</label></li>
+        <li><input type="checkbox" id="c4"><label for="c4">Send <code>/stats</code> to the bot to see the last 7 days.</label></li>
+      </ul>
+    </section>
+  </div>
+</main>
+
+<script src="../config.js"></script>
+<script>
+(function () {
+  "use strict";
+  var CFG = window.MONEY_CFG || {};
+  var LEAD = CFG.leadUrl || "";
+  var BOT = LEAD.replace(/\/sales-lead\/?$/, "/sales-bot");
+  var $ = function (id) { return document.getElementById(id); };
+  var code = "";
+
+  var ERR = {
+    bad_code: "That setup code isn't right.",
+    bad_token: "That doesn't look like a BotFather token. It should look like 123456789:AAH...",
+    token_rejected: "Telegram rejected this token. Copy it again from BotFather, or send /revoke there and use the new one.",
+    webhook_failed: "Telegram couldn't reach the server. Try again in a minute.",
+    too_many_tries: "Too many tries. Wait 10 minutes and try again.",
+    bad_url: "One of the links isn't a full https:// address.",
+    network: "Couldn't reach the server. Check your internet and try again.",
+    server: "Something went wrong on the server. Try again in a minute."
+  };
+
+  function post(url, body) {
+    return fetch(url, { method: "POST", headers: { "Content-Type": "text/plain;charset=UTF-8" }, body: JSON.stringify(body) })
+      .then(function (r) { return r.json().catch(function () { return { ok: false, error: "server" }; }); })
+      .catch(function () { return { ok: false, error: "network" }; });
+  }
+  function say(el, text, kind) { el.textContent = text || ""; el.className = "msg" + (kind ? " " + kind : ""); }
+  function errText(j) { return (ERR[j && j.error] || ERR.server) + (j && j.detail ? " (" + j.detail + ")" : ""); }
+
+  // Show/hide secret fields
+  var toggles = document.querySelectorAll("[data-toggle]");
+  for (var i = 0; i < toggles.length; i++) {
+    toggles[i].addEventListener("click", function () {
+      var inp = $(this.getAttribute("data-toggle"));
+      var show = inp.type === "password";
+      inp.type = show ? "text" : "password";
+      this.textContent = show ? "Hide" : "Show";
+    });
+  }
+
+  function renderStatus(j) {
+    $("status").hidden = false;
+    $("st-bot").innerHTML = j.configured && j.bot_username ? '<span class="good">@' + j.bot_username + "</span>" : '<span class="bad">Not connected</span>';
+    var w = j.webhook;
+    var hook = !j.configured ? "—" : w && w.connected ? '<span class="good">Working</span>' : '<span class="bad">Needs attention</span>';
+    $("st-hook").innerHTML = hook;
+    $("st-admins").innerHTML = j.admins ? String(j.admins) : (j.configured ? '<span class="bad">0, press Start</span>' : "0");
+    $("st-leads").textContent = String(j.leads || 0);
+    var err = $("st-error");
+    if (w && w.last_error) { err.hidden = false; err.textContent = "Last Telegram error: " + w.last_error; } else err.hidden = true;
+    if (j.admin_link) { $("admin-wrap").hidden = false; $("admin-link").href = j.admin_link; } else $("admin-wrap").hidden = true;
+  }
+
+  function loadLinks() {
+    post(LEAD, { type: "admin", code: code }).then(function (j) {
+      if (!j.ok) return;
+      var w = j.whop || {};
+      $("w1").value = w.trucktalkMonthly || "";
+      $("w2").value = w.trucktalk3m || "";
+      $("w3").value = w.dispatchKit || "";
+    });
+  }
+
+  function checkStatus() {
+    var msg = $("code-msg");
+    say(msg, "Checking…");
+    return post(BOT + "/status", { code: code }).then(function (j) {
+      if (!j.ok) { say(msg, errText(j), "err"); document.body.classList.add("locked"); return; }
+      say(msg, "Code accepted.", "ok");
+      try { sessionStorage.setItem("setup_code", code); } catch (e) {}
+      document.body.classList.remove("locked");
+      renderStatus(j);
+      loadLinks();
+    });
+  }
+
+  $("code-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    code = $("code").value.trim();
+    if (code) checkStatus();
+  });
+
+  $("bot-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var token = $("token").value.trim();
+    var msg = $("bot-msg"), btn = $("bot-btn");
+    if (!token) return;
+    btn.disabled = true; say(msg, "Connecting… this takes a few seconds.");
+    post(BOT + "/setup", { code: code, token: token }).then(function (j) {
+      btn.disabled = false;
+      if (!j.ok) { say(msg, errText(j), "err"); return; }
+      $("token").value = "";
+      say(msg, "");
+      $("bot-done").hidden = false;
+      $("done-bot").textContent = "@" + j.bot_username;
+      $("done-admin").href = j.admin_link;
+      checkStatus();
+    });
+  });
+
+  $("pay-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var msg = $("pay-msg"), btn = $("pay-btn");
+    var whop = { trucktalkMonthly: $("w1").value.trim(), trucktalk3m: $("w2").value.trim(), dispatchKit: $("w3").value.trim() };
+    btn.disabled = true; say(msg, "Saving…");
+    post(LEAD, { type: "admin", code: code, whop: whop }).then(function (j) {
+      btn.disabled = false;
+      if (!j.ok) { say(msg, errText(j), "err"); return; }
+      say(msg, "Saved. Pay buttons update within about a minute.", "ok");
+    });
+  });
+
+  // Code from the link (#code=...) or from earlier in this tab. The part after # never reaches a server.
+  var fromHash = (/[#&]code=([^&]+)/.exec(location.hash) || [])[1];
+  var saved = ""; try { saved = sessionStorage.getItem("setup_code") || ""; } catch (e) {}
+  code = fromHash ? decodeURIComponent(fromHash) : saved;
+  if (fromHash) { try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {} }
+  if (code) { $("code").value = code; checkStatus(); }
+})();
+</script>
+</body>
+</html>

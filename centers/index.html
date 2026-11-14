@@ -1,0 +1,694 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SpeakUp — o'quv markazlari uchun tayyor ingliz tili kursi</title>
+<meta name="description" content="SpeakUp-1 «English from Zero»: 30 dars slaydlari, uy vazifalari, o'zi tekshiradigan mashqlar va o'qituvchi paneli. IELTS CD Prep mock testlari. 30 kun bepul.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#2A0F5E">
+<meta property="og:title" content="SpeakUp — o'quv markazlari uchun tayyor ingliz tili kursi">
+<meta property="og:description" content="Tayyor darslar, uy vazifalari, o'qituvchi paneli va IELTS mock testlar. 30 kun bepul sinab ko'ring.">
+<link rel="icon" href="icons/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+:root{
+  --bg:#F8F6FF; --bg-alt:#EFEAFE; --surface:#FFFFFF; --ink:#1B1035; --muted:#5E5677; --line:#E4DDF6; --line-strong:#CFC4EE;
+  --accent:#5B2BD6; --accent-ink:#FFFFFF; --accent-soft:#ECE5FF; --eyebrow:#6A3BE8;
+  --sun:#FFC83D; --sun-ink:#2A1600; --mint:#14A06B; --rose:#E0475B; --danger:#C0392B;
+  --header-bg:rgba(248,246,255,.9); --radius:20px; --btn-radius:14px;
+  --font-display:"Nunito","Arial Rounded MT Bold","Arial",sans-serif; --font-body:"Inter",-apple-system,"Segoe UI",Roboto,sans-serif;
+  --display-tracking:-0.015em; --display-weight:900;
+  --card-shadow:0 1px 2px rgba(27,16,53,.05),0 12px 30px rgba(59,21,128,.08);
+}
+.btn-sun{background:var(--sun);border-color:var(--sun);color:var(--sun-ink);box-shadow:0 10px 26px rgba(255,200,61,.35)}
+.hero{position:relative;overflow:hidden;color:#F4EFFF;background:radial-gradient(800px 420px at 85% 0%,#7C4DFF 0%,rgba(124,77,255,0) 60%),radial-gradient(600px 380px at 0% 100%,rgba(255,200,61,.16) 0%,rgba(255,200,61,0) 60%),linear-gradient(160deg,#2A0F5E 0%,#3B1580 100%);padding:46px 0 80px}
+.hero .wrap{position:relative;z-index:1;display:grid;gap:40px}
+@media(min-width:980px){.hero .wrap{grid-template-columns:1fr 1fr;align-items:center}.hero{padding:76px 0 104px}}
+.hero .eyebrow{color:var(--sun)}
+.hero .lede{color:#D9CFFA}
+.hero .btn-ghost{color:#F4EFFF;border-color:rgba(217,207,250,.5)}
+.hero .chips li{background:rgba(255,255,255,.08);border-color:rgba(217,207,250,.25);color:#EEE8FF}
+.visual{position:relative;padding-bottom:150px;max-width:520px;width:100%;justify-self:center}
+.dash{background:#fff;color:var(--ink);border-radius:22px;padding:18px;box-shadow:0 30px 60px rgba(14,4,40,.45)}
+.dash-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}
+.dash-head b{display:block;font-family:var(--font-display);font-size:18px}
+.dash-head small{color:var(--muted);font-size:13px}
+.live{white-space:nowrap;font-size:12px;font-weight:800;padding:5px 10px;border-radius:999px;background:#E8F8F0;color:#0E7A50}
+.dash table{width:100%;border-collapse:collapse;font-size:14px}
+.dash th{font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:700;text-align:center;padding:4px 4px 6px}
+.dash th:first-child,.dash td:first-child{text-align:left}
+.dash td{padding:7px 4px;border-top:1px solid var(--line);text-align:center;white-space:nowrap}
+.dash td.ok{color:var(--mint);font-weight:800}
+.dash td.no{color:var(--rose);font-weight:800}
+.dash td.na{color:#B5ADC9}
+.bar{display:inline-block;vertical-align:middle;width:54px;height:7px;border-radius:9px;background:#EEE9FB;margin-right:6px;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,#7C4DFF,#5B2BD6)}
+.bar i.low{background:linear-gradient(90deg,#FF8A65,#E0475B)}
+.mist{margin-top:12px;padding:11px 13px;border-radius:14px;background:#FFF6DC;display:grid;gap:2px}
+.mist small{font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#8A5A00}
+.mist b{font-size:15px}
+.mist span{font-size:13px;color:var(--muted)}
+.phone{position:absolute;right:6px;bottom:0;width:230px;background:#1B1035;color:#F4EFFF;border:5px solid #0D0620;border-radius:26px;padding:14px;box-shadow:0 24px 50px rgba(14,4,40,.5)}
+@media(min-width:560px){.phone{right:-26px}}
+@media(max-width:559px){.visual{padding-bottom:0}.phone{position:relative;right:auto;bottom:auto;margin:-14px 10px 0 auto}.visual .example{position:static;max-width:none;margin-top:12px;text-align:center}}
+.ph-top{display:flex;justify-content:space-between;font-size:12.5px;font-weight:800;margin-bottom:8px}
+.ph-top .xp{color:var(--sun)}
+.phone small{color:#B9AEE0;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.ph-s{margin:4px 0 2px;font-weight:700;font-size:15px}
+.ph-tr{margin:0 0 10px;color:#B9AEE0;font-size:13px}
+.ph-opts{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.ph-opts span{text-align:center;padding:8px;border-radius:10px;background:rgba(255,255,255,.08);font-weight:700;font-size:14px}
+.ph-opts .right{background:var(--mint);color:#fff}
+.visual .example{position:absolute;left:4px;bottom:10px;font-size:12px;color:#BFB2EE;margin:0;max-width:45%}
+.oneliner{background:#1B1035;color:#EEE8FF;padding:22px 0;text-align:center;font-family:var(--font-display);font-weight:800;font-size:clamp(19px,2.6vw,26px)}
+.oneliner b{color:var(--sun)}
+.feature .icon{background:var(--accent-soft)}
+.wide{display:grid;gap:18px;align-items:center;margin-top:16px;background:linear-gradient(135deg,#2A0F5E,#4A1BA0);color:#F4EFFF;border:0}
+@media(min-width:800px){.wide{grid-template-columns:auto 1fr auto}}
+.wide .icon{background:rgba(255,255,255,.12);margin:0}
+.wide h3{color:#fff}
+.wide p{color:#D9CFFA;margin:0}
+.wide .btn{white-space:nowrap}
+.ielts{display:grid;gap:30px;margin-top:10px}
+@media(min-width:900px){.ielts{grid-template-columns:1.1fr .9fr;align-items:center}}
+.score{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:var(--card-shadow);max-width:440px;width:100%;justify-self:center}
+.sc-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.sc-head b{font-family:var(--font-display);font-size:18px}
+.sc-head span{font-size:13px;color:var(--muted);font-weight:600}
+.sc-overall{display:flex;align-items:baseline;justify-content:space-between;padding:14px 16px;border-radius:16px;background:linear-gradient(135deg,#5B2BD6,#7C4DFF);color:#fff}
+.sc-overall small{font-weight:700;font-size:14px;opacity:.9}
+.sc-overall b{font-family:var(--font-display);font-size:42px;line-height:1}
+.sc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0 12px}
+.sc-grid div{background:var(--bg);border-radius:14px;padding:10px;text-align:center}
+.sc-grid small{display:block;font-size:12px;color:var(--muted);font-weight:700}
+.sc-grid b{font-family:var(--font-display);font-size:24px}
+.trend{width:100%;height:70px}
+.score .cap{font-size:12.5px;color:var(--muted)}
+.ie-price{display:inline-block;margin-top:16px;padding:10px 14px;border-radius:12px;background:var(--accent-soft);color:#3C1A99;font-weight:800}
+.note{font-size:13.5px;color:var(--muted);margin-top:10px}
+.site-card{display:grid;gap:16px;align-items:center;margin-top:0}
+@media(min-width:800px){.site-card{grid-template-columns:auto 1fr auto}}
+.site-card .icon{margin:0;background:#FFF3D1}
+.site-card h3{margin-bottom:4px}
+.site-card p{margin:0;color:var(--muted)}
+.site-card .price-tag{font-family:var(--font-display);font-weight:900;font-size:20px;white-space:nowrap}
+.calc{display:grid;gap:24px;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:var(--card-shadow);margin-top:26px}
+@media(min-width:900px){.calc{grid-template-columns:1fr 1fr;padding:30px;align-items:center}}
+.calc label{font-weight:700;display:block}
+.calc output{font-family:var(--font-display);font-size:clamp(30px,4.6vw,42px);font-weight:900;color:var(--ink);display:block;line-height:1.05;margin-top:2px}
+.calc .range{margin:10px 0 2px}
+.calc .scale{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-bottom:16px}
+.calc-res{display:grid;gap:10px}
+.calc-res div{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:13px 16px;border-radius:14px;background:var(--bg)}
+.calc-res div.main{background:#1B1035;color:#fff}
+.calc-res div.main b{color:var(--sun)}
+.calc-res b{font-family:var(--font-display);font-size:21px;text-align:right}
+.calc-res span{font-size:15px}
+.calc-res span small{display:block;color:var(--muted);font-size:12.5px}
+.tiers{display:grid;gap:12px;margin-top:22px;grid-template-columns:repeat(2,1fr)}
+@media(min-width:900px){.tiers{grid-template-columns:repeat(4,1fr)}}
+.tier{background:var(--surface);border:1.5px solid var(--line);border-radius:18px;padding:16px;transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
+.tier small{display:block;color:var(--muted);font-weight:700;font-size:13.5px}
+.tier b{display:block;font-family:var(--font-display);font-size:22px;margin-top:4px}
+.tier span{font-size:13px;color:var(--muted)}
+.tier.match{border-color:var(--accent);box-shadow:0 14px 30px rgba(91,43,214,.18);transform:translateY(-2px)}
+.price-notes{display:grid;gap:10px;margin-top:18px}
+@media(min-width:800px){.price-notes{grid-template-columns:repeat(3,1fr)}}
+.price-notes div{background:var(--surface);border:1px dashed var(--line-strong);border-radius:14px;padding:14px 16px;font-size:15px}
+.price-notes b{display:block;margin-bottom:2px}
+.pilot{background:linear-gradient(180deg,var(--bg) 0%,var(--bg-alt) 100%)}
+.pilot .wrap{display:grid;gap:30px}
+@media(min-width:980px){.pilot .wrap{grid-template-columns:.8fr 1.2fr;align-items:start}}
+.demo-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.demo-row .btn{flex:1 1 200px}
+</style>
+</head>
+<body class="has-mobile-cta">
+<script>document.documentElement.classList.add('js')</script>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#"><img src="icons/icon-192.png" alt="" width="34" height="34"><span>SpeakUp</span></a>
+    <div class="spacer"></div>
+    <div class="lang-switch" role="group" aria-label="Til / Язык / Language">
+      <button type="button" data-lang="uz">UZ</button><button type="button" data-lang="ru">RU</button><button type="button" data-lang="en">EN</button>
+    </div>
+    <a class="btn btn-small" href="#pilot" data-cta="nav_pilot" data-product="centers" data-t="nav_pilot">Bepul sinov</a>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" data-t="hero_eyebrow">O'quv markazlari uchun</span>
+      <h1 data-t="hero_h1">Markazingiz uchun tayyor ingliz tili kursi</h1>
+      <p class="lede" data-t="hero_lede"></p>
+      <div class="btn-row">
+        <a class="btn btn-sun" href="#pilot" data-cta="hero_pilot" data-product="centers" data-t="hero_cta">30 kun bepul sinash</a>
+        <a class="btn btn-ghost" data-demo="speakup1" href="#" target="_blank" rel="noopener" data-cta="hero_demo" data-product="centers" data-t="hero_cta2">Demoni ochish</a>
+      </div>
+      <ul class="chips">
+        <li data-t="chip1">30 kun bepul</li>
+        <li data-t="chip2">Har bir mashq o'zbekcha tarjima bilan</li>
+        <li data-t="chip3">Telefon yoki kompyuterda</li>
+        <li data-t="chip4">Narx o'quvchilar soniga qarab</li>
+      </ul>
+    </div>
+    <div class="visual">
+      <div class="dash" role="img" data-ta="dash_label" aria-label="O'qituvchi panelidan misol">
+        <div class="dash-head"><div><b data-t="dash_title">Beginner A1 · 9-dars</b><small data-t="dash_sub">14 o'quvchi</small></div><span class="live" data-t="dash_live">Uy vazifasi: 11/14</span></div>
+        <table>
+          <thead>
+            <tr><th rowspan="2" data-t="dash_name">O'quvchi</th><th colspan="3" data-t="dash_hw">Uy vazifasi</th><th rowspan="2" data-t="dash_pr">Mashq</th></tr>
+            <tr><th>7</th><th>8</th><th>9</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Madina</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td><td><span class="bar"><i style="width:96%"></i></span>96%</td></tr>
+            <tr><td>Javohir</td><td class="ok">✓</td><td class="ok">✓</td><td class="no">✕</td><td><span class="bar"><i style="width:71%"></i></span>71%</td></tr>
+            <tr><td>Sevara</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td><td><span class="bar"><i style="width:88%"></i></span>88%</td></tr>
+            <tr><td>Bekzod</td><td class="ok">✓</td><td class="no">✕</td><td class="na">—</td><td><span class="bar"><i class="low" style="width:54%"></i></span>54%</td></tr>
+            <tr><td>Nilufar</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td><td><span class="bar"><i style="width:92%"></i></span>92%</td></tr>
+          </tbody>
+        </table>
+        <div class="mist"><small data-t="dash_mist">Eng ko'p xato</small><b>He don't like → He doesn't like</b><span data-t="dash_mist_n">6 o'quvchi</span></div>
+      </div>
+      <div class="phone" role="img" data-ta="phone_label" aria-label="O'quvchi telefonidagi mashqdan misol">
+        <div class="ph-top"><span data-t="phone_streak">🔥 7 kun</span><span class="xp">+10 XP</span></div>
+        <small data-t="phone_q">Gapni to'ldiring</small>
+        <p class="ph-s">She ___ to school every day.</p>
+        <p class="ph-tr">U har kuni maktabga boradi.</p>
+        <div class="ph-opts"><span>go</span><span class="right">goes ✓</span></div>
+      </div>
+      <p class="example" data-t="example">Misol uchun ko'rsatilgan.</p>
+    </div>
+  </div>
+</section>
+
+<div class="oneliner"><div class="wrap" data-th="oneliner">Ustoz dars o'tadi. <b>Qolganini SpeakUp qiladi.</b></div></div>
+
+<section id="speakup">
+  <div class="wrap">
+    <span class="eyebrow" data-t="su_eyebrow">SpeakUp-1 «English from Zero»</span>
+    <h2 data-t="su_h2">Noldan boshlaydigan guruhlar uchun to'liq kurs</h2>
+    <p class="lede" data-t="su_lede"></p>
+    <div class="grid grid-3" style="margin-top:28px">
+      <div class="card feature reveal"><div class="icon" aria-hidden="true">🎞️</div><h3 data-t="f1_t"></h3><p class="muted" data-t="f1_d"></p></div>
+      <div class="card feature reveal"><div class="icon" aria-hidden="true">📝</div><h3 data-t="f2_t"></h3><p class="muted" data-t="f2_d"></p></div>
+      <div class="card feature reveal"><div class="icon" aria-hidden="true">🎯</div><h3 data-t="f3_t"></h3><p class="muted" data-t="f3_d"></p></div>
+      <div class="card feature reveal"><div class="icon" aria-hidden="true">🧠</div><h3 data-t="f4_t"></h3><p class="muted" data-t="f4_d"></p></div>
+      <div class="card feature reveal"><div class="icon" aria-hidden="true">⏱️</div><h3 data-t="f5_t"></h3><p class="muted" data-t="f5_d"></p></div>
+      <div class="card feature reveal"><div class="icon" aria-hidden="true">🏆</div><h3 data-t="f6_t"></h3><p class="muted" data-t="f6_d"></p></div>
+    </div>
+    <div class="card wide reveal">
+      <div class="icon" aria-hidden="true">📊</div>
+      <div><h3 data-t="dash_t">O'qituvchi paneli</h3><p data-t="dash_d"></p></div>
+      <a class="btn btn-sun" data-demo="speakup1" href="#" target="_blank" rel="noopener" data-cta="demo_speakup1" data-product="centers" data-t="demo_su">SpeakUp-1 demosi</a>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt" id="ielts">
+  <div class="wrap">
+    <div class="ielts">
+      <div>
+        <span class="eyebrow" data-t="ie_eyebrow">IELTS CD Prep</span>
+        <h2 data-t="ie_h2">Kompyuterdagi IELTS uchun mock testlar</h2>
+        <p class="lede" data-t="ie_lede"></p>
+        <ul class="ticks" style="margin-top:18px">
+          <li data-t="ie1"></li><li data-t="ie2"></li><li data-t="ie3"></li><li data-t="ie4"></li><li data-t="ie5"></li>
+        </ul>
+        <div class="ie-price" data-t="ie_price"></div>
+        <p class="note" data-t="ie_note"></p>
+        <div class="btn-row" style="margin-top:18px">
+          <a class="btn" data-demo="ielts" href="#" target="_blank" rel="noopener" data-cta="demo_ielts" data-product="ielts" data-t="demo_ie">IELTS demosi</a>
+        </div>
+      </div>
+      <div class="score reveal" role="img" data-ta="score_label" aria-label="IELTS mock test natijasidan misol">
+        <div class="sc-head"><b data-t="score_title">Natija</b><span>Mock test 2</span></div>
+        <div class="sc-overall"><small data-t="score_overall">Umumiy band</small><b>6.5</b></div>
+        <div class="sc-grid"><div><small>Listening</small><b>7.0</b></div><div><small>Reading</small><b>6.5</b></div><div><small>Writing</small><b>6.0</b></div></div>
+        <svg class="trend" viewBox="0 0 300 70" aria-hidden="true">
+          <defs><linearGradient id="tg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7C4DFF" stop-opacity=".28"/><stop offset="1" stop-color="#7C4DFF" stop-opacity="0"/></linearGradient></defs>
+          <path d="M10 56 L80 56 L150 40 L220 40 L290 18 L290 70 L10 70 Z" fill="url(#tg)"/>
+          <polyline points="10,56 80,56 150,40 220,40 290,18" fill="none" stroke="#5B2BD6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+          <g fill="#fff" stroke="#5B2BD6" stroke-width="2.5"><circle cx="10" cy="56" r="4.5"/><circle cx="80" cy="56" r="4.5"/><circle cx="150" cy="40" r="4.5"/><circle cx="220" cy="40" r="4.5"/><circle cx="290" cy="18" r="4.5"/></g>
+        </svg>
+        <span class="cap" data-t="score_trend">Oxirgi 5 urinish: 5.5 → 6.5</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:48px;padding-bottom:48px">
+  <div class="wrap">
+    <div class="card site-card reveal">
+      <div class="icon" aria-hidden="true">🌐</div>
+      <div><span class="eyebrow" style="margin-bottom:6px" data-t="site_eyebrow">Qo'shimcha</span><h3 data-t="site_h3">Markazingiz uchun sayt</h3><p data-t="site_d"></p></div>
+      <div class="price-tag" data-t="site_price"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt" id="pricing">
+  <div class="wrap">
+    <span class="eyebrow" data-t="pr_eyebrow">Narxlar</span>
+    <h2 data-t="pr_h2">O'quvchilar soniga qarab oylik narx</h2>
+    <p class="lede" data-t="pr_lede"></p>
+    <div class="calc">
+      <div>
+        <label for="students" data-t="calc_students">Markazdagi o'quvchilar</label>
+        <output id="students-out" for="students">120</output>
+        <input class="range" id="students" type="range" min="10" max="600" step="10" value="120">
+        <div class="scale"><span>10</span><span>600</span></div>
+        <label for="ielts-n" data-t="calc_ielts">IELTS CD Prep oladigan o'quvchilar</label>
+        <output id="ielts-out" for="ielts-n" style="font-size:28px">20</output>
+        <input class="range" id="ielts-n" type="range" min="0" max="200" step="5" value="20">
+        <div class="scale"><span>0</span><span>200</span></div>
+      </div>
+      <div class="calc-res" aria-live="polite">
+        <div><span>SpeakUp-1<small id="tier-out"></small></span><b id="su-out"></b></div>
+        <div><span>IELTS CD Prep<small id="ie-calc-note"></small></span><b id="ie-out"></b></div>
+        <div class="main"><span data-t="calc_total">Jami oyiga</span><b id="total-out"></b></div>
+        <div><span data-t="calc_per">Bitta o'quvchiga oyiga</span><b id="per-out"></b></div>
+        <p class="small muted" style="margin:0" data-t="calc_note"></p>
+      </div>
+    </div>
+    <div class="tiers" id="tiers"></div>
+    <div class="price-notes">
+      <div><b data-t="pn1_t">30 kun bepul</b><span data-t="pn1_d"></span></div>
+      <div><b>IELTS CD Prep</b><span data-t="pn2_d"></span></div>
+      <div><b data-t="pn3_t">Markaz sayti</b><span data-t="pn3_d"></span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="eyebrow" data-t="st_eyebrow">Qanday boshlanadi</span>
+    <h2 data-t="st_h2">Bitta guruhdan boshlaymiz</h2>
+    <ol class="steps" style="margin-top:26px">
+      <li><h3 data-t="st1_t"></h3><p data-t="st1_d"></p></li>
+      <li><h3 data-t="st2_t"></h3><p data-t="st2_d"></p></li>
+      <li><h3 data-t="st3_t"></h3><p data-t="st3_d"></p></li>
+      <li><h3 data-t="st4_t"></h3><p data-t="st4_d"></p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap">
+    <span class="eyebrow">FAQ</span>
+    <h2 data-t="faq_h2">Markaz egalari so'raydigan savollar</h2>
+    <div class="faq" style="margin-top:24px">
+      <details><summary data-t="q1"></summary><p data-t="a1"></p></details>
+      <details><summary data-t="q2"></summary><p data-t="a2"></p></details>
+      <details><summary data-t="q3"></summary><p data-t="a3"></p></details>
+      <details><summary data-t="q4"></summary><p data-t="a4"></p></details>
+      <details><summary data-t="q5"></summary><p data-t="a5"></p></details>
+      <details><summary data-t="q6"></summary><p data-t="a6"></p></details>
+    </div>
+  </div>
+</section>
+
+<section class="pilot" id="pilot">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" data-t="pi_eyebrow">Bepul sinov</span>
+      <h2 data-t="pi_h2">Bitta guruhda 30 kun bepul sinab ko'ring</h2>
+      <p class="lede" data-t="pi_lede"></p>
+      <ul class="ticks" style="margin-top:18px">
+        <li data-t="pi_t1"></li><li data-t="pi_t2"></li><li data-t="pi_t3"></li>
+      </ul>
+      <div class="demo-row">
+        <a class="btn btn-ghost btn-small" data-demo="speakup1" href="#" target="_blank" rel="noopener" data-cta="pilot_demo_su" data-product="centers" data-t="demo_su">SpeakUp-1 demosi</a>
+        <a class="btn btn-ghost btn-small" data-demo="ielts" href="#" target="_blank" rel="noopener" data-cta="pilot_demo_ie" data-product="ielts" data-t="demo_ie">IELTS demosi</a>
+      </div>
+    </div>
+    <div class="form-card">
+      <form data-lead="centers" novalidate>
+        <div class="fields two">
+          <div class="field"><label for="f-name" data-t="f_name">Ismingiz</label><input id="f-name" name="name" autocomplete="name" required></div>
+          <div class="field"><label for="f-center" data-t="f_center">Markaz nomi</label><input id="f-center" name="company" autocomplete="organization"></div>
+          <div class="field"><label for="f-city" data-t="f_city">Shahar</label><input id="f-city" name="city" data-tp="f_city_ph" placeholder="masalan, Toshkent"></div>
+          <div class="field"><label for="f-students" data-t="f_students">O'quvchilar soni</label>
+            <select id="f-students" name="students">
+              <option value="up to 50" data-t="s1">50 gacha</option>
+              <option value="51-150" data-t="s2" selected>51–150</option>
+              <option value="151-300" data-t="s3">151–300</option>
+              <option value="300+" data-t="s4">300 dan ko'p</option>
+            </select></div>
+          <div class="field full"><span class="label" data-t="f_role">Lavozimingiz</span>
+            <div class="pills">
+              <label><input type="radio" name="role" value="owner" checked><span data-t="r_owner">Egasi</span></label>
+              <label><input type="radio" name="role" value="director"><span data-t="r_dir">Direktor</span></label>
+              <label><input type="radio" name="role" value="teacher"><span data-t="r_teacher">O'qituvchi</span></label>
+              <label><input type="radio" name="role" value="other"><span data-t="r_other">Boshqa</span></label>
+            </div>
+          </div>
+          <div class="field full"><span class="label" data-t="f_interest">Nima qiziqtiradi</span>
+            <div class="pills">
+              <label><input type="checkbox" name="interest" value="SpeakUp-1" checked><span>SpeakUp-1</span></label>
+              <label><input type="checkbox" name="interest" value="IELTS CD Prep"><span>IELTS CD Prep</span></label>
+              <label><input type="checkbox" name="interest" value="Website"><span data-t="i_site">Markaz sayti</span></label>
+            </div>
+          </div>
+          <div class="field"><label for="f-phone" data-t="f_phone">Telefon</label><input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+998 90 123 45 67"></div>
+          <div class="field"><label for="f-tg">Telegram <span class="hint" data-t="f_optional">ixtiyoriy</span></label><input id="f-tg" name="telegram" autocomplete="off" placeholder="@username"></div>
+          <div class="field full"><label for="f-notes"><span data-t="f_notes">Qaysi guruhda sinab ko'rmoqchisiz?</span> <span class="hint" data-t="f_optional">ixtiyoriy</span></label><textarea id="f-notes" name="notes" rows="3" data-tp="f_notes_ph" placeholder="masalan, kattalar uchun Beginner guruhi, 12 o'quvchi"></textarea></div>
+          <div class="hp" aria-hidden="true"><label>Leave empty<input name="hp" tabindex="-1" autocomplete="off"></label></div>
+        </div>
+        <button class="btn btn-block" type="submit" style="margin-top:20px" data-t="f_submit">Bepul sinovga yozilish</button>
+        <p class="form-msg" role="status" aria-live="polite"></p>
+        <p class="form-note" data-t="f_note">Ma'lumotlaringizdan faqat siz bilan bog'lanish uchun foydalanamiz.</p>
+      </form>
+      <div class="form-done" hidden>
+        <div class="big" aria-hidden="true">🎉</div>
+        <h3 data-t="done_h">Rahmat! So'rovingiz qabul qilindi.</h3>
+        <p class="muted" data-t="done_p"></p>
+        <div class="btn-row">
+          <a class="btn btn-sun" data-bot="lc" hidden target="_blank" rel="noopener" data-t="done_bot">Telegram'da davom etish</a>
+          <a class="btn btn-ghost" data-demo="speakup1" href="#" target="_blank" rel="noopener" data-t="demo_su">SpeakUp-1 demosi</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div><b>SpeakUp</b> · © <span data-year></span></div>
+    <div data-t="foot_note">O'quv markazlari uchun ingliz tili kursi va IELTS mock testlar.</div>
+    <div><a data-contact href="#" target="_blank" rel="noopener" data-t="foot_contact">Telegram'da yozing</a></div>
+  </div>
+</footer>
+
+<div class="mobile-cta">
+  <a class="btn btn-ghost" href="#pricing" data-cta="mobile_pricing" data-product="centers" data-t="mobile_pricing">Narxlar</a>
+  <a class="btn" href="#pilot" data-cta="mobile_pilot" data-product="centers" data-t="mobile_pilot">Bepul sinov</a>
+</div>
+
+<script src="config.js"></script>
+<script src="money.js"></script>
+<script>
+(function(){
+var P = (window.MONEY_CFG||{}).prices||{};
+var TIERS = (P.centerTiers && P.centerTiers.length ? P.centerTiers : [{max:50,price:300000},{max:150,price:600000},{max:300,price:900000},{max:100000,price:1200000}]).slice().sort(function(a,b){return a.max-b.max;});
+var IELTS = +P.ieltsPerStudent||20000, SITE = +P.centerSite||1800000;
+var D = {
+uz:{
+meta_title:"SpeakUp — o'quv markazlari uchun tayyor ingliz tili kursi",
+meta_desc:"SpeakUp-1 «English from Zero»: 30 dars slaydlari, uy vazifalari, o'zi tekshiradigan mashqlar va o'qituvchi paneli. IELTS CD Prep mock testlari. 30 kun bepul.",
+nav_pilot:"Bepul sinov",
+hero_eyebrow:"O'quv markazlari uchun",
+hero_h1:"Markazingiz uchun tayyor ingliz tili kursi",
+hero_lede:"SpeakUp-1 «English from Zero»: 30 ta dars uchun slaydlar, uy vazifalari, o'zi tekshiradigan mashqlar va har bir o'quvchi natijasini ko'rsatadigan o'qituvchi paneli. Bunga qo'shimcha, kompyuterdagi IELTS formatida mock testlar. 30 kun bepul sinab ko'ring.",
+hero_cta:"30 kun bepul sinash", hero_cta2:"Demoni ochish",
+chip1:"30 kun bepul", chip2:"Har bir mashq o'zbekcha tarjima bilan", chip3:"Telefon yoki kompyuterda", chip4:"Narx o'quvchilar soniga qarab",
+dash_label:"O'qituvchi panelidan misol", dash_title:"Beginner A1 · 9-dars", dash_sub:"14 o'quvchi", dash_live:"Uy vazifasi: 11/14",
+dash_name:"O'quvchi", dash_hw:"Uy vazifasi", dash_pr:"Mashq", dash_mist:"Eng ko'p xato", dash_mist_n:"6 o'quvchi shu xatoni qildi",
+phone_label:"O'quvchi telefonidagi mashqdan misol", phone_streak:"🔥 7 kun", phone_q:"Gapni to'ldiring",
+example:"Misol uchun ko'rsatilgan.",
+oneliner:"Ustoz dars o'tadi. <b>Qolganini SpeakUp qiladi.</b>",
+su_eyebrow:"SpeakUp-1 «English from Zero»", su_h2:"Noldan boshlaydigan guruhlar uchun to'liq kurs",
+su_lede:"3 qism, 30 dars, 15 nazorat va 30 uy vazifasi. Yangi o'qituvchi ham birinchi kundan tayyor dars bilan kiradi.",
+f1_t:"30 dars uchun tayyor slaydlar", f1_d:"Darsni ochasiz va o'tasiz: to'liq ekran, qalam, marker va lazer ko'rsatkich, javob slaydlarini o'tkazib yuborish mumkin.",
+f2_t:"Javoblar kaliti bilan 30 uy vazifasi", f2_d:"O'quvchilar sahifada to'ldiradi va avtomatik tekshiriladigan javoblarni o'zi tekshiradi. Qolganini ustoz kalit bo'yicha belgilaydi.",
+f3_t:"O'zi tekshiradigan mashqlar", f3_d:"Har bir darsdan keyin 8 xil mashq, darhol tekshiriladi. Har bir gap ostida o'zbekcha tarjima va inglizcha audio.",
+f4_t:"Yodda qoladigan so'zlar", f4_d:"Har bir dars so'zlari uchun kartochkalar va xatolarni o'z vaqtida qaytaradigan kunlik takrorlash.",
+f5_t:"15 ta onlayn nazorat", f5_d:"Har ikki darsdan keyin vaqt bilan test va ball.",
+f6_t:"XP, streak va guruh reytingi", f6_d:"Nishonlar va darsdagi jonli «Savol-ball» o'yini o'quvchilarni har kuni qaytib kelishga undaydi.",
+dash_t:"O'qituvchi paneli", dash_d:"Har bir o'quvchi va har bir dars bo'yicha: uy vazifasi holati, mashq foizi, nazorat ballari va eng ko'p uchraydigan xatolar. CSV'ga eksport.",
+demo_su:"SpeakUp-1 demosi",
+ie_eyebrow:"IELTS CD Prep", ie_h2:"Kompyuterdagi IELTS uchun mock testlar",
+ie_lede:"O'zbekistonda IELTS endi kompyuterda topshiriladi. IELTS CD Prep aynan shu formatda mashq qildiradi.",
+ie1:"3 ta to'liq mock test (Listening, Reading, Writing) va qisqa diagnostik test", ie2:"Imtihondagidek kompyuter formatida, taymer bilan", ie3:"Listening va Reading darhol tekshiriladi, taxminiy band ko'rsatiladi", ie4:"Writing IELTS mezonlari bo'yicha baholanadi", ie5:"Har bir urinish natijasi va o'sish grafigi",
+ie_price:"Markazlar uchun: o'quvchi boshiga {ielts} / oy",
+ie_note:"Band ballari mashq uchun taxminiy baho, rasmiy IELTS natijasi emas.",
+demo_ie:"IELTS demosi",
+score_label:"IELTS mock test natijasidan misol", score_title:"Natija", score_overall:"Umumiy band", score_trend:"Oxirgi 5 urinish: 5.5 → 6.5",
+site_eyebrow:"Qo'shimcha", site_h3:"Markazingiz uchun sayt",
+site_d:"Kurslar, ustozlar, dars jadvali, sharhlar, xarita va sinov darsiga yozilish formasi. Matnlarni o'zingiz o'zgartiradigan admin panel bilan.",
+site_price:"{site} dan",
+pr_eyebrow:"Narxlar", pr_h2:"O'quvchilar soniga qarab oylik narx",
+pr_lede:"Narx markazdagi o'quvchilar soniga bog'liq. IELTS CD Prep faqat undan foydalanadigan o'quvchilar uchun hisoblanadi.",
+calc_students:"Markazdagi o'quvchilar", calc_ielts:"IELTS CD Prep oladigan o'quvchilar",
+calc_total:"Jami oyiga", calc_per:"Bitta o'quvchiga oyiga",
+calc_note:"Birinchi 30 kun bepul.",
+calc_ie_note:"{n} × {ielts}",
+tier_upto:"{n} tagacha o'quvchi", tier_over:"{n} dan ko'p o'quvchi", per_month:"oyiga",
+pn1_t:"30 kun bepul", pn1_d:"Bitta guruhda sinab ko'ring. Mos kelmasa, hech narsa to'lamaysiz.",
+pn2_d:"O'quvchi boshiga {ielts} / oy, faqat foydalanadigan o'quvchilar uchun.",
+pn3_t:"Markaz sayti", pn3_d:"{site} dan, bir martalik to'lov.",
+st_eyebrow:"Qanday boshlanadi", st_h2:"Bitta guruhdan boshlaymiz",
+st1_t:"Demo", st1_d:"Markazingizga kelib yoki onlayn ko'rsatamiz: dars, uy vazifasi va o'qituvchi paneli.",
+st2_t:"Bitta guruhni ulaymiz", st2_d:"O'qituvchi va o'quvchilarni qo'shamiz, ustozga darsni qanday o'tishni ko'rsatamiz.",
+st3_t:"30 kun bepul", st3_d:"Guruh haqiqiy darslarda ishlatadi. Uy vazifasi va natijalarni panelda ko'rib turasiz.",
+st4_t:"Keyin oyma-oy", st4_d:"Ikkinchi oydan o'quvchilar soniga qarab to'laysiz. Istalgan oy to'xtatish mumkin.",
+faq_h2:"Markaz egalari so'raydigan savollar",
+q1:"O'quvchilar biror narsa o'rnatishi kerakmi?", a1:"Yo'q. SpeakUp telefon yoki kompyuter brauzerida ochiladi.",
+q2:"Kurs qaysi daraja uchun?", a2:"SpeakUp-1 noldan boshlaydi (A0–A1). Tushuntirishlar va tarjimalar o'zbek tilida.",
+q3:"O'z o'qituvchimiz dars o'taveradimi?", a3:"Ha. SpeakUp sizning o'qituvchilaringiz uchun: tayyor slaydlar, uy vazifalari, javoblar kaliti va har bir o'quvchi natijasi bitta panelda.",
+q4:"IELTS mock testlar qanday ishlaydi?", a4:"O'quvchi Listening, Reading va Writing'ni kompyuterda, taymer bilan topshiradi. Listening va Reading darhol tekshiriladi va taxminiy band chiqadi, har bir urinish tarixi saqlanadi.",
+q5:"Bizda CRM bor (masalan, ModMe). SpeakUp uning o'rnini bosadimi?", a5:"Yo'q, ular birga ishlaydi. CRM to'lov va davomat uchun, SpeakUp esa o'qitish uchun: darslar, uy vazifasi va natijalar.",
+q6:"30 kundan keyin nima bo'ladi?", a6:"O'quvchilar soningizga mos narx bo'yicha davom etasiz. Mos kelmasa, shunchaki to'xtatasiz: sinov davri uchun to'lov yo'q.",
+pi_eyebrow:"Bepul sinov", pi_h2:"Bitta guruhda 30 kun bepul sinab ko'ring",
+pi_lede:"Formani yuboring, bir ish kuni ichida qo'ng'iroq qilib demo vaqtini kelishamiz.",
+pi_t1:"Karta yoki oldindan to'lov kerak emas", pi_t2:"O'qituvchingizga o'zimiz ko'rsatamiz", pi_t3:"O'zbek yoki rus tilida gaplashamiz",
+f_name:"Ismingiz", f_center:"Markaz nomi", f_city:"Shahar", f_city_ph:"masalan, Toshkent", f_students:"O'quvchilar soni",
+s1:"50 gacha", s2:"51–150", s3:"151–300", s4:"300 dan ko'p",
+f_role:"Lavozimingiz", r_owner:"Egasi", r_dir:"Direktor", r_teacher:"O'qituvchi", r_other:"Boshqa",
+f_interest:"Nima qiziqtiradi", i_site:"Markaz sayti", f_phone:"Telefon", f_optional:"ixtiyoriy",
+f_notes:"Qaysi guruhda sinab ko'rmoqchisiz?", f_notes_ph:"masalan, kattalar uchun Beginner guruhi, 12 o'quvchi",
+f_submit:"Bepul sinovga yozilish",
+f_note:"Ma'lumotlaringizdan faqat siz bilan bog'lanish uchun foydalanamiz.",
+done_h:"Rahmat! So'rovingiz qabul qilindi.", done_p:"Bir ish kuni ichida qo'ng'iroq qilamiz. Hozircha demoni ko'rib chiqing.",
+done_bot:"Telegram'da davom etish",
+form_need_contact:"Bog'lanishimiz uchun telefon yoki Telegram yozing.",
+form_sending:"Yuborilmoqda…",
+form_error:"Yuborib bo'lmadi. Internetni tekshirib qayta urinib ko'ring yoki Telegram'da yozing.",
+form_error_tg:"Telegram'da yozish",
+form_rate:"Juda ko'p urinish. Birozdan keyin qayta urinib ko'ring.",
+foot_note:"O'quv markazlari uchun ingliz tili kursi va IELTS mock testlar.", foot_contact:"Telegram'da yozing",
+mobile_pricing:"Narxlar", mobile_pilot:"Bepul sinov"
+},
+ru:{
+meta_title:"SpeakUp — готовый курс английского для учебных центров",
+meta_desc:"SpeakUp-1 «English from Zero»: слайды 30 уроков, домашние задания, упражнения с автопроверкой и панель учителя. Пробные тесты IELTS CD Prep. 30 дней бесплатно.",
+nav_pilot:"Бесплатный пилот",
+hero_eyebrow:"Для учебных центров",
+hero_h1:"Готовый курс английского для вашего центра",
+hero_lede:"SpeakUp-1 «English from Zero»: слайды для 30 уроков, домашние задания, упражнения с автопроверкой и панель учителя с результатами каждого ученика. А ещё пробные тесты в компьютерном формате IELTS. Попробуйте 30 дней бесплатно.",
+hero_cta:"30 дней бесплатно", hero_cta2:"Открыть демо",
+chip1:"30 дней бесплатно", chip2:"Перевод на узбекский в каждом упражнении", chip3:"С телефона или компьютера", chip4:"Цена по числу учеников",
+dash_label:"Пример панели учителя", dash_title:"Beginner A1 · урок 9", dash_sub:"14 учеников", dash_live:"Домашка: 11/14",
+dash_name:"Ученик", dash_hw:"Домашнее задание", dash_pr:"Практика", dash_mist:"Частая ошибка", dash_mist_n:"Эту ошибку сделали 6 учеников",
+phone_label:"Пример упражнения на телефоне ученика", phone_streak:"🔥 7 дней", phone_q:"Заполните пропуск",
+example:"Пример для наглядности.",
+oneliner:"Учитель ведёт урок. <b>Остальное делает SpeakUp.</b>",
+su_eyebrow:"SpeakUp-1 «English from Zero»", su_h2:"Полный курс для групп с нуля",
+su_lede:"3 части, 30 уроков, 15 контрольных и 30 домашних заданий. Даже новый учитель с первого дня приходит с готовым уроком.",
+f1_t:"Готовые слайды для 30 уроков", f1_d:"Открываете урок и ведёте: полный экран, ручка, маркер и лазерная указка, слайды с ответами можно пропускать.",
+f2_t:"30 домашних заданий с ключами", f2_d:"Ученики заполняют их на странице и сами проверяют то, что проверяется автоматически. Остальное учитель отмечает по ключу.",
+f3_t:"Упражнения с автопроверкой", f3_d:"После каждого урока 8 типов упражнений с мгновенной проверкой. Под каждым предложением перевод на узбекский и аудио на английском.",
+f4_t:"Слова, которые запоминаются", f4_d:"Карточки со словами каждого урока и ежедневное повторение, которое возвращает ошибки в нужный момент.",
+f5_t:"15 онлайн-контрольных", f5_d:"Тест на время с баллом после каждых двух уроков.",
+f6_t:"XP, серии и рейтинг группы", f6_d:"Значки и живая игра «Savol-ball» на уроке мотивируют учеников возвращаться каждый день.",
+dash_t:"Панель учителя", dash_d:"По каждому ученику и каждому уроку: статус домашки, процент практики, баллы контрольных и самые частые ошибки. Выгрузка в CSV.",
+demo_su:"Демо SpeakUp-1",
+ie_eyebrow:"IELTS CD Prep", ie_h2:"Пробные тесты для компьютерного IELTS",
+ie_lede:"В Узбекистане IELTS теперь сдают на компьютере. IELTS CD Prep тренирует именно в этом формате.",
+ie1:"3 полных пробных теста (Listening, Reading, Writing) и короткая диагностика", ie2:"В компьютерном формате, как на экзамене, с таймером", ie3:"Listening и Reading проверяются сразу, показывается примерный band", ie4:"Writing оценивается по критериям IELTS", ie5:"Результат каждой попытки и график роста",
+ie_price:"Для центров: {ielts} за ученика в месяц",
+ie_note:"Баллы — примерная оценка для практики, а не официальный результат IELTS.",
+demo_ie:"Демо IELTS",
+score_label:"Пример результата пробного теста IELTS", score_title:"Результат", score_overall:"Общий band", score_trend:"Последние 5 попыток: 5.5 → 6.5",
+site_eyebrow:"Дополнительно", site_h3:"Сайт для вашего центра",
+site_d:"Курсы, преподаватели, расписание, отзывы, карта и форма записи на пробный урок. С админ-панелью, где тексты меняете вы сами.",
+site_price:"от {site}",
+pr_eyebrow:"Цены", pr_h2:"Цена в месяц по числу учеников",
+pr_lede:"Цена зависит от числа учеников в центре. IELTS CD Prep оплачивается только за тех, кто им пользуется.",
+calc_students:"Учеников в центре", calc_ielts:"Учеников на IELTS CD Prep",
+calc_total:"Итого в месяц", calc_per:"На одного ученика в месяц",
+calc_note:"Первые 30 дней бесплатно.",
+calc_ie_note:"{n} × {ielts}",
+tier_upto:"до {n} учеников", tier_over:"больше {n} учеников", per_month:"в месяц",
+pn1_t:"30 дней бесплатно", pn1_d:"Попробуйте в одной группе. Если не подойдёт, ничего не платите.",
+pn2_d:"{ielts} за ученика в месяц, только за тех, кто пользуется.",
+pn3_t:"Сайт центра", pn3_d:"От {site}, оплата один раз.",
+st_eyebrow:"Как начать", st_h2:"Начнём с одной группы",
+st1_t:"Демо", st1_d:"Покажем у вас в центре или онлайн: урок, домашнее задание и панель учителя.",
+st2_t:"Подключаем одну группу", st2_d:"Добавим учителя и учеников и покажем учителю, как вести урок.",
+st3_t:"30 дней бесплатно", st3_d:"Группа занимается по-настоящему, а вы видите домашки и результаты в панели.",
+st4_t:"Дальше помесячно", st4_d:"Со второго месяца платите по числу учеников. Остановить можно в любой месяц.",
+faq_h2:"Частые вопросы владельцев центров",
+q1:"Ученикам нужно что-то устанавливать?", a1:"Нет. SpeakUp открывается в браузере на телефоне или компьютере.",
+q2:"Для какого уровня курс?", a2:"SpeakUp-1 начинается с нуля (A0–A1). Объяснения и переводы на узбекском языке.",
+q3:"Уроки ведёт наш учитель?", a3:"Да. SpeakUp сделан для ваших учителей: готовые слайды, домашние задания, ключи ответов и результаты каждого ученика в одной панели.",
+q4:"Как работают пробные тесты IELTS?", a4:"Ученик проходит Listening, Reading и Writing на компьютере с таймером. Listening и Reading проверяются сразу с примерным band, история попыток сохраняется.",
+q5:"У нас есть CRM (например, ModMe). SpeakUp её заменит?", a5:"Нет, они работают вместе. CRM — для оплат и посещаемости, SpeakUp — для обучения: уроки, домашки и результаты.",
+q6:"Что после 30 дней?", a6:"Продолжаете по цене для вашего числа учеников. Если не подошло, просто останавливаетесь: за пилот платить не нужно.",
+pi_eyebrow:"Бесплатный пилот", pi_h2:"Попробуйте 30 дней в одной группе бесплатно",
+pi_lede:"Отправьте форму: в течение одного рабочего дня позвоним и договоримся о демо.",
+pi_t1:"Без карты и предоплаты", pi_t2:"Сами покажем учителю, как работать", pi_t3:"Говорим на узбекском и русском",
+f_name:"Ваше имя", f_center:"Название центра", f_city:"Город", f_city_ph:"например, Ташкент", f_students:"Число учеников",
+s1:"до 50", s2:"51–150", s3:"151–300", s4:"больше 300",
+f_role:"Ваша роль", r_owner:"Владелец", r_dir:"Директор", r_teacher:"Учитель", r_other:"Другое",
+f_interest:"Что интересно", i_site:"Сайт центра", f_phone:"Телефон", f_optional:"необязательно",
+f_notes:"В какой группе хотите попробовать?", f_notes_ph:"например, взрослая группа Beginner, 12 учеников",
+f_submit:"Записаться на пилот",
+f_note:"Используем ваши данные только чтобы связаться с вами.",
+done_h:"Спасибо! Заявка принята.", done_p:"Позвоним в течение одного рабочего дня. А пока посмотрите демо.",
+done_bot:"Продолжить в Telegram",
+form_need_contact:"Укажите телефон или Telegram, чтобы мы могли связаться.",
+form_sending:"Отправляем…",
+form_error:"Не удалось отправить. Проверьте интернет и попробуйте ещё раз или напишите нам в Telegram.",
+form_error_tg:"Написать в Telegram",
+form_rate:"Слишком много попыток. Попробуйте чуть позже.",
+foot_note:"Курс английского и пробные тесты IELTS для учебных центров.", foot_contact:"Написать в Telegram",
+mobile_pricing:"Цены", mobile_pilot:"Пилот бесплатно"
+},
+en:{
+meta_title:"SpeakUp — a ready English course for learning centers",
+meta_desc:"SpeakUp-1 \"English from Zero\": slides for 30 lessons, homework, self-checking practice and a teacher dashboard. IELTS CD Prep mock tests. 30 days free.",
+nav_pilot:"Free pilot",
+hero_eyebrow:"For learning centers",
+hero_h1:"A ready English course for your center",
+hero_lede:"SpeakUp-1 \"English from Zero\": slides for 30 lessons, homework, practice that checks itself and a teacher dashboard with every pupil's results. Plus mock tests in the computer-delivered IELTS format. Try it free for 30 days.",
+hero_cta:"Try 30 days free", hero_cta2:"Open the demo",
+chip1:"30 days free", chip2:"Uzbek translation in every exercise", chip3:"On a phone or a computer", chip4:"Priced by number of students",
+dash_label:"Example of the teacher dashboard", dash_title:"Beginner A1 · Lesson 9", dash_sub:"14 pupils", dash_live:"Homework: 11/14",
+dash_name:"Pupil", dash_hw:"Homework", dash_pr:"Practice", dash_mist:"Most common mistake", dash_mist_n:"6 pupils made this mistake",
+phone_label:"Example of practice on a pupil's phone", phone_streak:"🔥 7 days", phone_q:"Fill the gap",
+example:"Example, for illustration.",
+oneliner:"Your teacher teaches. <b>SpeakUp does the rest.</b>",
+su_eyebrow:"SpeakUp-1 \"English from Zero\"", su_h2:"A complete course for beginner groups",
+su_lede:"3 parts, 30 lessons, 15 progress checks and 30 homeworks. Even a new teacher walks in with a ready lesson from day one.",
+f1_t:"Ready slides for 30 lessons", f1_d:"Open a lesson and teach: full screen, pen, highlighter and laser pointer, and you can skip the answer slides.",
+f2_t:"30 homeworks with answer keys", f2_d:"Pupils fill them in on the page and check the auto-checkable answers themselves. The teacher marks the rest by the key.",
+f3_t:"Practice that checks itself", f3_d:"8 exercise types after every lesson, checked instantly, with an Uzbek translation and English audio for every sentence.",
+f4_t:"Words that stick", f4_d:"Flashcards for each lesson's words and a daily review that brings mistakes back at the right time.",
+f5_t:"15 online progress checks", f5_d:"A timed test with a score after every two lessons.",
+f6_t:"XP, streaks and a class leaderboard", f6_d:"Badges and a live \"Savol-ball\" quiz game in class keep pupils coming back every day.",
+dash_t:"Teacher dashboard", dash_d:"For every pupil and every lesson: homework status, practice score, check results and the most common wrong answers. Export to CSV.",
+demo_su:"SpeakUp-1 demo",
+ie_eyebrow:"IELTS CD Prep", ie_h2:"Mock tests for computer-delivered IELTS",
+ie_lede:"In Uzbekistan IELTS is now taken on a computer. IELTS CD Prep trains students in exactly that format.",
+ie1:"3 full mock tests (Listening, Reading, Writing) and a short diagnostic", ie2:"Computer format with a timer, like the real exam", ie3:"Listening and Reading are scored instantly with an estimated band", ie4:"Writing is rated against the IELTS criteria", ie5:"Results for every attempt and a progress chart",
+ie_price:"For centers: {ielts} per student a month",
+ie_note:"Band scores are practice estimates, not official IELTS results.",
+demo_ie:"IELTS demo",
+score_label:"Example of an IELTS mock test result", score_title:"Result", score_overall:"Overall band", score_trend:"Last 5 attempts: 5.5 → 6.5",
+site_eyebrow:"Add-on", site_h3:"A website for your center",
+site_d:"Courses, teachers, timetable, reviews, a map and a trial-lesson sign-up form. With an admin panel so you can change the text yourself.",
+site_price:"from {site}",
+pr_eyebrow:"Pricing", pr_h2:"A monthly price by number of students",
+pr_lede:"The price depends on how many students your center has. IELTS CD Prep is charged only for the students who use it.",
+calc_students:"Students in your center", calc_ielts:"Students on IELTS CD Prep",
+calc_total:"Total per month", calc_per:"Per student per month",
+calc_note:"The first 30 days are free.",
+calc_ie_note:"{n} × {ielts}",
+tier_upto:"up to {n} students", tier_over:"over {n} students", per_month:"per month",
+pn1_t:"30 days free", pn1_d:"Try it with one group. If it doesn't suit you, you pay nothing.",
+pn2_d:"{ielts} per student a month, only for students who use it.",
+pn3_t:"Center website", pn3_d:"From {site}, paid once.",
+st_eyebrow:"How to start", st_h2:"We start with one group",
+st1_t:"Demo", st1_d:"We show it at your center or online: a lesson, the homework and the teacher dashboard.",
+st2_t:"Connect one group", st2_d:"We add the teacher and pupils and show the teacher how to run a lesson.",
+st3_t:"30 days free", st3_d:"The group uses it in real lessons, and you see homework and results on the dashboard.",
+st4_t:"Then monthly", st4_d:"From the second month you pay by number of students. Stop in any month.",
+faq_h2:"Questions center owners ask",
+q1:"Do students need to install anything?", a1:"No. SpeakUp opens in the browser on a phone or a computer.",
+q2:"What level is the course for?", a2:"SpeakUp-1 starts from zero (A0–A1). Explanations and translations are in Uzbek.",
+q3:"Do our own teachers still teach?", a3:"Yes. SpeakUp is made for your teachers: ready slides, homework, answer keys and every pupil's results in one dashboard.",
+q4:"How do the IELTS mock tests work?", a4:"Students take Listening, Reading and Writing on a computer with a timer. Listening and Reading are scored instantly with an estimated band, and every attempt is saved.",
+q5:"We already have a CRM (e.g. ModMe). Does SpeakUp replace it?", a5:"No, they work together. The CRM handles payments and attendance; SpeakUp handles teaching: lessons, homework and results.",
+q6:"What happens after 30 days?", a6:"You continue at the price for your number of students. If it's not for you, you just stop: the pilot is free.",
+pi_eyebrow:"Free pilot", pi_h2:"Try it free with one group for 30 days",
+pi_lede:"Send the form and we'll call within one business day to set up a demo.",
+pi_t1:"No card or prepayment", pi_t2:"We show your teacher how it works", pi_t3:"We speak Uzbek, Russian and English",
+f_name:"Your name", f_center:"Center name", f_city:"City", f_city_ph:"e.g. Tashkent", f_students:"Number of students",
+s1:"up to 50", s2:"51–150", s3:"151–300", s4:"over 300",
+f_role:"Your role", r_owner:"Owner", r_dir:"Director", r_teacher:"Teacher", r_other:"Other",
+f_interest:"Interested in", i_site:"Center website", f_phone:"Phone", f_optional:"optional",
+f_notes:"Which group would you like to try it with?", f_notes_ph:"e.g. adult Beginner group, 12 students",
+f_submit:"Start my free pilot",
+f_note:"We only use your details to contact you.",
+done_h:"Thank you! We got your request.", done_p:"We'll call you within one business day. Meanwhile, try the demo.",
+done_bot:"Continue in Telegram",
+form_need_contact:"Add a phone number or Telegram so we can reach you.",
+form_sending:"Sending…",
+form_error:"Couldn't send. Check your connection and try again, or message us on Telegram.",
+form_error_tg:"Message us on Telegram",
+form_rate:"Too many tries. Please try again a bit later.",
+foot_note:"An English course and IELTS mock tests for learning centers.", foot_contact:"Message us on Telegram",
+mobile_pricing:"Pricing", mobile_pilot:"Free pilot"
+}};
+
+// Prices from config.js go into every text. {ielts} and {site} depend on the language (so'm / сум / UZS).
+var RAW = JSON.parse(JSON.stringify(D));
+function fillPrices(lang){
+  var cur = {uz:"so'm", ru:"сум", en:"UZS"}[lang] || "so'm";
+  function som(n){ return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " " + cur; }
+  var d = RAW[lang] || {};
+  Object.keys(d).forEach(function(k){ D[lang][k] = String(d[k]).split("{ielts}").join(som(IELTS)).split("{site}").join(som(SITE)); });
+}
+fillPrices('uz'); fillPrices('ru'); fillPrices('en');
+function somFor(n){ var cur = {uz:"so'm", ru:"сум", en:"UZS"}[M.lang()] || "so'm"; return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " " + cur; }
+
+// Tier cards
+var tiersBox = document.getElementById('tiers');
+function tierLabel(i){
+  var t = TIERS[i];
+  if (i === TIERS.length - 1 && t.max >= 10000) return M.t('tier_over').split('{n}').join(TIERS[i-1] ? TIERS[i-1].max : 0);
+  return M.t('tier_upto').split('{n}').join(t.max);
+}
+function drawTiers(){
+  tiersBox.innerHTML = '';
+  for (var i = 0; i < TIERS.length; i++) {
+    var el = document.createElement('div');
+    el.className = 'tier'; el.setAttribute('data-i', i);
+    var s = document.createElement('small'); s.textContent = tierLabel(i);
+    var b = document.createElement('b'); b.textContent = somFor(TIERS[i].price);
+    var p = document.createElement('span'); p.textContent = M.t('per_month');
+    el.appendChild(s); el.appendChild(b); el.appendChild(p);
+    tiersBox.appendChild(el);
+  }
+}
+
+// Calculator
+var st = document.getElementById('students'), ie = document.getElementById('ielts-n'), used = false;
+function tierFor(n){ for (var i = 0; i < TIERS.length; i++) if (n <= TIERS[i].max) return i; return TIERS.length - 1; }
+function calc(){
+  var n = +st.value, k = Math.min(+ie.value, n);
+  if (+ie.value > n) ie.value = n;
+  var ti = tierFor(n), su = TIERS[ti].price, iel = k * IELTS, total = su + iel;
+  document.getElementById('students-out').textContent = n;
+  document.getElementById('ielts-out').textContent = k;
+  document.getElementById('tier-out').textContent = tierLabel(ti);
+  document.getElementById('su-out').textContent = somFor(su);
+  document.getElementById('ie-out').textContent = somFor(iel);
+  document.getElementById('ie-calc-note').textContent = M.t('calc_ie_note').split('{n}').join(k).split('{ielts}').join(somFor(IELTS));
+  document.getElementById('total-out').textContent = somFor(total);
+  document.getElementById('per-out').textContent = somFor(Math.round(total / n / 100) * 100);
+  var cards = tiersBox.querySelectorAll('.tier');
+  for (var i = 0; i < cards.length; i++) cards[i].classList.toggle('match', +cards[i].getAttribute('data-i') === ti);
+}
+function used1(){ if (!used) { used = true; M.event('calc_use', 'centers', +st.value, { ielts_students: +ie.value }); } }
+st.addEventListener('input', function(){ calc(); used1(); });
+ie.addEventListener('input', function(){ calc(); used1(); });
+M.onLang = function(){ drawTiers(); calc(); };
+M.initLang(D, { langs: ['uz','ru','en'], fallback: 'uz', defaultLang: 'uz' });
+M.trackView('centers');
+
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});}else{document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});}
+})();
+</script>
+</body>
+</html>

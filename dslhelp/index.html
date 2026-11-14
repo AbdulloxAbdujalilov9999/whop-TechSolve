@@ -1,0 +1,763 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DSL HELP — one Telegram bot for your trucking office</title>
+<meta name="description" content="Drivers write in their Telegram group. DSL HELP opens a ticket for the right department, reminds your team until it's done and sends a daily report. 14-day free pilot.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0F1B2A">
+<meta property="og:title" content="DSL HELP — one Telegram bot for your trucking office">
+<meta property="og:description" content="Dispatch, Maintenance, ELD, Safety, Accounting and HR in the Telegram groups you already use.">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="icon" href="icons/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+:root{
+  --bg:#F3F6F9; --bg-alt:#E8EEF4; --surface:#FFFFFF; --ink:#0F1B2A; --muted:#55657A; --line:#DAE2EA; --line-strong:#C3CFDB;
+  --accent:#1677B3; --accent-ink:#FFFFFF; --accent-soft:#E1EFF8; --eyebrow:#1677B3;
+  --tg:#2AABEE; --slate:#0F1B2A; --danger:#C0392B; --good:#178A4C;
+  --header-bg:rgba(243,246,249,.9); --radius:18px; --btn-radius:12px;
+  --font-display:"Manrope","Arial",sans-serif; --font-body:"Inter",-apple-system,"Segoe UI",Roboto,sans-serif;
+  --display-tracking:-0.02em; --display-weight:800;
+  --card-shadow:0 1px 2px rgba(15,27,42,.06),0 10px 28px rgba(15,27,42,.07);
+}
+.btn-tg{background:var(--tg);border-color:var(--tg);color:#06263A;box-shadow:0 10px 26px rgba(42,171,238,.32)}
+.hero{position:relative;overflow:hidden;color:#EAF1F8;background:radial-gradient(900px 460px at 88% -12%,#1C4466 0%,rgba(28,68,102,0) 62%),linear-gradient(180deg,#0E1724 0%,#132235 100%);padding:46px 0 72px}
+.hero .wrap{position:relative;z-index:1;display:grid;gap:36px}
+@media(min-width:980px){.hero .wrap{grid-template-columns:1.05fr .95fr;align-items:center}.hero{padding:76px 0 96px}}
+.hero .eyebrow{color:var(--tg)}
+.hero .lede{color:#B5C3D3}
+.hero .btn-ghost{color:#EAF1F8;border-color:rgba(181,195,211,.45)}
+.hero .chips li{background:rgba(255,255,255,.06);border-color:rgba(181,195,211,.22);color:#DCE6F0}
+/* Telegram-style chat mock */
+.chat{background:#17212B;border:1px solid rgba(181,195,211,.16);border-radius:24px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.4);max-width:470px;width:100%;justify-self:center}
+.chat-head{display:flex;align-items:center;gap:12px;padding:12px 16px;background:#1E2C3A;border-bottom:1px solid rgba(0,0,0,.25)}
+.ava{flex:none;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#F2994A,#E2553B);color:#fff;font-weight:800;font-size:14px}
+.chat-head b{display:block;color:#fff;font-size:15.5px;line-height:1.2}
+.chat-head small{color:#7F95AB;font-size:12.5px}
+.chat-body{display:grid;gap:8px;padding:16px 12px 18px;background:#0E1621 radial-gradient(circle at 20% 10%,rgba(42,171,238,.06),transparent 40%)}
+.msg{max-width:86%;padding:8px 11px 7px;border-radius:14px;font-size:14.5px;line-height:1.4;color:#E9EEF3;position:relative}
+.msg .who{display:block;font-size:12.5px;font-weight:700;margin-bottom:2px}
+.msg.in{justify-self:start;background:#182533;border-bottom-left-radius:4px}
+.msg.in .who{color:#F2994A}
+.msg.bot{justify-self:start;background:#182533;border-bottom-left-radius:4px}
+.msg.bot .who{color:var(--tg)}
+.msg.sys{justify-self:center;background:rgba(42,171,238,.14);color:#BFE6FA;font-size:13px;border-radius:999px;padding:5px 12px;max-width:none;text-align:center}
+.msg time{display:block;text-align:right;font-size:11px;color:#6C8199;margin-top:2px}
+.photo{display:flex;align-items:center;gap:8px;margin:2px 0 6px;padding:10px;border-radius:10px;background:#22344A;color:#BFD0E2;font-size:13px}
+.photo i{font-style:normal;font-size:20px}
+.kb{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:7px}
+.kb span{display:block;text-align:center;padding:7px;border-radius:9px;background:rgba(42,171,238,.16);color:#CDEBFA;font-weight:700;font-size:13px}
+.js .chat .msg{opacity:0;transform:translateY(6px);animation:pop .35s ease forwards}
+.js .chat .msg:nth-child(1){animation-delay:.3s}.js .chat .msg:nth-child(2){animation-delay:.9s}.js .chat .msg:nth-child(3){animation-delay:1.6s}
+.js .chat .msg:nth-child(4){animation-delay:2.3s}.js .chat .msg:nth-child(5){animation-delay:2.9s}.js .chat .msg:nth-child(6){animation-delay:3.6s}
+@keyframes pop{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){.js .chat .msg{opacity:1;transform:none;animation:none}}
+.example{font-size:12px;color:#7F95AB;margin:10px 0 0;text-align:center}
+.oneliner{background:var(--slate);color:#DCE6F0;padding:22px 0;text-align:center;font-family:var(--font-display);font-weight:700;font-size:clamp(19px,2.6vw,25px);letter-spacing:-.01em}
+.oneliner b{color:var(--tg)}
+.dept h3{display:flex;align-items:center;gap:10px}
+.dept .icon{margin-bottom:14px}
+.dept .ticks{gap:8px;font-size:15.5px}
+.dept .ticks li{color:var(--muted)}
+.flow{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:14px;counter-reset:f}
+@media(min-width:900px){.flow{grid-template-columns:repeat(4,1fr)}}
+.flow li{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px;counter-increment:f}
+.flow li::before{content:counter(f);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--slate);color:var(--tg);font-weight:800;margin-bottom:12px}
+@media(min-width:900px){.flow li:not(:last-child)::after{content:"";position:absolute;top:36px;right:-14px;width:14px;height:2px;background:var(--line-strong)}}
+.flow h3{font-size:18px;margin-bottom:6px}
+.flow p{margin:0;color:var(--muted);font-size:15px}
+.report-wrap{display:grid;gap:28px;margin-top:26px}
+@media(min-width:900px){.report-wrap{grid-template-columns:1fr 1fr;align-items:center}}
+.report{background:#17212B;color:#E9EEF3;border-radius:20px;padding:18px 18px 14px;box-shadow:var(--card-shadow);font-size:15px;line-height:1.55;max-width:500px}
+.report b{color:#fff}
+.report .r-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;color:var(--tg);font-weight:800}
+.report .r-head span{color:#7F95AB;font-weight:600;font-size:13px}
+.report ul{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.report li{display:flex;gap:10px;align-items:flex-start;padding:9px 10px;border-radius:12px;background:#182533}
+.report li i{font-style:normal;flex:none}
+.report .warn{background:rgba(242,153,74,.12)}
+.ai{display:grid;gap:16px;margin-top:26px}
+@media(min-width:800px){.ai{grid-template-columns:1fr 1fr}}
+.ai .card{border-top:4px solid var(--tg)}
+.ai-note{margin-top:16px;padding:14px 16px;border-radius:14px;background:var(--accent-soft);color:#0E4A70;font-weight:600;font-size:15px}
+.compare{margin-top:26px;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--surface);box-shadow:var(--card-shadow)}
+.compare .row{display:grid;grid-template-columns:1fr 1fr}
+.compare .row>div{padding:14px 16px;font-size:15.5px;border-top:1px solid var(--line)}
+.compare .row>div:first-child{color:var(--muted);background:#FAFBFC;border-right:1px solid var(--line)}
+.compare .row>div:last-child{font-weight:600}
+.compare .head>div{border-top:0;font-family:var(--font-display);font-weight:800;font-size:16px}
+.compare .head>div:first-child{color:var(--ink)}
+.compare .head>div:last-child{background:var(--slate);color:#fff}
+.compare .x::before{content:"✕ ";color:var(--danger);font-weight:800}
+.compare .v::before{content:"✓ ";color:var(--good);font-weight:800}
+@media(max-width:560px){.compare .row>div{padding:12px;font-size:14.5px}}
+/* Pricing + calculator */
+.calc{display:grid;gap:24px;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:var(--card-shadow);margin-top:26px}
+@media(min-width:900px){.calc{grid-template-columns:1fr 1fr;padding:30px;align-items:center}}
+.calc label{font-weight:700;display:block}
+.calc output{font-family:var(--font-display);font-size:clamp(30px,4.6vw,42px);font-weight:800;color:var(--ink);display:block;line-height:1.05;margin-top:2px}
+.calc .range{margin:10px 0 2px}
+.calc .scale{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-bottom:16px}
+.calc-res{display:grid;gap:10px}
+.calc-res div{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:13px 16px;border-radius:14px;background:var(--bg)}
+.calc-res div.main{background:var(--slate);color:#fff}
+.calc-res div.main b{color:var(--tg)}
+.calc-res b{font-family:var(--font-display);font-size:22px;text-align:right}
+.calc-res span{font-size:15px}
+.even{margin:6px 0 0;padding:12px 14px;border-radius:12px;background:#E9F7EF;color:#135E36;font-weight:700;font-size:15px}
+.prices{margin-top:28px}
+.price{transition:box-shadow .2s ease,transform .2s ease}
+.price.match{border:2px solid var(--tg);box-shadow:0 18px 40px rgba(22,119,179,.18);transform:translateY(-2px)}
+.price .fit{display:none;position:absolute;top:-13px;right:20px;padding:4px 12px;border-radius:999px;background:var(--tg);color:#06263A;font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.price.match .fit{display:inline-block}
+.price h3{margin-bottom:0}
+.price .ticks{align-content:start}
+.price .trucks{color:var(--accent);font-weight:700;font-size:15px}
+.price-notes{display:grid;gap:10px;margin-top:18px}
+@media(min-width:800px){.price-notes{grid-template-columns:repeat(3,1fr)}}
+.price-notes div{background:var(--surface);border:1px dashed var(--line-strong);border-radius:14px;padding:14px 16px;font-size:15px}
+.price-notes b{display:block;margin-bottom:2px}
+.pilot{background:linear-gradient(180deg,var(--bg) 0%,var(--bg-alt) 100%)}
+.pilot .wrap{display:grid;gap:30px}
+@media(min-width:980px){.pilot .wrap{grid-template-columns:.8fr 1.2fr;align-items:start}}
+.brand img{border-radius:9px}
+</style>
+</head>
+<body class="has-mobile-cta">
+<script>document.documentElement.classList.add('js')</script>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#"><img src="icons/icon.svg" alt="" width="34" height="34"><span>DSL HELP</span></a>
+    <div class="spacer"></div>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button type="button" data-lang="en">EN</button><button type="button" data-lang="ru">RU</button><button type="button" data-lang="uz">UZ</button>
+    </div>
+    <a class="btn btn-small btn-tg" href="#pilot" data-cta="nav_pilot" data-product="dslhelp" data-t="nav_pilot">Free pilot</a>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" data-t="hero_eyebrow">Telegram help desk for US trucking fleets</span>
+      <h1 data-t="hero_h1">Your whole trucking office in one Telegram bot.</h1>
+      <p class="lede" data-t="hero_lede"></p>
+      <div class="btn-row">
+        <a class="btn btn-tg" href="#pilot" data-cta="hero_pilot" data-product="dslhelp" data-t="hero_cta">Start a free pilot</a>
+        <a class="btn btn-ghost" href="#how" data-cta="hero_how" data-product="dslhelp" data-t="hero_cta2">See how it works</a>
+      </div>
+      <ul class="chips">
+        <li data-t="chip1">Works in your groups</li>
+        <li data-t="chip2">No app for drivers</li>
+        <li data-t="chip3">Your own private bot</li>
+        <li data-t="chip4">14-day free pilot</li>
+      </ul>
+    </div>
+    <div>
+      <div class="chat" role="img" data-ta="chat_label" aria-label="Example of a driver group with the DSL HELP bot">
+        <div class="chat-head"><div class="ava">214</div><div><b data-t="ch_title">Truck 214 · Akmal</b><small data-t="ch_sub">Akmal, DSL HELP, Dispatch</small></div></div>
+        <div class="chat-body">
+          <div class="msg in"><span class="who" data-t="ch_who">Akmal</span><div class="photo"><i aria-hidden="true">📄</i><span>BOL.jpg</span></div>/BOL<time>09:12</time></div>
+          <div class="msg bot"><span class="who">DSL HELP</span><span data-t="ch_b1">🤖 From the BOL: Load #88412, Joliet, IL → Columbus, OH. Is that right?</span><div class="kb"><span data-t="ch_yes">✅ Yes</span><span data-t="ch_fix">✏️ Fix</span></div></div>
+          <div class="msg bot"><span class="who">DSL HELP</span><span data-t="ch_b2">⏰ Delivery in 2 hours: Columbus, OH at 14:00.</span><time>12:00</time></div>
+          <div class="msg in"><span class="who" data-t="ch_who">Akmal</span><span data-t="ch_d2">ELD isn't working, the logbook won't open</span><time>12:41</time></div>
+          <div class="msg bot"><span class="who">DSL HELP</span><span data-t="ch_b3">Looks like an ELD problem. Open a ticket?</span><div class="kb"><span data-t="ch_yes2">Yes</span><span data-t="ch_no">No</span></div></div>
+          <div class="msg sys" data-t="ch_b4">🎫 Ticket #213 · ELD · Dispatch and Safety notified</div>
+        </div>
+      </div>
+      <p class="example" data-t="ch_example">Example chat, for illustration.</p>
+    </div>
+  </div>
+</section>
+
+<div class="oneliner"><div class="wrap" data-th="oneliner">Messages get lost. <b>Tickets don't.</b></div></div>
+
+<section>
+  <div class="wrap">
+    <span class="eyebrow" data-t="dept_eyebrow">What it does</span>
+    <h2 data-t="dept_h2">Six departments, one bot</h2>
+    <p class="lede" data-t="dept_lede"></p>
+    <div class="grid grid-3" style="margin-top:28px">
+      <div class="card dept reveal"><div class="icon" aria-hidden="true">🧭</div><h3>Dispatch</h3><ul class="ticks"><li data-t="d1a"></li><li data-t="d1b"></li><li data-t="d1c"></li></ul></div>
+      <div class="card dept reveal"><div class="icon" aria-hidden="true">🔧</div><h3>Maintenance</h3><ul class="ticks"><li data-t="d2a"></li><li data-t="d2b"></li><li data-t="d2c"></li></ul></div>
+      <div class="card dept reveal"><div class="icon" aria-hidden="true">📟</div><h3>ELD</h3><ul class="ticks"><li data-t="d3a"></li><li data-t="d3b"></li><li data-t="d3c"></li></ul></div>
+      <div class="card dept reveal"><div class="icon" aria-hidden="true">🦺</div><h3>Safety</h3><ul class="ticks"><li data-t="d4a"></li><li data-t="d4b"></li><li data-t="d4c"></li></ul></div>
+      <div class="card dept reveal"><div class="icon" aria-hidden="true">💵</div><h3>Accounting</h3><ul class="ticks"><li data-t="d5a"></li><li data-t="d5b"></li><li data-t="d5c"></li></ul></div>
+      <div class="card dept reveal"><div class="icon" aria-hidden="true">🪪</div><h3>HR</h3><ul class="ticks"><li data-t="d6a"></li><li data-t="d6b"></li><li data-t="d6c"></li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt" id="how">
+  <div class="wrap">
+    <span class="eyebrow" data-t="flow_eyebrow">How a request gets done</span>
+    <h2 data-t="flow_h2">From a driver's message to "done"</h2>
+    <ol class="flow">
+      <li><h3 data-t="fl1_t"></h3><p data-t="fl1_d"></p></li>
+      <li><h3 data-t="fl2_t"></h3><p data-t="fl2_d"></p></li>
+      <li><h3 data-t="fl3_t"></h3><p data-t="fl3_d"></p></li>
+      <li><h3 data-t="fl4_t"></h3><p data-t="fl4_d"></p></li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="eyebrow" data-t="rep_eyebrow">For the owner</span>
+    <h2 data-t="rep_h2">Know what happened today without reading 40 chats</h2>
+    <div class="report-wrap">
+      <div class="report reveal" role="img" data-ta="rep_label" aria-label="Example of the daily report">
+        <div class="r-head"><span style="color:var(--tg);font-size:15px;font-weight:800" data-t="rep_title">📊 Daily report</span><span>20:00</span></div>
+        <ul>
+          <li><i aria-hidden="true">🚚</i><span><span data-t="rep_l1">Active loads</span>: <b>37</b></span></li>
+          <li><i aria-hidden="true">🎫</i><span><span data-t="rep_l2">Open tickets</span>: <b>Maintenance 4 · ELD 1 · Safety 2 · Accounting 3</b></span></li>
+          <li class="warn"><i aria-hidden="true">🔍</i><span><span data-t="rep_l3">No PTI today</span>: <b data-t="rep_v3">3 drivers</b></span></li>
+          <li class="warn"><i aria-hidden="true">📄</i><span><span data-t="rep_l4">Expiring within 14 days</span>: <b data-t="rep_v4">Medical card (Sardor R.), CDL (Bekzod T.)</b></span></li>
+        </ul>
+        <p class="example" style="text-align:left" data-t="rep_example">Example, for illustration.</p>
+      </div>
+      <ul class="ticks">
+        <li data-t="rp1"></li><li data-t="rp2"></li><li data-t="rp3"></li><li data-t="rp4"></li><li data-t="rp5"></li><li data-t="rp6"></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap">
+    <span class="eyebrow" data-t="ai_eyebrow">Optional AI</span>
+    <h2 data-t="ai_h2">Less typing for drivers and dispatch</h2>
+    <div class="ai">
+      <div class="card reveal"><div class="icon" aria-hidden="true">📷</div><h3 data-t="ai1_t"></h3><p class="muted" data-t="ai1_d"></p></div>
+      <div class="card reveal"><div class="icon" aria-hidden="true">🧠</div><h3 data-t="ai2_t"></h3><p class="muted" data-t="ai2_d"></p></div>
+    </div>
+    <p class="ai-note" data-t="ai_note"></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="eyebrow" data-t="cmp_eyebrow">Why not just groups?</span>
+    <h2 data-t="cmp_h2">Telegram groups alone vs. with DSL HELP</h2>
+    <div class="compare" role="table">
+      <div class="row head" role="row"><div role="columnheader" data-t="cmp_a">Groups alone</div><div role="columnheader" data-t="cmp_b">With DSL HELP</div></div>
+      <div class="row" role="row"><div class="x" role="cell" data-t="c1a"></div><div class="v" role="cell" data-t="c1b"></div></div>
+      <div class="row" role="row"><div class="x" role="cell" data-t="c2a"></div><div class="v" role="cell" data-t="c2b"></div></div>
+      <div class="row" role="row"><div class="x" role="cell" data-t="c3a"></div><div class="v" role="cell" data-t="c3b"></div></div>
+      <div class="row" role="row"><div class="x" role="cell" data-t="c4a"></div><div class="v" role="cell" data-t="c4b"></div></div>
+      <div class="row" role="row"><div class="x" role="cell" data-t="c5a"></div><div class="v" role="cell" data-t="c5b"></div></div>
+      <div class="row" role="row"><div class="x" role="cell" data-t="c6a"></div><div class="v" role="cell" data-t="c6b"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt" id="pricing">
+  <div class="wrap">
+    <span class="eyebrow" data-t="pr_eyebrow">Pricing</span>
+    <h2 data-t="pr_h2">One monthly price for the whole office</h2>
+    <p class="lede" data-t="pr_lede"></p>
+    <div class="calc">
+      <div>
+        <label for="trucks" data-t="calc_trucks">Trucks in your fleet</label>
+        <output id="trucks-out" for="trucks">20</output>
+        <input class="range" id="trucks" type="range" min="3" max="300" step="1" value="20">
+        <div class="scale"><span>3</span><span>300</span></div>
+        <label for="rate" data-t="calc_rate">Cost of one hour of office time</label>
+        <output id="rate-out" for="rate" style="font-size:28px">$10</output>
+        <input class="range" id="rate" type="range" min="3" max="40" step="1" value="10">
+        <div class="scale"><span>$3</span><span>$40</span></div>
+      </div>
+      <div class="calc-res" aria-live="polite">
+        <div><span data-t="calc_plan">Your plan</span><b id="plan-out">Small</b></div>
+        <div class="main"><span data-t="calc_price">Monthly price</span><b id="price-out">$99</b></div>
+        <div><span data-t="calc_per">Per truck</span><b id="pertruck-out">$4.95</b></div>
+        <p class="even" id="even"></p>
+        <p class="small muted" style="margin:0" data-t="calc_note"></p>
+      </div>
+    </div>
+    <div class="prices">
+      <div class="card price" data-plan="small">
+        <span class="fit" data-t="fit">Fits your fleet</span>
+        <h3 data-t="plan_small">Small</h3>
+        <div class="trucks" data-t="p1_trucks">Up to 25 trucks</div>
+        <div class="amount" data-p="small">$99</div>
+        <div class="per" data-t="per_month_long">per month</div>
+        <ul class="ticks"><li data-t="pf1"></li><li data-t="pf2"></li><li data-t="pf3"></li><li data-t="pf4"></li></ul>
+        <a class="btn btn-ghost btn-block" href="#pilot" data-cta="plan_small" data-product="dslhelp" data-t="p_cta">Start free pilot</a>
+      </div>
+      <div class="card price" data-plan="fleet">
+        <span class="fit" data-t="fit">Fits your fleet</span>
+        <h3 data-t="plan_fleet">Fleet</h3>
+        <div class="trucks" data-t="p2_trucks">26–100 trucks</div>
+        <div class="amount" data-p="fleet">$299</div>
+        <div class="per" data-t="per_month_long">per month</div>
+        <ul class="ticks"><li data-t="pf1"></li><li data-t="pf2"></li><li data-t="pf3"></li><li data-t="pf4"></li></ul>
+        <a class="btn btn-block" href="#pilot" data-cta="plan_fleet" data-product="dslhelp" data-t="p_cta">Start free pilot</a>
+      </div>
+      <div class="card price" data-plan="ent">
+        <span class="fit" data-t="fit">Fits your fleet</span>
+        <h3 data-t="plan_ent">Enterprise</h3>
+        <div class="trucks" data-t="p3_trucks">100+ trucks</div>
+        <div class="amount" style="font-size:38px" data-t="custom">Custom</div>
+        <div class="per" data-t="p3_per">priced on a call</div>
+        <ul class="ticks"><li data-t="pe1"></li><li data-t="pe2"></li><li data-t="pe3"></li></ul>
+        <a class="btn btn-ghost btn-block" href="#pilot" data-cta="plan_ent" data-product="dslhelp" data-t="p3_cta">Talk to us</a>
+      </div>
+    </div>
+    <div class="price-notes">
+      <div><b data-t="pn1_t">Setup, one time</b><span data-t="pn1_d"></span></div>
+      <div><b data-t="pn2_t">AI add-on</b><span data-t="pn2_d"></span></div>
+      <div><b data-t="pn3_t">No lock-in</b><span data-t="pn3_d"></span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="eyebrow" data-t="st_eyebrow">How to start</span>
+    <h2 data-t="st_h2">Live in your groups within days</h2>
+    <ol class="steps" style="margin-top:26px">
+      <li><h3 data-t="st1_t"></h3><p data-t="st1_d"></p></li>
+      <li><h3 data-t="st2_t"></h3><p data-t="st2_d"></p></li>
+      <li><h3 data-t="st3_t"></h3><p data-t="st3_d"></p></li>
+      <li><h3 data-t="st4_t"></h3><p data-t="st4_d"></p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap">
+    <span class="eyebrow">FAQ</span>
+    <h2 data-t="faq_h2">Questions fleet owners ask</h2>
+    <div class="faq" style="margin-top:24px">
+      <details><summary data-t="f1_q"></summary><p data-t="f1_a"></p></details>
+      <details><summary data-t="f2_q"></summary><p data-t="f2_a"></p></details>
+      <details><summary data-t="f3_q"></summary><p data-t="f3_a"></p></details>
+      <details><summary data-t="f4_q"></summary><p data-t="f4_a"></p></details>
+      <details><summary data-t="f5_q"></summary><p data-t="f5_a"></p></details>
+      <details><summary data-t="f6_q"></summary><p data-t="f6_a"></p></details>
+    </div>
+  </div>
+</section>
+
+<section class="pilot" id="pilot">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" data-t="pi_eyebrow">Free pilot</span>
+      <h2 data-t="pi_h2">Try it in your office for 14 days</h2>
+      <p class="lede" data-t="pi_lede"></p>
+      <ul class="ticks" style="margin-top:18px">
+        <li data-t="pi_t1"></li><li data-t="pi_t2"></li><li data-t="pi_t3"></li>
+      </ul>
+    </div>
+    <div class="form-card">
+      <form data-lead="dslhelp" novalidate>
+        <div class="fields two">
+          <div class="field"><label for="f-name" data-t="f_name">Your name</label><input id="f-name" name="name" autocomplete="name" required></div>
+          <div class="field"><label for="f-company" data-t="f_company">Company</label><input id="f-company" name="company" autocomplete="organization"></div>
+          <div class="field full"><span class="label" data-t="f_role">Your role</span>
+            <div class="pills">
+              <label><input type="radio" name="role" value="owner" checked><span data-t="r_owner">Owner</span></label>
+              <label><input type="radio" name="role" value="operations"><span data-t="r_ops">Operations</span></label>
+              <label><input type="radio" name="role" value="dispatch"><span>Dispatch</span></label>
+              <label><input type="radio" name="role" value="safety"><span>Safety</span></label>
+              <label><input type="radio" name="role" value="other"><span data-t="r_other">Other</span></label>
+            </div>
+          </div>
+          <div class="field"><label for="f-trucks" data-t="f_trucks">Trucks</label>
+            <select id="f-trucks" name="trucks"><option>1–10</option><option selected>11–25</option><option>26–50</option><option>51–100</option><option>101–300</option><option>300+</option></select></div>
+          <div class="field"><label for="f-groups" data-t="f_groups">Telegram groups you run</label>
+            <select id="f-groups" name="groups"><option>1–10</option><option selected>11–50</option><option>51–200</option><option>200+</option></select></div>
+          <div class="field full"><span class="label" data-t="f_office">Where is your office?</span>
+            <div class="pills">
+              <label><input type="radio" name="office" value="USA" checked><span data-t="o_us">USA</span></label>
+              <label><input type="radio" name="office" value="Uzbekistan"><span data-t="o_uz">Uzbekistan</span></label>
+              <label><input type="radio" name="office" value="both"><span data-t="o_both">Both</span></label>
+            </div>
+          </div>
+          <div class="field full"><span class="label" data-t="f_depts">Start with</span>
+            <div class="pills">
+              <label><input type="checkbox" name="start_with" value="Dispatch" checked><span>Dispatch</span></label>
+              <label><input type="checkbox" name="start_with" value="Maintenance" checked><span>Maintenance</span></label>
+              <label><input type="checkbox" name="start_with" value="ELD"><span>ELD</span></label>
+              <label><input type="checkbox" name="start_with" value="Safety"><span>Safety</span></label>
+              <label><input type="checkbox" name="start_with" value="Accounting"><span>Accounting</span></label>
+              <label><input type="checkbox" name="start_with" value="HR"><span>HR</span></label>
+            </div>
+          </div>
+          <div class="field"><label for="f-phone" data-t="f_phone">Phone</label><input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+1 312 555 0100"></div>
+          <div class="field"><label for="f-tg">Telegram</label><input id="f-tg" name="telegram" autocomplete="off" placeholder="@username"></div>
+          <div class="field full"><label for="f-email">Email <span class="hint" data-t="f_optional">optional</span></label><input id="f-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@company.com"></div>
+          <div class="field full"><label for="f-pain"><span data-t="f_pain">What slows your office down most?</span> <span class="hint" data-t="f_optional">optional</span></label><textarea id="f-pain" name="pain" rows="3" data-tp="f_pain_ph" placeholder="e.g. chasing PTIs, lost BOLs, expired medical cards"></textarea></div>
+          <div class="hp" aria-hidden="true"><label>Leave empty<input name="hp" tabindex="-1" autocomplete="off"></label></div>
+        </div>
+        <button class="btn btn-block" type="submit" style="margin-top:20px" data-t="f_submit">Book a demo and free pilot</button>
+        <p class="form-msg" role="status" aria-live="polite"></p>
+        <p class="form-note" data-t="f_note">We only use your details to set up the demo.</p>
+      </form>
+      <div class="form-done" hidden>
+        <div class="big" aria-hidden="true">✅</div>
+        <h3 data-t="done_h">Request sent.</h3>
+        <p class="muted" data-t="done_p"></p>
+        <div class="btn-row">
+          <a class="btn btn-tg" data-bot="dsl" hidden target="_blank" rel="noopener" data-t="done_bot">Continue in Telegram</a>
+          <a class="btn btn-ghost" data-contact href="#" target="_blank" rel="noopener" data-t="foot_contact">Message us on Telegram</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div><b>DSL HELP</b> · © <span data-year></span></div>
+    <div data-t="foot_note">A Telegram help desk for trucking fleets.</div>
+    <div><a data-contact href="#" target="_blank" rel="noopener" data-t="foot_contact">Message us on Telegram</a></div>
+  </div>
+</footer>
+
+<div class="mobile-cta">
+  <a class="btn btn-ghost" href="#pricing" data-cta="mobile_pricing" data-product="dslhelp" data-t="mobile_pricing">Pricing</a>
+  <a class="btn btn-tg" href="#pilot" data-cta="mobile_pilot" data-product="dslhelp" data-t="mobile_pilot">Free pilot</a>
+</div>
+
+<script src="config.js"></script>
+<script src="money.js"></script>
+<script>
+(function(){
+var P = (window.MONEY_CFG||{}).prices||{};
+var SMALL = +P.dslSmall||99, FLEET = +P.dslFleet||299, SETUP = +P.dslSetup||300;
+var D = {
+en:{
+meta_title:"DSL HELP — one Telegram bot for your trucking office",
+meta_desc:"Drivers write in their Telegram group. DSL HELP opens a ticket for the right department, reminds your team until it's done and sends a daily report. 14-day free pilot.",
+nav_pilot:"Free pilot",
+hero_eyebrow:"Telegram help desk for US trucking fleets",
+hero_h1:"Your whole trucking office in one Telegram bot.",
+hero_lede:"Drivers write in their own group. DSL HELP opens a ticket for the right department, reminds your team until it's done, and sends the owner a report every evening.",
+hero_cta:"Start a free pilot", hero_cta2:"See how it works",
+chip1:"Works in your groups", chip2:"No app for drivers", chip3:"Your own private bot", chip4:"14-day free pilot",
+chat_label:"Example of a driver group with the DSL HELP bot",
+ch_who:"Akmal", ch_title:"Truck 214 · Akmal", ch_sub:"Akmal, DSL HELP, Dispatch",
+ch_b1:"🤖 From the BOL: Load #88412, Joliet, IL → Columbus, OH. Is that right?", ch_yes:"✅ Yes", ch_fix:"✏️ Fix",
+ch_b2:"⏰ Delivery in 2 hours: Columbus, OH at 14:00.",
+ch_d2:"ELD isn't working, the logbook won't open",
+ch_b3:"Looks like an ELD problem. Open a ticket?", ch_yes2:"Yes", ch_no:"No",
+ch_b4:"🎫 Ticket #213 · ELD · Dispatch and Safety notified",
+ch_example:"Example chat, for illustration.",
+oneliner:"Messages get lost. <b>Tickets don't.</b>",
+dept_eyebrow:"What it does", dept_h2:"Six departments, one bot",
+dept_lede:"Each Telegram group is linked to a department. Drivers keep writing where they always do, and every request lands with the people who handle it.",
+d1a:"Load cards with BOL, POD, pickup and delivery updates", d1b:"Reminders 2 hours and 30 minutes before each appointment, and late alerts", d1c:"Drivers share their location, Dispatch gets a map link",
+d2a:"Truck history: driver, mileage, service and PTI", d2b:"Oil change (PM) reminders by miles or by days", d2c:"PTI photos approved or sent back for a redo",
+d3a:"Malfunction reports go to Dispatch and Safety at once", d3b:"The ticket keeps reminding until it's fixed", d3c:"Photos and notes stay with the ticket",
+d4a:"Incidents and inspections logged with the outcome", d4b:"CSA scores on record", d4c:"Monthly count of incidents and inspections",
+d5a:"Settlements sent straight to each driver's group", d5b:"Fuel, scale and lumper receipts with amounts", d5c:"Repair costs and receipts totaled each month",
+d6a:"New drivers send their CDL and medical card in the chat", d6b:"HR approves or rejects each document with one tap", d6c:"Warnings 14 days before a document expires",
+flow_eyebrow:"How a request gets done", flow_h2:"From a driver's message to \"done\"",
+fl1_t:"The driver writes", fl1_d:"In their own group: picks the type from the menu, adds a photo or a note.",
+fl2_t:"The right team gets it", fl2_d:"A numbered ticket appears in that department's group, with the driver and truck attached.",
+fl3_t:"Reminders until done", fl3_d:"Open tickets keep pinging the team. A 🔴 Urgent ticket pings every 2 minutes and alerts Dispatch.",
+fl4_t:"The driver hears back", fl4_d:"When staff tap Done, the driver gets the update in their group, and it shows in tonight's report.",
+rep_eyebrow:"For the owner", rep_h2:"Know what happened today without reading 40 chats",
+rep_label:"Example of the daily report", rep_title:"📊 Daily report",
+rep_l1:"Active loads", rep_l2:"Open tickets", rep_l3:"No PTI today", rep_v3:"3 drivers", rep_l4:"Expiring within 14 days", rep_v4:"Medical card (Sardor R.), CDL (Bekzod T.)",
+rep_example:"Example, for illustration.",
+rp1:"A daily report at 8 PM to Dispatch and every admin", rp2:"Active loads, open tickets by department, missed PTIs and expiring documents", rp3:"/driver and /find pull up any driver, load or ticket in seconds", rp4:"Export tickets, loads and PTI history to Excel for any day, week or month", rp5:"An audit log of who changed what", rp6:"A read-only web panel for the office, and a backup every night",
+ai_eyebrow:"Optional AI", ai_h2:"Less typing for drivers and dispatch",
+ai1_t:"Reads BOL photos", ai1_d:"When a driver sends a BOL, the AI reads the load number and addresses and asks the driver to confirm before anything goes on the load card.",
+ai2_t:"Routes free text", ai2_d:"If a driver just writes \"the trailer light is out\" or \"I need my settlement\", the AI suggests the right department and asks before opening a ticket.",
+ai_note:"Nothing is saved until a person taps Yes. AI is optional and billed by usage. Without it, everything else works the same.",
+cmp_eyebrow:"Why not just groups?", cmp_h2:"Telegram groups alone vs. with DSL HELP",
+cmp_a:"Groups alone", cmp_b:"With DSL HELP",
+c1a:"A request scrolls away in the chat", c1b:"Every request becomes a numbered ticket",
+c2a:"Nobody knows who's on it", c2b:"The right department gets it and closes it with a tap",
+c3a:"Follow-ups depend on someone's memory", c3b:"Reminders until it's done, every 2 minutes if urgent",
+c4a:"An expired medical card turns up at an inspection", c4b:"A warning 14 days before a CDL or medical card expires",
+c5a:"The owner asks \"what happened today?\"", c5b:"A daily report at 8 PM, automatically",
+c6a:"History is lost in thousands of messages", c6b:"Search, Excel export and an audit log",
+pr_eyebrow:"Pricing", pr_h2:"One monthly price for the whole office",
+pr_lede:"Priced by fleet size, not per user. Add as many dispatchers, mechanics and accountants as you need.",
+calc_trucks:"Trucks in your fleet", calc_rate:"Cost of one hour of office time",
+calc_plan:"Your plan", calc_price:"Monthly price", calc_per:"Per truck",
+calc_note:"Your numbers, not a promise. Count the follow-ups it saves during the free pilot.",
+per_hour:"/h", per_month:"/mo", per_month_long:"per month",
+plan_small:"Small", plan_fleet:"Fleet", plan_ent:"Enterprise", custom:"Custom",
+even:"Pays for itself if it saves your office about {n} minutes a day.",
+even_ent:"Over 100 trucks? We'll size the plan with you on a short call.",
+fit:"Fits your fleet",
+p1_trucks:"Up to 25 trucks", p2_trucks:"26–100 trucks", p3_trucks:"100+ trucks", p3_per:"priced on a call",
+pf1:"All six departments", pf2:"Tickets, reminders and the daily report", pf3:"Search, Excel export and audit log", pf4:"Web panel and nightly backups",
+pe1:"Everything in Fleet", pe2:"Several offices or companies", pe3:"Extra departments or reports made for you",
+p_cta:"Start free pilot", p3_cta:"Talk to us",
+pn1_t:"Setup, one time", pn1_d:"From {setup}. We add the bot to your groups, register your staff and show drivers how it works.",
+pn2_t:"AI add-on", pn2_d:"BOL reading and auto-routing, billed by usage. Off unless you want it.",
+pn3_t:"No lock-in", pn3_d:"14 days free, then monthly. Cancel any time.",
+st_eyebrow:"How to start", st_h2:"Live in your groups within days",
+st1_t:"Short demo call", st1_d:"We show the bot working in a test group and answer your questions.",
+st2_t:"Set up in your groups", st2_d:"We add the bot, link each group to a department and register your staff.",
+st3_t:"14-day free pilot", st3_d:"Your team uses it for real. Count the follow-ups and lost messages it saves.",
+st4_t:"Pick a plan", st4_d:"Stay on the plan for your fleet size, or we remove the bot and delete your data.",
+faq_h2:"Questions fleet owners ask",
+f1_q:"Do drivers need to install anything?", f1_a:"No. Everything happens in Telegram, in the groups your drivers already use.",
+f2_q:"Who can see our data?", f2_a:"Each company gets its own bot and its own database, never shared with another fleet. The office web panel is locked with a private key.",
+f3_q:"What languages does it speak?", f3_a:"The bot is Uzbek-first. Drivers can switch the main menu, sign-up and BOL steps to Russian or English. Office commands are in Uzbek for now.",
+f4_q:"Does it connect to our ELD or TMS?", f4_a:"Not directly yet. ELD problems come in as tickets and go to Dispatch and Safety. If your ELD or TMS has an API, we can look at connecting it.",
+f5_q:"How long does setup take?", f5_a:"Usually a few days: we add the bot to your groups, link each group to a department and register your staff. Drivers just press Start.",
+f6_q:"What happens after the pilot?", f6_a:"You pick the plan for your fleet size. If it's not for you, we remove the bot and delete your data.",
+pi_eyebrow:"Free pilot", pi_h2:"Try it in your office for 14 days",
+pi_lede:"Tell us about your fleet. We'll message you within one business day to book a demo.",
+pi_t1:"No card needed for the pilot", pi_t2:"We set it up for you", pi_t3:"English, Russian or Uzbek",
+f_name:"Your name", f_company:"Company", f_role:"Your role", r_owner:"Owner", r_ops:"Operations", r_other:"Other",
+f_trucks:"Trucks", f_groups:"Telegram groups you run",
+f_office:"Where is your office?", o_us:"USA", o_uz:"Uzbekistan", o_both:"Both",
+f_depts:"Start with", f_phone:"Phone", f_optional:"optional",
+f_pain:"What slows your office down most?", f_pain_ph:"e.g. chasing PTIs, lost BOLs, expired medical cards",
+f_submit:"Book a demo and free pilot",
+f_note:"We only use your details to set up the demo.",
+done_h:"Request sent.", done_p:"We'll message you within one business day to set up the demo. For a faster reply, continue in Telegram.",
+done_bot:"Continue in Telegram",
+form_need_contact:"Add a phone number, Telegram or email so we can reach you.",
+form_sending:"Sending…",
+form_error:"Couldn't send. Check your connection and try again, or message us on Telegram.",
+form_error_tg:"Message us on Telegram",
+form_rate:"Too many tries. Please try again a bit later.",
+foot_note:"A Telegram help desk for trucking fleets.", foot_contact:"Message us on Telegram",
+mobile_pricing:"Pricing", mobile_pilot:"Free pilot"
+},
+ru:{
+meta_title:"DSL HELP — один Telegram-бот для всего офиса траковой компании",
+meta_desc:"Водители пишут в своей группе. DSL HELP открывает тикет в нужном отделе, напоминает команде, пока задача не закрыта, и присылает ежедневный отчёт. 14 дней бесплатно.",
+nav_pilot:"Бесплатный пилот",
+hero_eyebrow:"Telegram help desk для траковых компаний в США",
+hero_h1:"Весь офис траковой компании в одном Telegram-боте.",
+hero_lede:"Водители пишут в своей группе. DSL HELP открывает тикет в нужном отделе, напоминает команде, пока задача не закрыта, и каждый вечер присылает владельцу отчёт.",
+hero_cta:"Начать бесплатный пилот", hero_cta2:"Как это работает",
+chip1:"Работает в ваших группах", chip2:"Водителям ничего не ставить", chip3:"Свой отдельный бот", chip4:"14 дней бесплатно",
+chat_label:"Пример группы водителя с ботом DSL HELP",
+ch_who:"Акмаль", ch_title:"Трак 214 · Акмаль", ch_sub:"Акмаль, DSL HELP, Dispatch",
+ch_b1:"🤖 Из BOL: Load #88412, Joliet, IL → Columbus, OH. Всё верно?", ch_yes:"✅ Да", ch_fix:"✏️ Исправить",
+ch_b2:"⏰ Выгрузка через 2 часа: Columbus, OH в 14:00.",
+ch_d2:"ELD не работает, логбук не открывается",
+ch_b3:"Похоже на проблему с ELD. Открыть тикет?", ch_yes2:"Да", ch_no:"Нет",
+ch_b4:"🎫 Тикет #213 · ELD · Dispatch и Safety в курсе",
+ch_example:"Пример переписки для наглядности.",
+oneliner:"Сообщения теряются. <b>Тикеты — нет.</b>",
+dept_eyebrow:"Что умеет", dept_h2:"Шесть отделов, один бот",
+dept_lede:"Каждая Telegram-группа привязана к отделу. Водители пишут там же, где и раньше, а каждый запрос попадает к тем, кто им занимается.",
+d1a:"Карточки грузов с BOL, POD, погрузкой и выгрузкой", d1b:"Напоминания за 2 часа и за 30 минут до appointment, оповещения об опоздании", d1c:"Водитель отправляет локацию, Dispatch получает ссылку на карту",
+d2a:"История трака: водитель, пробег, сервис и PTI", d2b:"Напоминания о замене масла (PM) по милям или по дням", d2c:"Фото PTI принимаются или отправляются на переделку",
+d3a:"Сообщения о неисправности сразу уходят в Dispatch и Safety", d3b:"Тикет напоминает о себе, пока проблему не решат", d3c:"Фото и заметки хранятся в тикете",
+d4a:"Инциденты и инспекции с результатом", d4b:"История баллов CSA", d4c:"Число инцидентов и инспекций за месяц",
+d5a:"Settlement отправляется прямо в группу водителя", d5b:"Чеки за топливо, весы и lumper с суммами", d5c:"Итоги расходов на ремонт и чеков за месяц",
+d6a:"Новый водитель присылает CDL и медкарту прямо в чат", d6b:"HR одним нажатием принимает или отклоняет документ", d6c:"Предупреждение за 14 дней до окончания срока документа",
+flow_eyebrow:"Как решается запрос", flow_h2:"От сообщения водителя до «готово»",
+fl1_t:"Водитель пишет", fl1_d:"В своей группе: выбирает тип в меню, добавляет фото или комментарий.",
+fl2_t:"Запрос получает нужный отдел", fl2_d:"В группе отдела появляется тикет с номером, водителем и траком.",
+fl3_t:"Напоминания до решения", fl3_d:"Открытые тикеты напоминают команде. 🔴 Срочный тикет напоминает каждые 2 минуты и оповещает Dispatch.",
+fl4_t:"Водитель получает ответ", fl4_d:"Когда сотрудник нажимает «Готово», водитель видит это в своей группе, а тикет попадает в вечерний отчёт.",
+rep_eyebrow:"Для владельца", rep_h2:"Что случилось за день, без чтения 40 чатов",
+rep_label:"Пример ежедневного отчёта", rep_title:"📊 Отчёт за день",
+rep_l1:"Активные грузы", rep_l2:"Открытые тикеты", rep_l3:"Без PTI сегодня", rep_v3:"3 водителя", rep_l4:"Истекают в течение 14 дней", rep_v4:"Медкарта (Сардор Р.), CDL (Бекзод Т.)",
+rep_example:"Пример для наглядности.",
+rp1:"Ежедневный отчёт в 20:00 в группу Dispatch и каждому админу", rp2:"Активные грузы, открытые тикеты по отделам, пропущенные PTI и истекающие документы", rp3:"/driver и /find за секунды находят любого водителя, груз или тикет", rp4:"Выгрузка тикетов, грузов и истории PTI в Excel за день, неделю или месяц", rp5:"Журнал действий: кто и что изменил", rp6:"Веб-панель для офиса (только просмотр) и резервная копия каждую ночь",
+ai_eyebrow:"ИИ по желанию", ai_h2:"Меньше писанины для водителей и диспетчеров",
+ai1_t:"Читает фото BOL", ai1_d:"Когда водитель присылает BOL, ИИ считывает номер груза и адреса и просит водителя подтвердить, прежде чем что-то запишется в карточку груза.",
+ai2_t:"Направляет свободный текст", ai2_d:"Если водитель просто пишет «не горит фонарь на трейлере» или «нужен мой settlement», ИИ предлагает нужный отдел и спрашивает, открыть ли тикет.",
+ai_note:"Ничего не сохраняется, пока человек не нажмёт «Да». ИИ подключается по желанию и оплачивается по использованию. Без него всё остальное работает так же.",
+cmp_eyebrow:"Почему не просто группы?", cmp_h2:"Обычные Telegram-группы и группы с DSL HELP",
+cmp_a:"Только группы", cmp_b:"С DSL HELP",
+c1a:"Запрос уезжает вверх по чату", c1b:"Каждый запрос — тикет с номером",
+c2a:"Непонятно, кто этим занимается", c2b:"Запрос получает нужный отдел и закрывает одним нажатием",
+c3a:"Напоминания зависят от чьей-то памяти", c3b:"Напоминания до решения, каждые 2 минуты, если срочно",
+c4a:"Просроченная медкарта всплывает на инспекции", c4b:"Предупреждение за 14 дней до окончания CDL или медкарты",
+c5a:"Владелец спрашивает: «Что сегодня было?»", c5b:"Ежедневный отчёт в 20:00, автоматически",
+c6a:"История теряется в тысячах сообщений", c6b:"Поиск, выгрузка в Excel и журнал действий",
+pr_eyebrow:"Цены", pr_h2:"Одна месячная цена для всего офиса",
+pr_lede:"Цена зависит от числа траков, а не пользователей. Добавляйте сколько угодно диспетчеров, механиков и бухгалтеров.",
+calc_trucks:"Траков в компании", calc_rate:"Стоимость часа работы офиса",
+calc_plan:"Ваш тариф", calc_price:"Цена в месяц", calc_per:"За трак",
+calc_note:"Это ваши цифры, а не обещание. Посчитайте сэкономленные напоминания за бесплатный пилот.",
+per_hour:"/час", per_month:"/мес", per_month_long:"в месяц",
+plan_small:"Small", plan_fleet:"Fleet", plan_ent:"Enterprise", custom:"Индивидуально",
+even:"Окупается, если экономит офису около {n} минут в день.",
+even_ent:"Больше 100 траков? Подберём тариф на коротком звонке.",
+fit:"Под ваш парк",
+p1_trucks:"До 25 траков", p2_trucks:"26–100 траков", p3_trucks:"100+ траков", p3_per:"цена после звонка",
+pf1:"Все шесть отделов", pf2:"Тикеты, напоминания и ежедневный отчёт", pf3:"Поиск, выгрузка в Excel и журнал действий", pf4:"Веб-панель и ночные резервные копии",
+pe1:"Всё из тарифа Fleet", pe2:"Несколько офисов или компаний", pe3:"Дополнительные отделы или отчёты под вас",
+p_cta:"Начать пилот", p3_cta:"Связаться",
+pn1_t:"Подключение, один раз", pn1_d:"От {setup}. Добавим бота в ваши группы, зарегистрируем сотрудников и покажем водителям, как пользоваться.",
+pn2_t:"ИИ-модуль", pn2_d:"Чтение BOL и автонаправление, оплата по использованию. Выключен, пока не попросите.",
+pn3_t:"Без обязательств", pn3_d:"14 дней бесплатно, потом помесячно. Отмена в любой момент.",
+st_eyebrow:"Как начать", st_h2:"Работает в ваших группах за несколько дней",
+st1_t:"Короткое демо", st1_d:"Покажем бота в тестовой группе и ответим на вопросы.",
+st2_t:"Настройка в ваших группах", st2_d:"Добавим бота, привяжем каждую группу к отделу и зарегистрируем сотрудников.",
+st3_t:"14 дней бесплатно", st3_d:"Команда работает с ботом по-настоящему. Посчитайте, сколько напоминаний и потерянных сообщений он экономит.",
+st4_t:"Выбор тарифа", st4_d:"Остаётесь на тарифе по размеру парка, или мы удаляем бота и ваши данные.",
+faq_h2:"Частые вопросы владельцев",
+f1_q:"Водителям нужно что-то устанавливать?", f1_a:"Нет. Всё работает в Telegram, в тех группах, где водители уже переписываются.",
+f2_q:"Кто видит наши данные?", f2_a:"У каждой компании свой бот и своя база данных, общей с другими компаниями нет. Веб-панель офиса закрыта личным ключом.",
+f3_q:"На каких языках работает бот?", f3_a:"Основной язык — узбекский. Водители могут переключить главное меню, регистрацию и шаги BOL на русский или английский. Команды для офиса пока на узбекском.",
+f4_q:"Есть интеграция с нашим ELD или TMS?", f4_a:"Напрямую пока нет. Проблемы с ELD приходят тикетами в Dispatch и Safety. Если у вашего ELD или TMS есть API, посмотрим, как подключить.",
+f5_q:"Сколько занимает настройка?", f5_a:"Обычно несколько дней: добавляем бота в группы, привязываем каждую группу к отделу и регистрируем сотрудников. Водителям достаточно нажать Start.",
+f6_q:"Что после пилота?", f6_a:"Выбираете тариф по размеру парка. Если не подошло, удаляем бота и ваши данные.",
+pi_eyebrow:"Бесплатный пилот", pi_h2:"Попробуйте в своём офисе 14 дней",
+pi_lede:"Расскажите о вашей компании. Напишем в течение одного рабочего дня, чтобы назначить демо.",
+pi_t1:"Для пилота карта не нужна", pi_t2:"Всё настроим за вас", pi_t3:"Английский, русский или узбекский",
+f_name:"Ваше имя", f_company:"Компания", f_role:"Ваша роль", r_owner:"Владелец", r_ops:"Операционный отдел", r_other:"Другое",
+f_trucks:"Траков", f_groups:"Сколько Telegram-групп ведёте",
+f_office:"Где ваш офис?", o_us:"США", o_uz:"Узбекистан", o_both:"Оба",
+f_depts:"С чего начать", f_phone:"Телефон", f_optional:"необязательно",
+f_pain:"Что больше всего тормозит работу офиса?", f_pain_ph:"например, напоминать про PTI, теряются BOL, просроченные медкарты",
+f_submit:"Записаться на пилот",
+f_note:"Используем ваши данные только чтобы договориться о демо.",
+done_h:"Заявка отправлена.", done_p:"Напишем в течение одного рабочего дня, чтобы назначить демо. Чтобы получить ответ быстрее, продолжите в Telegram.",
+done_bot:"Продолжить в Telegram",
+form_need_contact:"Укажите телефон, Telegram или email, чтобы мы могли связаться.",
+form_sending:"Отправляем…",
+form_error:"Не удалось отправить. Проверьте интернет и попробуйте ещё раз или напишите нам в Telegram.",
+form_error_tg:"Написать в Telegram",
+form_rate:"Слишком много попыток. Попробуйте чуть позже.",
+foot_note:"Telegram help desk для траковых компаний.", foot_contact:"Написать нам в Telegram",
+mobile_pricing:"Цены", mobile_pilot:"Пилот бесплатно"
+},
+uz:{
+meta_title:"DSL HELP — butun trucking ofisingiz uchun bitta Telegram bot",
+meta_desc:"Driverlar o'z guruhida yozadi. DSL HELP kerakli bo'limga ticket ochadi, ish bitmaguncha jamoaga eslatib turadi va kunlik hisobot yuboradi. 14 kun bepul.",
+nav_pilot:"Bepul sinov",
+hero_eyebrow:"AQSHdagi trucking kompaniyalar uchun Telegram help desk",
+hero_h1:"Butun trucking ofisingiz bitta Telegram botda.",
+hero_lede:"Driverlar o'z guruhida yozadi. DSL HELP kerakli bo'limga ticket ochadi, ish bitmaguncha jamoangizga eslatib turadi va har kech kompaniya egasiga hisobot yuboradi.",
+hero_cta:"Bepul sinovni boshlash", hero_cta2:"Qanday ishlaydi",
+chip1:"Mavjud guruhlaringizda ishlaydi", chip2:"Driverlarga ilova kerak emas", chip3:"Sizga alohida bot", chip4:"14 kun bepul",
+chat_label:"DSL HELP boti bor driver guruhidan misol",
+ch_who:"Akmal", ch_title:"Trak 214 · Akmal", ch_sub:"Akmal, DSL HELP, Dispatch",
+ch_b1:"🤖 BOL'dan o'qidim: Load #88412, Joliet, IL → Columbus, OH. To'g'rimi?", ch_yes:"✅ Ha", ch_fix:"✏️ Tuzatish",
+ch_b2:"⏰ 2 soatdan keyin tushirish: Columbus, OH, 14:00 da.",
+ch_d2:"ELD ishlamayapti, logbook ochilmayapti",
+ch_b3:"ELD muammosiga o'xshaydi. Ticket ochaymi?", ch_yes2:"Ha", ch_no:"Yo'q",
+ch_b4:"🎫 Ticket #213 · ELD · Dispatch va Safety xabardor",
+ch_example:"Misol uchun ko'rsatilgan yozishma.",
+oneliner:"Xabarlar yo'qoladi. <b>Ticketlar — yo'q.</b>",
+dept_eyebrow:"Nima qiladi", dept_h2:"Oltita bo'lim, bitta bot",
+dept_lede:"Har bir Telegram guruh bitta bo'limga bog'lanadi. Driverlar odatdagidek yozaveradi, har bir so'rov esa unga mas'ul odamlarga boradi.",
+d1a:"BOL, POD, yuklash va tushirish yangiliklari bilan load kartalari", d1b:"Har bir appointment'dan 2 soat va 30 daqiqa oldin eslatma, kechikish haqida ogohlantirish", d1c:"Driver lokatsiya yuboradi, Dispatch xarita havolasini oladi",
+d2a:"Trak tarixi: driver, milya, servis va PTI", d2b:"Moy almashtirish (PM) eslatmasi, milya yoki kun bo'yicha", d2c:"PTI rasmlari qabul qilinadi yoki qayta topshirishga qaytariladi",
+d3a:"Nosozlik haqidagi xabar darhol Dispatch va Safety'ga boradi", d3b:"Ticket muammo hal bo'lguncha eslatib turadi", d3c:"Rasm va izohlar ticket ichida saqlanadi",
+d4a:"Incident va inspection natijasi bilan yoziladi", d4b:"CSA ballari tarixi", d4c:"Oylik incident va inspection soni",
+d5a:"Settlement to'g'ridan-to'g'ri driverning guruhiga yuboriladi", d5b:"Yoqilg'i, tarozi (scale) va lumper cheklari summasi bilan", d5c:"Ta'mirlash xarajatlari va cheklar oylik jami",
+d6a:"Yangi driver CDL va medical kartasini chatda yuboradi", d6b:"HR har bir hujjatni bitta tugma bilan tasdiqlaydi yoki rad etadi", d6c:"Hujjat muddati tugashidan 14 kun oldin ogohlantirish",
+flow_eyebrow:"So'rov qanday bajariladi", flow_h2:"Driver xabaridan «bajarildi»gacha",
+fl1_t:"Driver yozadi", fl1_d:"O'z guruhida: menyudan turini tanlaydi, rasm yoki izoh qo'shadi.",
+fl2_t:"Kerakli bo'lim oladi", fl2_d:"Bo'lim guruhida raqamli ticket paydo bo'ladi, driver va trak ma'lumoti bilan.",
+fl3_t:"Bitmaguncha eslatma", fl3_d:"Ochiq ticketlar jamoaga eslatib turadi. 🔴 Urgent ticket har 2 daqiqada eslatadi va Dispatch'ga xabar beradi.",
+fl4_t:"Driver javob oladi", fl4_d:"Xodim Done tugmasini bosganda driver buni o'z guruhida ko'radi, ticket esa kechki hisobotga tushadi.",
+rep_eyebrow:"Kompaniya egasi uchun", rep_h2:"40 ta chatni o'qimasdan, bugun nima bo'lganini biling",
+rep_label:"Kunlik hisobotdan misol", rep_title:"📊 Kunlik hisobot",
+rep_l1:"Faol loadlar", rep_l2:"Ochiq ticketlar", rep_l3:"Bugun PTI qilmaganlar", rep_v3:"3 driver", rep_l4:"14 kun ichida muddati tugaydi", rep_v4:"Medical karta (Sardor R.), CDL (Bekzod T.)",
+rep_example:"Misol uchun ko'rsatilgan.",
+rp1:"Har kuni soat 20:00 da Dispatch guruhiga va har bir adminga kunlik hisobot", rp2:"Faol loadlar, bo'limlar bo'yicha ochiq ticketlar, qilinmagan PTI va muddati yaqin hujjatlar", rp3:"/driver va /find istalgan driver, load yoki ticketni soniyalarda topadi", rp4:"Ticketlar, loadlar va PTI tarixini kun, hafta yoki oy bo'yicha Excel'ga eksport", rp5:"Kim nimani o'zgartirganini ko'rsatadigan audit log", rp6:"Ofis uchun web panel (faqat ko'rish) va har kecha zaxira nusxa",
+ai_eyebrow:"Ixtiyoriy sun'iy intellekt", ai_h2:"Driver va dispetcherlar uchun kamroq yozish",
+ai1_t:"BOL rasmini o'qiydi", ai1_d:"Driver BOL yuborganda, sun'iy intellekt load raqami va manzillarni o'qiydi va load kartasiga yozishdan oldin driverdan tasdiq so'raydi.",
+ai2_t:"Oddiy matnni yo'naltiradi", ai2_d:"Driver shunchaki «treylerning chirog'i yonmayapti» yoki «settlement'im kerak» deb yozsa, sun'iy intellekt kerakli bo'limni taklif qiladi va ticket ochishdan oldin so'raydi.",
+ai_note:"Odam «Ha» tugmasini bosmaguncha hech narsa saqlanmaydi. Sun'iy intellekt ixtiyoriy va ishlatilganiga qarab hisoblanadi. Usiz ham qolgan hamma narsa xuddi shunday ishlaydi.",
+cmp_eyebrow:"Nega shunchaki guruh emas?", cmp_h2:"Oddiy Telegram guruhlar va DSL HELP bilan",
+cmp_a:"Faqat guruhlar", cmp_b:"DSL HELP bilan",
+c1a:"So'rov chatda yuqoriga ketib yo'qoladi", c1b:"Har bir so'rov raqamli ticketga aylanadi",
+c2a:"Kim shug'ullanayotgani noma'lum", c2b:"Kerakli bo'lim oladi va bitta tugma bilan yopadi",
+c3a:"Eslatish kimningdir xotirasiga bog'liq", c3b:"Bitmaguncha eslatma, urgent bo'lsa har 2 daqiqada",
+c4a:"Muddati o'tgan medical karta inspection'da chiqib qoladi", c4b:"CDL yoki medical karta muddati tugashidan 14 kun oldin ogohlantirish",
+c5a:"Egasi «bugun nima bo'ldi?» deb so'raydi", c5b:"Soat 20:00 da kunlik hisobot, avtomatik",
+c6a:"Tarix minglab xabarlar ichida yo'qoladi", c6b:"Qidiruv, Excel eksport va audit log",
+pr_eyebrow:"Narxlar", pr_h2:"Butun ofis uchun bitta oylik narx",
+pr_lede:"Narx foydalanuvchilar soniga emas, traklar soniga qarab. Dispetcher, mexanik va hisobchilarni xohlagancha qo'shing.",
+calc_trucks:"Kompaniyadagi traklar", calc_rate:"Ofisda bir soatlik ish narxi",
+calc_plan:"Sizning tarif", calc_price:"Oylik narx", calc_per:"Bitta trakka",
+calc_note:"Bu va'da emas, sizning raqamlaringiz. Bepul sinov davomida qancha eslatma tejalganini sanang.",
+per_hour:"/soat", per_month:"/oy", per_month_long:"oyiga",
+plan_small:"Small", plan_fleet:"Fleet", plan_ent:"Enterprise", custom:"Kelishiladi",
+even:"Ofisingizga kuniga taxminan {n} daqiqa tejasa, o'zini oqlaydi.",
+even_ent:"100 dan ortiq trak? Qisqa qo'ng'iroqda tarifni birga tanlaymiz.",
+fit:"Kompaniyangizga mos",
+p1_trucks:"25 tagacha trak", p2_trucks:"26–100 trak", p3_trucks:"100+ trak", p3_per:"narx qo'ng'iroqdan keyin",
+pf1:"Oltita bo'limning hammasi", pf2:"Ticketlar, eslatmalar va kunlik hisobot", pf3:"Qidiruv, Excel eksport va audit log", pf4:"Web panel va har kechagi zaxira",
+pe1:"Fleet'dagi hamma narsa", pe2:"Bir nechta ofis yoki kompaniya", pe3:"Siz uchun qo'shimcha bo'lim yoki hisobotlar",
+p_cta:"Bepul sinov", p3_cta:"Bog'lanish",
+pn1_t:"Ulash, bir martalik", pn1_d:"{setup} dan. Botni guruhlaringizga qo'shamiz, xodimlarni ro'yxatdan o'tkazamiz va driverlarga qanday ishlatishni ko'rsatamiz.",
+pn2_t:"Sun'iy intellekt moduli", pn2_d:"BOL o'qish va avto-yo'naltirish, ishlatilganiga qarab. Siz xohlamasangiz o'chiq turadi.",
+pn3_t:"Majburiyatsiz", pn3_d:"14 kun bepul, keyin oyma-oy. Istalgan vaqtda to'xtatish mumkin.",
+st_eyebrow:"Qanday boshlanadi", st_h2:"Bir necha kunda guruhlaringizda ishlaydi",
+st1_t:"Qisqa demo", st1_d:"Botni test guruhida ishlayotganini ko'rsatamiz va savollaringizga javob beramiz.",
+st2_t:"Guruhlaringizga sozlash", st2_d:"Botni qo'shamiz, har bir guruhni bo'limga bog'laymiz va xodimlarni ro'yxatdan o'tkazamiz.",
+st3_t:"14 kun bepul sinov", st3_d:"Jamoangiz haqiqiy ishda ishlatadi. Qancha eslatma va yo'qolgan xabar tejalganini sanang.",
+st4_t:"Tarif tanlash", st4_d:"Trak soningizga mos tarifda qolasiz yoki botni va ma'lumotlaringizni o'chirib tashlaymiz.",
+faq_h2:"Kompaniya egalari ko'p so'raydigan savollar",
+f1_q:"Driverlar biror narsa o'rnatishi kerakmi?", f1_a:"Yo'q. Hammasi Telegram'da, driverlar allaqachon yozishib yurgan guruhlarda ishlaydi.",
+f2_q:"Ma'lumotlarimizni kim ko'radi?", f2_a:"Har bir kompaniyaga alohida bot va alohida baza, boshqa kompaniyalar bilan umumiy emas. Ofis web paneli shaxsiy kalit bilan yopilgan.",
+f3_q:"Bot qaysi tillarda ishlaydi?", f3_a:"Asosiy til o'zbekcha. Driverlar asosiy menyu, ro'yxatdan o'tish va BOL qadamlarini rus yoki ingliz tiliga o'tkaza oladi. Ofis buyruqlari hozircha o'zbekcha.",
+f4_q:"ELD yoki TMS'imiz bilan bog'lanadimi?", f4_a:"Hozircha to'g'ridan-to'g'ri emas. ELD muammolari ticket bo'lib Dispatch va Safety'ga keladi. ELD yoki TMS'ingizda API bo'lsa, ulashni ko'rib chiqamiz.",
+f5_q:"Sozlash qancha vaqt oladi?", f5_a:"Odatda bir necha kun: botni guruhlarga qo'shamiz, har bir guruhni bo'limga bog'laymiz va xodimlarni ro'yxatdan o'tkazamiz. Driverlar faqat Start'ni bosadi.",
+f6_q:"Sinovdan keyin nima bo'ladi?", f6_a:"Trak soningizga mos tarifni tanlaysiz. Mos kelmasa, botni va ma'lumotlaringizni o'chirib tashlaymiz.",
+pi_eyebrow:"Bepul sinov", pi_h2:"Ofisingizda 14 kun sinab ko'ring",
+pi_lede:"Kompaniyangiz haqida yozing. Demo belgilash uchun bir ish kuni ichida yozamiz.",
+pi_t1:"Sinov uchun karta kerak emas", pi_t2:"Hammasini o'zimiz sozlaymiz", pi_t3:"Ingliz, rus yoki o'zbek tilida",
+f_name:"Ismingiz", f_company:"Kompaniya", f_role:"Lavozimingiz", r_owner:"Egasi", r_ops:"Operatsiyalar", r_other:"Boshqa",
+f_trucks:"Traklar", f_groups:"Nechta Telegram guruh yuritasiz",
+f_office:"Ofisingiz qayerda?", o_us:"AQSH", o_uz:"O'zbekiston", o_both:"Ikkalasida",
+f_depts:"Nimadan boshlaymiz", f_phone:"Telefon", f_optional:"ixtiyoriy",
+f_pain:"Ofisingiz ishini eng ko'p nima sekinlashtiradi?", f_pain_ph:"masalan, PTI'ni eslatib yurish, BOL'lar yo'qolishi, medical karta muddati o'tishi",
+f_submit:"Bepul sinovga yozilish",
+f_note:"Ma'lumotlaringizdan faqat demo kelishish uchun foydalanamiz.",
+done_h:"So'rov yuborildi.", done_p:"Demo belgilash uchun bir ish kuni ichida yozamiz. Tezroq javob olish uchun Telegram'da davom eting.",
+done_bot:"Telegram'da davom etish",
+form_need_contact:"Bog'lanishimiz uchun telefon, Telegram yoki email yozing.",
+form_sending:"Yuborilmoqda…",
+form_error:"Yuborib bo'lmadi. Internetni tekshirib qayta urinib ko'ring yoki Telegram'da yozing.",
+form_error_tg:"Telegram'da yozish",
+form_rate:"Juda ko'p urinish. Birozdan keyin qayta urinib ko'ring.",
+foot_note:"Trucking kompaniyalar uchun Telegram help desk.", foot_contact:"Telegram'da yozing",
+mobile_pricing:"Narxlar", mobile_pilot:"Bepul sinov"
+}};
+// Put the prices from config.js into every text.
+Object.keys(D).forEach(function(l){Object.keys(D[l]).forEach(function(k){D[l][k]=String(D[l][k]).split("{setup}").join(M.money(SETUP));});});
+var amounts=document.querySelectorAll('[data-p]');
+for(var i=0;i<amounts.length;i++){var v={small:SMALL,fleet:FLEET,setup:SETUP}[amounts[i].getAttribute('data-p')];if(v)amounts[i].textContent=M.money(v);}
+
+// Calculator: price for the fleet size, and how much office time it has to save to pay for itself.
+var tr=document.getElementById('trucks'), rt=document.getElementById('rate'), used=false;
+var cards=document.querySelectorAll('.price[data-plan]');
+function planFor(n){return n<=25?'small':n<=100?'fleet':'ent';}
+function calc(){
+  var n=+tr.value, rate=+rt.value, p=planFor(n), price=p==='small'?SMALL:p==='fleet'?FLEET:0;
+  document.getElementById('trucks-out').textContent=n;
+  document.getElementById('rate-out').textContent=M.money(rate)+M.t('per_hour');
+  document.getElementById('plan-out').textContent=M.t('plan_'+p);
+  document.getElementById('price-out').textContent=price?M.money(price)+M.t('per_month'):M.t('custom');
+  document.getElementById('pertruck-out').textContent=price?'$'+(price/n).toFixed(2):'—';
+  var even=document.getElementById('even');
+  if(price){var min=Math.max(5,Math.round(price/rate/30*60/5)*5);even.textContent=M.t('even').split('{n}').join(min);}
+  else even.textContent=M.t('even_ent');
+  for(var i=0;i<cards.length;i++)cards[i].classList.toggle('match',cards[i].getAttribute('data-plan')===p);
+}
+function used1(){if(!used){used=true;M.event('calc_use','dslhelp',+tr.value,{rate:+rt.value});}}
+tr.addEventListener('input',function(){calc();used1();});
+rt.addEventListener('input',function(){calc();used1();});
+M.onLang=calc;
+M.initLang(D,{langs:['en','ru','uz'],fallback:'en',defaultLang:'en',englishForEnglishBrowsers:true});
+M.trackView('dslhelp');
+
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});}else{document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});}
+})();
+</script>
+</body>
+</html>

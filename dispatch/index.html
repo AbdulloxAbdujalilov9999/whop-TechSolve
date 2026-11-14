@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Haulwise Dispatch — truck dispatch for owner-operators</title>
+<meta name="description" content="We find, negotiate and book loads under your MC, handle broker paperwork and check calls. A flat percentage per load, no contract.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0B1533">
+<meta property="og:title" content="Haulwise Dispatch — truck dispatch for owner-operators">
+<meta property="og:description" content="Better loads, fewer empty miles. You approve every load. No contract.">
+<link rel="icon" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+:root{
+  --bg:#F5F7FB; --bg-alt:#EBEFF8; --surface:#FFFFFF; --ink:#0B1533; --muted:#51607E; --line:#DCE3F0; --line-strong:#C3CEE3;
+  --accent:#1B2D5E; --accent-ink:#FFFFFF; --accent-soft:#E2E8F6; --eyebrow:#2F5BE7;
+  --amber:#FFB020; --amber-ink:#0B1533; --danger:#C0392B; --good:#14804A;
+  --header-bg:rgba(245,247,251,.9); --radius:18px; --btn-radius:12px;
+  --font-display:"Archivo","Arial",sans-serif; --font-body:"Inter",-apple-system,"Segoe UI",Roboto,sans-serif;
+  --display-tracking:-0.015em; --display-weight:800;
+  --card-shadow:0 1px 2px rgba(11,21,51,.06),0 10px 28px rgba(11,21,51,.07);
+}
+.btn-amber{background:var(--amber);border-color:var(--amber);color:var(--amber-ink);box-shadow:0 10px 26px rgba(255,176,32,.3)}
+.hero{position:relative;overflow:hidden;color:#F2F5FC;background:radial-gradient(900px 420px at 85% -10%,#2A4386 0%,rgba(42,67,134,0) 60%),linear-gradient(180deg,#0B1533 0%,#0E1B42 100%);padding:46px 0 70px}
+.hero .wrap{position:relative;z-index:1;display:grid;gap:34px}
+@media(min-width:980px){.hero .wrap{grid-template-columns:1.1fr .9fr;align-items:center}.hero{padding:76px 0 96px}}
+.hero .eyebrow{color:var(--amber)}
+.hero .lede{color:#C5CFE6}
+.hero .btn-ghost{color:#F2F5FC;border-color:rgba(197,207,230,.45)}
+.hero .chips li{background:rgba(255,255,255,.07);border-color:rgba(197,207,230,.22);color:#E4E9F6}
+.road{position:absolute;left:0;right:0;bottom:0;height:10px;background:repeating-linear-gradient(90deg,var(--amber) 0 44px,transparent 44px 88px);opacity:.55}
+.loadcard{background:#101F4A;border:1px solid rgba(197,207,230,.18);border-radius:22px;padding:18px;box-shadow:0 30px 60px rgba(0,0,0,.35);color:#E4E9F6}
+.lc-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}
+.lc-head b{font-family:var(--font-display);font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:#C5CFE6}
+.tag{font-size:12px;font-weight:700;padding:4px 9px;border-radius:999px;background:rgba(255,176,32,.16);color:var(--amber)}
+.lane{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:14px;border-radius:16px;background:#0B1736}
+.city b{display:block;font-size:18px;color:#fff}
+.city span{font-size:12.5px;color:#9FB0D6}
+.city.right{text-align:right}
+.lane svg{width:100%;height:28px}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+.facts div{background:#0B1736;border-radius:12px;padding:10px}
+.facts small{display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#9FB0D6;font-weight:700}
+.facts b{font-size:17px;color:#fff}
+.facts .money{color:var(--amber)}
+.lc-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.lc-actions span{display:block;text-align:center;padding:11px;border-radius:12px;font-weight:800;font-size:15px}
+.ok-btn{background:var(--amber);color:#0B1533}
+.no-btn{border:1px solid rgba(197,207,230,.3);color:#E4E9F6}
+.timeline{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:7px;font-size:13.5px;color:#C5CFE6}
+.timeline li{display:flex;gap:9px;align-items:center}
+.timeline i{width:9px;height:9px;border-radius:50%;background:#3E5594;flex:none}
+.timeline li.done i{background:var(--amber)}
+.js .timeline li{opacity:0;animation:tl .4s ease forwards}
+.js .timeline li:nth-child(1){animation-delay:.4s}.js .timeline li:nth-child(2){animation-delay:.9s}.js .timeline li:nth-child(3){animation-delay:1.4s}.js .timeline li:nth-child(4){animation-delay:1.9s}
+@keyframes tl{to{opacity:1}}
+.example{font-size:12px;color:#8C9BC2;margin:10px 0 0}
+.oneliner{background:#0B1533;color:#E4E9F6;padding:22px 0;text-align:center;font-family:var(--font-display);font-size:clamp(18px,2.6vw,24px);letter-spacing:-.01em}
+.oneliner b{color:var(--amber)}
+.rules{display:grid;gap:14px}
+@media(min-width:760px){.rules{grid-template-columns:1fr 1fr}}
+.rule{display:flex;gap:14px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px}
+.rule .ico{flex:none;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:#FFF3D9;color:#8A5A00}
+.rule .ico svg{width:22px;height:22px}
+.rule h3{font-size:18px;margin:0 0 4px}
+.rule p{margin:0;color:var(--muted);font-size:15.5px}
+.calc{display:grid;gap:24px;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:var(--card-shadow)}
+@media(min-width:900px){.calc{grid-template-columns:1fr 1fr;padding:32px;align-items:center}}
+.calc output{font-family:var(--font-display);font-size:clamp(34px,5vw,48px);font-weight:800;color:var(--ink);display:block;line-height:1}
+.calc .range{margin:14px 0 6px}
+.calc .scale{display:flex;justify-content:space-between;font-size:13px;color:var(--muted)}
+.split{display:grid;gap:10px}
+.split div{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:14px 16px;border-radius:14px;background:var(--bg)}
+.split div.keep{background:#0B1533;color:#fff}
+.split div.keep b{color:var(--amber)}
+.split b{font-family:var(--font-display);font-size:24px}
+.split span{font-size:15px}
+.req{columns:1;gap:24px}
+@media(min-width:760px){.req{columns:2}}
+.req li{break-inside:avoid}
+.join{background:linear-gradient(180deg,var(--bg) 0%,var(--bg-alt) 100%)}
+.join .wrap{display:grid;gap:30px}
+@media(min-width:980px){.join .wrap{grid-template-columns:.8fr 1.2fr;align-items:start}}
+.docs{margin-top:18px;padding:16px 18px;border-radius:14px;background:var(--surface);border:1px dashed var(--line-strong);font-size:15px}
+.docs b{display:block;margin-bottom:6px}
+</style>
+</head>
+<body class="has-mobile-cta">
+<script>document.documentElement.classList.add('js')</script>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#"><img src="icons/icon-192.png" alt=""><span>HAULWISE</span></a>
+    <div class="spacer"></div>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button type="button" data-lang="en">EN</button><button type="button" data-lang="ru">RU</button><button type="button" data-lang="uz">UZ</button>
+    </div>
+    <a class="btn btn-small btn-amber" href="#join" data-cta="nav_join" data-product="dispatch" data-t="nav_join">Start dispatch</a>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" data-t="hero_eyebrow">Truck dispatch for owner-operators</span>
+      <h1 data-t="hero_h1">Better loads, fewer empty miles. You stay in control.</h1>
+      <p class="lede" data-t="hero_lede"></p>
+      <div class="btn-row">
+        <a class="btn btn-amber" href="#join" data-cta="hero_join" data-product="dispatch" data-t="hero_cta">Start dispatch</a>
+        <a class="btn btn-ghost" href="#calc" data-cta="hero_calc" data-product="dispatch" data-t="hero_cta2">See what you'd keep</a>
+      </div>
+      <ul class="chips">
+        <li data-t="chip1">No contract</li>
+        <li data-t="chip2">You approve every load</li>
+        <li data-t="chip3">Brokers pay you directly</li>
+        <li data-t="chip4">Cancel any week</li>
+      </ul>
+    </div>
+    <div class="loadcard" aria-label="Example of a load we send you to approve">
+      <div class="lc-head"><b data-t="lc_title">Load for your approval</b><span class="tag" data-t="lc_tag">New</span></div>
+      <div class="lane">
+        <div class="city"><b>Dallas, TX</b><span data-t="lc_pick">Pickup Mon 8:00</span></div>
+        <svg viewBox="0 0 120 28" aria-hidden="true"><path d="M4 20 C40 2, 80 2, 116 20" fill="none" stroke="#FFB020" stroke-width="3" stroke-dasharray="6 6"/><circle cx="4" cy="20" r="4" fill="#fff"/><circle cx="116" cy="20" r="4" fill="#FFB020"/></svg>
+        <div class="city right"><b>Atlanta, GA</b><span data-t="lc_drop">Delivery Tue 14:00</span></div>
+      </div>
+      <div class="facts">
+        <div><small data-t="lc_miles">Miles</small><b>781</b></div>
+        <div><small data-t="lc_rate">Rate</small><b class="money">$2,450</b></div>
+        <div><small data-t="lc_rpm">Per mile</small><b>$3.14</b></div>
+      </div>
+      <div class="lc-actions"><span class="ok-btn" data-t="lc_ok">Approve</span><span class="no-btn" data-t="lc_no">Pass</span></div>
+      <ul class="timeline">
+        <li class="done"><i></i><span data-t="tl1">Rate negotiated up from $2,200</span></li>
+        <li class="done"><i></i><span data-t="tl2">Broker packet sent</span></li>
+        <li class="done"><i></i><span data-t="tl3">Rate con checked and signed</span></li>
+        <li><i></i><span data-t="tl4">Check calls until delivery</span></li>
+      </ul>
+      <p class="example" data-t="lc_example">Example load, for illustration.</p>
+    </div>
+  </div>
+  <div class="road" aria-hidden="true"></div>
+</section>
+
+<div class="oneliner"><div class="wrap" data-th="oneliner"></div></div>
+
+<section>
+  <div class="wrap">
+    <span class="eyebrow" data-t="svc_eyebrow">What we do</span>
+    <h2 data-t="svc_h2">Everything except the driving</h2>
+    <div class="grid grid-4" style="margin-top:28px">
+      <div class="card reveal"><div class="icon" aria-hidden="true">🔎</div><h3 data-t="s1_t"></h3><p class="muted" data-t="s1_d"></p></div>
+      <div class="card reveal"><div class="icon" aria-hidden="true">📁</div><h3 data-t="s2_t"></h3><p class="muted" data-t="s2_d"></p></div>
+      <div class="card reveal"><div class="icon" aria-hidden="true">✅</div><h3 data-t="s3_t"></h3><p class="muted" data-t="s3_d"></p></div>
+      <div class="card reveal"><div class="icon" aria-hidden="true">📞</div><h3 data-t="s4_t"></h3><p class="muted" data-t="s4_d"></p></div>
+      <div class="card reveal"><div class="icon" aria-hidden="true">⏱️</div><h3 data-t="s5_t"></h3><p class="muted" data-t="s5_d"></p></div>
+      <div class="card reveal"><div class="icon" aria-hidden="true">🧾</div><h3 data-t="s6_t"></h3><p class="muted" data-t="s6_d"></p></div>
+      <div class="card reveal"><div class="icon" aria-hidden="true">🏠</div><h3 data-t="s7_t"></h3><p class="muted" data-t="s7_d"></p></div>
+      <div class="card reveal"><div class="icon" aria-hidden="true">📊</div><h3 data-t="s8_t"></h3><p class="muted" data-t="s8_d"></p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap">
+    <span class="eyebrow" data-t="how_eyebrow">How it starts</span>
+    <h2 data-t="how_h2">On the road in a few days</h2>
+    <ol class="steps" style="margin-top:26px">
+      <li><h3 data-t="st1_t"></h3><p data-t="st1_d"></p></li>
+      <li><h3 data-t="st2_t"></h3><p data-t="st2_d"></p></li>
+      <li><h3 data-t="st3_t"></h3><p data-t="st3_d"></p></li>
+      <li><h3 data-t="st4_t"></h3><p data-t="st4_d"></p></li>
+    </ol>
+  </div>
+</section>
+
+<section id="calc">
+  <div class="wrap">
+    <span class="eyebrow" data-t="calc_eyebrow">Simple pricing</span>
+    <h2 data-t="calc_h2"></h2>
+    <p class="lede" data-t="calc_lede"></p>
+    <div class="calc" style="margin-top:26px">
+      <div>
+        <label for="gross" class="label" style="font-weight:700" data-t="calc_label">Your weekly gross</label>
+        <output id="gross-out" for="gross">$8,000</output>
+        <input class="range" id="gross" type="range" min="3000" max="20000" step="500" value="8000" aria-describedby="gross-out">
+        <div class="scale"><span>$3,000</span><span>$20,000</span></div>
+      </div>
+      <div class="split" aria-live="polite">
+        <div><span data-t="calc_fee">Our fee</span><b id="fee-out">$480</b></div>
+        <div class="keep"><span data-t="calc_keep">You keep</span><b id="keep-out">$7,520</b></div>
+        <div><span data-t="calc_month">Fee per month, about</span><b id="month-out">$2,064</b></div>
+      </div>
+    </div>
+    <p class="small muted" style="margin-top:12px" data-t="calc_note"></p>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap">
+    <span class="eyebrow" data-t="rules_eyebrow">Our rules</span>
+    <h2 data-t="rules_h2">Your authority, your money, your call</h2>
+    <div class="rules" style="margin-top:26px">
+      <div class="rule reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><h3 data-t="r1_t"></h3><p data-t="r1_d"></p></div></div>
+      <div class="rule reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/></svg></div><div><h3 data-t="r2_t"></h3><p data-t="r2_d"></p></div></div>
+      <div class="rule reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg></div><div><h3 data-t="r3_t"></h3><p data-t="r3_d"></p></div></div>
+      <div class="rule reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg></div><div><h3 data-t="r4_t"></h3><p data-t="r4_d"></p></div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="eyebrow" data-t="req_eyebrow">Who we work with</span>
+    <h2 data-t="req_h2">What you need to start</h2>
+    <ul class="ticks req" style="margin-top:22px">
+      <li data-t="q1"></li><li data-t="q2"></li><li data-t="q3"></li><li data-t="q4"></li><li data-t="q5"></li><li data-t="q6"></li>
+    </ul>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap">
+    <span class="eyebrow">FAQ</span>
+    <h2 data-t="faq_h2">Questions carriers ask</h2>
+    <div class="faq" style="margin-top:24px">
+      <details><summary data-t="f1_q"></summary><p data-t="f1_a"></p></details>
+      <details><summary data-t="f2_q"></summary><p data-t="f2_a"></p></details>
+      <details><summary data-t="f3_q"></summary><p data-t="f3_a"></p></details>
+      <details><summary data-t="f4_q"></summary><p data-t="f4_a"></p></details>
+      <details><summary data-t="f5_q"></summary><p data-t="f5_a"></p></details>
+      <details><summary data-t="f6_q"></summary><p data-t="f6_a"></p></details>
+    </div>
+  </div>
+</section>
+
+<section class="join" id="join">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" data-t="join_eyebrow">Get started</span>
+      <h2 data-t="join_h2">Tell us about your truck</h2>
+      <p class="lede" data-t="join_lede"></p>
+      <ul class="ticks" style="margin-top:18px">
+        <li data-t="join_t1"></li><li data-t="join_t2"></li><li data-t="join_t3"></li>
+      </ul>
+      <div class="docs"><b data-t="docs_h">Have these ready</b><span data-t="docs_list"></span></div>
+    </div>
+    <div class="form-card">
+      <form data-lead="dispatch" novalidate>
+        <div class="fields two">
+          <div class="field"><label for="f-name" data-t="f_name">Your name</label><input id="f-name" name="name" autocomplete="name" required></div>
+          <div class="field"><label for="f-company" data-t="f_company">Company name</label><input id="f-company" name="company" autocomplete="organization"></div>
+          <div class="field"><label for="f-mc">MC #</label><input id="f-mc" name="mc" inputmode="numeric" placeholder="123456"></div>
+          <div class="field"><label for="f-dot">USDOT # <span class="hint" data-t="f_optional">optional</span></label><input id="f-dot" name="dot" inputmode="numeric" placeholder="1234567"></div>
+          <div class="field"><label for="f-phone" data-t="f_phone">Phone</label><input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+1 312 555 0100"></div>
+          <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@company.com"></div>
+          <div class="field full"><span class="label" data-t="f_contact">Best way to reach you</span>
+            <div class="pills">
+              <label><input type="radio" name="contact_by" value="call" checked><span data-t="c_call">Call</span></label>
+              <label><input type="radio" name="contact_by" value="whatsapp"><span>WhatsApp</span></label>
+              <label><input type="radio" name="contact_by" value="telegram"><span>Telegram</span></label>
+              <label><input type="radio" name="contact_by" value="text"><span data-t="c_text">Text</span></label>
+            </div>
+          </div>
+          <div class="field full"><span class="label" data-t="f_equipment">Equipment</span>
+            <div class="pills">
+              <label><input type="checkbox" name="equipment" value="Dry van" checked><span>Dry van</span></label>
+              <label><input type="checkbox" name="equipment" value="Reefer"><span>Reefer</span></label>
+              <label><input type="checkbox" name="equipment" value="Flatbed"><span>Flatbed</span></label>
+              <label><input type="checkbox" name="equipment" value="Step deck"><span>Step deck</span></label>
+              <label><input type="checkbox" name="equipment" value="Power only"><span>Power only</span></label>
+              <label><input type="checkbox" name="equipment" value="Box truck 26ft"><span data-t="eq_box">Box truck 26'</span></label>
+            </div>
+          </div>
+          <div class="field"><label for="f-trucks" data-t="f_trucks">Trucks</label>
+            <select id="f-trucks" name="trucks"><option>1</option><option>2–3</option><option>4–10</option><option>10+</option></select></div>
+          <div class="field"><span class="label" data-t="f_team">Driver setup</span>
+            <div class="pills">
+              <label><input type="radio" name="team" value="solo" checked><span data-t="solo">Solo</span></label>
+              <label><input type="radio" name="team" value="team"><span data-t="team">Team</span></label>
+            </div>
+          </div>
+          <div class="field"><label for="f-home" data-t="f_home">Home base</label><input id="f-home" name="home_base" data-tp="f_home_ph" placeholder="Chicago, IL"></div>
+          <div class="field"><label for="f-rpm"><span data-t="f_rpm">Minimum rate per mile</span> <span class="hint" data-t="f_optional">optional</span></label><input id="f-rpm" name="min_rpm" inputmode="decimal" placeholder="$2.50"></div>
+          <div class="field full"><label for="f-lanes" data-t="f_lanes">Lanes you like (or avoid)</label><input id="f-lanes" name="lanes" data-tp="f_lanes_ph" placeholder="Midwest to Southeast, no NYC"></div>
+          <div class="field full"><span class="label" data-t="f_start">When do you want to start?</span>
+            <div class="pills">
+              <label><input type="radio" name="start" value="this week" checked><span data-t="start1">This week</span></label>
+              <label><input type="radio" name="start" value="next week"><span data-t="start2">Next week</span></label>
+              <label><input type="radio" name="start" value="just exploring"><span data-t="start3">Just looking</span></label>
+            </div>
+          </div>
+          <div class="field full"><label for="f-notes"><span data-t="f_notes">Anything else?</span> <span class="hint" data-t="f_optional">optional</span></label><textarea id="f-notes" name="notes" rows="3"></textarea></div>
+          <div class="hp" aria-hidden="true"><label>Leave empty<input name="hp" tabindex="-1" autocomplete="off"></label></div>
+        </div>
+        <button class="btn btn-amber btn-block" type="submit" style="margin-top:20px" data-t="f_submit">Send and get a call</button>
+        <p class="form-msg" role="status" aria-live="polite"></p>
+        <p class="form-note" data-t="f_note">We only use your details to contact you about dispatch.</p>
+      </form>
+      <div class="form-done" hidden>
+        <div class="big" aria-hidden="true">✅</div>
+        <h3 data-t="done_h">Got it. We'll call you soon.</h3>
+        <p class="muted" data-t="done_p"></p>
+        <div class="btn-row">
+          <a class="btn btn-amber" data-bot="disp" hidden target="_blank" rel="noopener" data-t="done_bot">Send documents in Telegram</a>
+          <a class="btn btn-ghost" data-contact href="#" target="_blank" rel="noopener" data-t="foot_contact">Message us on Telegram</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div><b>Haulwise Dispatch</b> · © <span data-year></span></div>
+    <div data-t="foot_note">Independent dispatch service. Not a broker or a carrier.</div>
+    <div><a data-contact href="#" target="_blank" rel="noopener" data-t="foot_contact">Message us on Telegram</a></div>
+  </div>
+</footer>
+
+<div class="mobile-cta">
+  <a class="btn btn-ghost" href="#calc" data-cta="mobile_calc" data-product="dispatch" data-t="mobile_calc">Pricing</a>
+  <a class="btn btn-amber" href="#join" data-cta="mobile_join" data-product="dispatch" data-t="mobile_join">Start dispatch</a>
+</div>
+
+<script src="config.js"></script>
+<script src="money.js"></script>
+<script>
+(function(){
+var P = (window.MONEY_CFG||{}).prices||{};
+var FEE = String(P.dispatchFee||"6%");
+var PCT = parseFloat(FEE.replace(",", "."))||6;
+var D = {
+en:{
+meta_title:"Haulwise Dispatch — truck dispatch for owner-operators",
+meta_desc:"We find, negotiate and book loads under your MC, handle broker paperwork and check calls. {fee} per load, no contract.",
+nav_join:"Start dispatch",
+hero_eyebrow:"Truck dispatch for owner-operators",
+hero_h1:"Better loads, fewer empty miles. You stay in control.",
+hero_lede:"We find, negotiate and book loads under your MC, handle the broker paperwork and check calls, and send you every load to approve. {fee} of the load. No contract.",
+hero_cta:"Start dispatch", hero_cta2:"See what you'd keep",
+chip1:"No contract", chip2:"You approve every load", chip3:"Brokers pay you directly", chip4:"Cancel any week",
+lc_title:"Load for your approval", lc_tag:"New", lc_pick:"Pickup Mon 8:00", lc_drop:"Delivery Tue 14:00",
+lc_miles:"Miles", lc_rate:"Rate", lc_rpm:"Per mile", lc_ok:"Approve", lc_no:"Pass",
+tl1:"Rate negotiated up from $2,200", tl2:"Broker setup packet sent", tl3:"Rate con checked and signed", tl4:"Check calls until delivery",
+lc_example:"Example load, for illustration.",
+oneliner:"We book. <b>You drive.</b> The broker pays you.",
+svc_eyebrow:"What we do", svc_h2:"Everything except the driving",
+s1_t:"Load search and rates", s1_d:"Load boards and direct broker contacts, and we push every rate up before you see it.",
+s2_t:"Broker setup packets", s2_d:"Your MC authority, W-9, insurance and NOA sent to every new broker, so you're approved fast.",
+s3_t:"Rate cons checked", s3_d:"We read every rate confirmation for rate, times, detention terms and extra stops before it's signed.",
+s4_t:"Check calls", s4_d:"Brokers get their updates from us, so your phone stays quiet while you drive.",
+s5_t:"Detention and TONU", s5_d:"We track wait times and claim detention, layover and truck-order-not-used pay.",
+s6_t:"Paperwork", s6_d:"BOLs and PODs go to the broker or your factoring company the same day.",
+s7_t:"Home time planned", s7_d:"Loads are picked to get you home when you said, not just the highest rate today.",
+s8_t:"Weekly numbers", s8_d:"Miles, gross and rate per mile every week, so you know what's working.",
+how_eyebrow:"How it starts", how_h2:"On the road in a few days",
+st1_t:"Send the form", st1_d:"Tell us about your truck, lanes and the rate you need. Takes two minutes.",
+st2_t:"Short call", st2_d:"We go over home time, lanes and how you like to run, then sign a one-page agreement you can cancel any week.",
+st3_t:"Approve loads", st3_d:"We send each load with rate, miles and times. You say yes or no, and we book only what you approve.",
+st4_t:"Get paid", st4_d:"The broker or your factoring company pays you directly. We bill our {fee} after delivery.",
+calc_eyebrow:"Simple pricing", calc_h2:"{fee} of the load. Nothing else.",
+calc_lede:"No setup fee, no monthly fee, no contract. If the truck doesn't roll, you don't pay.",
+calc_label:"Your weekly gross", calc_fee:"Our fee", calc_keep:"You keep", calc_month:"Fee per month, about",
+calc_note:"Most dispatch services charge 5–10% of the gross. Fuel, insurance and truck costs are yours, as with any dispatcher.",
+rules_eyebrow:"Our rules", rules_h2:"Your authority, your money, your call",
+r1_t:"We work under your MC", r1_d:"Rate cons are in your company's name. Your authority and broker relationships stay yours.",
+r2_t:"We never touch broker money", r2_d:"Brokers pay you or your factoring company. We send our own bill after delivery.",
+r3_t:"We never re-broker your loads", r3_d:"No double brokering, ever. Every load is one you approved, hauled by your truck.",
+r4_t:"Leave any week", r4_d:"No long contract and no cancellation fee. Stay because the loads are good.",
+req_eyebrow:"Who we work with", req_h2:"What you need to start",
+q1:"Active MC and USDOT authority", q2:"$1M auto liability and $100K cargo insurance", q3:"Dry van, reefer, flatbed, step deck, power only or a 26' box truck", q4:"An ELD in the truck", q5:"A phone with WhatsApp or Telegram", q6:"New authority? Fine, we'll build your broker list from day one",
+faq_h2:"Questions carriers ask",
+f1_q:"How much does it cost?", f1_a:"{fee} of the gross of each load we book for you. No setup fee, no monthly fee, no contract. No loads, no fee.",
+f2_q:"Do brokers pay you or me?", f2_a:"You. Rate confirmations are in your company's name, and brokers or your factoring company pay you directly. We bill our fee after delivery.",
+f3_q:"Can I turn a load down?", f3_a:"Always. We send each load with the rate, miles and times, and book only the loads you approve.",
+f4_q:"My MC is new. Can you still help?", f4_a:"Yes. Some brokers want 30 to 90 days of authority, but many work with new MCs. We set up your packets and broker list from the first day.",
+f5_q:"What equipment do you dispatch?", f5_a:"Dry van, reefer, flatbed, step deck, power only and 26' box trucks.",
+f6_q:"What languages do you speak?", f6_a:"English, Russian and Uzbek.",
+join_eyebrow:"Get started", join_h2:"Tell us about your truck",
+join_lede:"Send the form and we'll call or message you within one business day.",
+join_t1:"Free first call, no obligation", join_t2:"One-page agreement, cancel any week", join_t3:"English, Russian or Uzbek",
+docs_h:"Have these ready", docs_list:"MC authority letter, W-9, certificate of insurance (COI), and your factoring NOA if you use factoring.",
+f_name:"Your name", f_company:"Company name", f_optional:"optional", f_phone:"Phone",
+f_contact:"Best way to reach you", c_call:"Call", c_text:"Text",
+f_equipment:"Equipment", eq_box:"Box truck 26'",
+f_trucks:"Trucks", f_team:"Driver setup", solo:"Solo", team:"Team",
+f_home:"Home base", f_home_ph:"e.g. Chicago, IL", f_rpm:"Minimum rate per mile",
+f_lanes:"Lanes you like (or avoid)", f_lanes_ph:"e.g. Midwest to Southeast, no NYC",
+f_start:"When do you want to start?", start1:"This week", start2:"Next week", start3:"Just looking",
+f_notes:"Anything else?", f_submit:"Send and get a call",
+f_note:"We only use your details to contact you about dispatch.",
+done_h:"Got it. We'll call you soon.", done_p:"To start faster, send your MC authority, W-9 and COI in Telegram.",
+done_bot:"Send documents in Telegram",
+form_need_contact:"Add a phone number or email so we can reach you.",
+form_sending:"Sending…",
+form_error:"Couldn't send. Check your connection and try again, or message us on Telegram.",
+form_error_tg:"Message us on Telegram",
+form_rate:"Too many tries. Please try again a bit later.",
+foot_note:"Independent dispatch service. Not a broker or a carrier.", foot_contact:"Message us on Telegram",
+mobile_calc:"Pricing", mobile_join:"Start dispatch"
+},
+ru:{
+meta_title:"Haulwise Dispatch — диспетчер для owner-operator",
+meta_desc:"Ищем, торгуемся и бронируем грузы под вашим MC, ведём документы для брокеров и check calls. {fee} от груза, без контракта.",
+nav_join:"Подключить диспетчера",
+hero_eyebrow:"Диспетчер для owner-operator",
+hero_h1:"Лучше грузы, меньше пустых миль. Решаете вы.",
+hero_lede:"Ищем грузы, торгуемся по ставке и бронируем под вашим MC, ведём документы для брокеров и check calls, а каждый груз присылаем вам на одобрение. {fee} от груза. Без контракта.",
+hero_cta:"Подключить диспетчера", hero_cta2:"Сколько вы оставите себе",
+chip1:"Без контракта", chip2:"Каждый груз одобряете вы", chip3:"Брокер платит вам напрямую", chip4:"Отмена в любую неделю",
+lc_title:"Груз на одобрение", lc_tag:"Новый", lc_pick:"Погрузка пн 8:00", lc_drop:"Выгрузка вт 14:00",
+lc_miles:"Мили", lc_rate:"Ставка", lc_rpm:"За милю", lc_ok:"Одобрить", lc_no:"Пропустить",
+tl1:"Ставку подняли с $2,200", tl2:"Пакет для брокера отправлен", tl3:"Rate con проверен и подписан", tl4:"Check calls до выгрузки",
+lc_example:"Пример груза для наглядности.",
+oneliner:"Мы бронируем. <b>Вы едете.</b> Брокер платит вам.",
+svc_eyebrow:"Что мы делаем", svc_h2:"Всё, кроме руля",
+s1_t:"Поиск грузов и ставки", s1_d:"Лоадборды и прямые контакты брокеров. Ставку поднимаем до того, как груз попадёт к вам.",
+s2_t:"Пакеты для брокеров", s2_d:"MC authority, W-9, страховка и NOA уходят каждому новому брокеру, чтобы вас быстро одобрили.",
+s3_t:"Проверка rate con", s3_d:"Читаем каждый rate confirmation: ставка, время, условия detention и доп. стопы, до подписи.",
+s4_t:"Check calls", s4_d:"Брокеры получают апдейты от нас, а ваш телефон молчит, пока вы за рулём.",
+s5_t:"Detention и TONU", s5_d:"Следим за ожиданием и требуем оплату detention, layover и TONU.",
+s6_t:"Документы", s6_d:"BOL и POD уходят брокеру или в факторинг в тот же день.",
+s7_t:"Планируем home time", s7_d:"Подбираем грузы так, чтобы вы были дома, когда сказали, а не только по самой высокой ставке.",
+s8_t:"Цифры за неделю", s8_d:"Мили, гросс и ставка за милю каждую неделю, чтобы было видно, что работает.",
+how_eyebrow:"Как начать", how_h2:"В рейсе через пару дней",
+st1_t:"Заполните форму", st1_d:"Расскажите о траке, направлениях и нужной ставке. Две минуты.",
+st2_t:"Короткий звонок", st2_d:"Обсудим home time, направления и как вы любите работать, и подпишем договор на одну страницу, который можно расторгнуть в любую неделю.",
+st3_t:"Одобряете грузы", st3_d:"Присылаем каждый груз со ставкой, милями и временем. Вы говорите да или нет, бронируем только одобренное.",
+st4_t:"Получаете деньги", st4_d:"Брокер или ваш факторинг платит вам напрямую. Мы выставляем свои {fee} после доставки.",
+calc_eyebrow:"Простая цена", calc_h2:"{fee} от груза. И всё.",
+calc_lede:"Без оплаты за подключение, без абонентки, без контракта. Трак стоит — вы не платите.",
+calc_label:"Ваш гросс за неделю", calc_fee:"Наша оплата", calc_keep:"Остаётся вам", calc_month:"Оплата в месяц, примерно",
+calc_note:"Обычно диспетчерские берут 5–10% от гросса. Топливо, страховка и расходы на трак ваши, как и с любым диспетчером.",
+rules_eyebrow:"Наши правила", rules_h2:"Ваш MC, ваши деньги, ваше решение",
+r1_t:"Работаем под вашим MC", r1_d:"Rate con оформляется на вашу компанию. Authority и связи с брокерами остаются вашими.",
+r2_t:"Не трогаем деньги брокера", r2_d:"Брокер платит вам или в факторинг. Свой счёт мы выставляем отдельно после доставки.",
+r3_t:"Никакого перебрафа", r3_d:"Никакого double brokering. Каждый груз одобрен вами и везётся вашим траком.",
+r4_t:"Уйти можно в любую неделю", r4_d:"Нет длинного контракта и штрафа за отмену. Остаётесь, потому что грузы хорошие.",
+req_eyebrow:"С кем работаем", req_h2:"Что нужно, чтобы начать",
+q1:"Активные MC и USDOT", q2:"Страховка: $1M auto liability и $100K cargo", q3:"Dry van, reefer, flatbed, step deck, power only или box truck 26'", q4:"ELD в траке", q5:"Телефон с WhatsApp или Telegram", q6:"Новый MC? Не проблема, соберём список брокеров с первого дня",
+faq_h2:"Частые вопросы",
+f1_q:"Сколько это стоит?", f1_a:"{fee} от гросса каждого груза, который мы для вас бронируем. Без оплаты за подключение, без абонентки, без контракта. Нет грузов — нет оплаты.",
+f2_q:"Брокер платит вам или мне?", f2_a:"Вам. Rate con оформляется на вашу компанию, брокер или ваш факторинг платит вам напрямую. Мы выставляем счёт после доставки.",
+f3_q:"Можно отказаться от груза?", f3_a:"Всегда. Присылаем груз со ставкой, милями и временем и бронируем только то, что вы одобрили.",
+f4_q:"У меня новый MC. Поможете?", f4_a:"Да. Некоторые брокеры хотят 30–90 дней authority, но многие работают с новыми MC. Подготовим пакеты и список брокеров с первого дня.",
+f5_q:"С каким оборудованием работаете?", f5_a:"Dry van, reefer, flatbed, step deck, power only и box truck 26'.",
+f6_q:"На каких языках говорите?", f6_a:"Английский, русский и узбекский.",
+join_eyebrow:"Начать", join_h2:"Расскажите о вашем траке",
+join_lede:"Отправьте форму, и мы позвоним или напишем в течение одного рабочего дня.",
+join_t1:"Первый звонок бесплатный, ни к чему не обязывает", join_t2:"Договор на одну страницу, отмена в любую неделю", join_t3:"Английский, русский или узбекский",
+docs_h:"Подготовьте", docs_list:"MC authority letter, W-9, сертификат страховки (COI) и NOA от факторинга, если пользуетесь факторингом.",
+f_name:"Ваше имя", f_company:"Название компании", f_optional:"необязательно", f_phone:"Телефон",
+f_contact:"Как с вами лучше связаться", c_call:"Звонок", c_text:"SMS",
+f_equipment:"Оборудование", eq_box:"Box truck 26'",
+f_trucks:"Траков", f_team:"Водители", solo:"Соло", team:"Команда",
+f_home:"Где базируетесь", f_home_ph:"например, Chicago, IL", f_rpm:"Минимальная ставка за милю",
+f_lanes:"Любимые (или нежелательные) направления", f_lanes_ph:"например, Средний Запад — Юго-Восток, без NYC",
+f_start:"Когда хотите начать?", start1:"На этой неделе", start2:"На следующей", start3:"Пока присматриваюсь",
+f_notes:"Что-то ещё?", f_submit:"Отправить и получить звонок",
+f_note:"Используем ваши данные только чтобы связаться по поводу диспетчерской работы.",
+done_h:"Принято. Скоро позвоним.", done_p:"Чтобы начать быстрее, пришлите MC authority, W-9 и COI в Telegram.",
+done_bot:"Прислать документы в Telegram",
+form_need_contact:"Укажите телефон или email, чтобы мы могли связаться.",
+form_sending:"Отправляем…",
+form_error:"Не удалось отправить. Проверьте интернет и попробуйте ещё раз или напишите нам в Telegram.",
+form_error_tg:"Написать в Telegram",
+form_rate:"Слишком много попыток. Попробуйте чуть позже.",
+foot_note:"Независимая диспетчерская служба. Не брокер и не перевозчик.", foot_contact:"Написать нам в Telegram",
+mobile_calc:"Цена", mobile_join:"Подключить"
+},
+uz:{
+meta_title:"Haulwise Dispatch — owner-operatorlar uchun dispetcher",
+meta_desc:"MC raqamingiz ostida yuk topamiz, narxini kelishamiz va band qilamiz, broker hujjatlari va check call bizda. Yukdan {fee}, shartnomasiz.",
+nav_join:"Dispetcherni ulash",
+hero_eyebrow:"Owner-operatorlar uchun dispetcher",
+hero_h1:"Yaxshiroq yuklar, kamroq bo'sh mil. Qarorni siz qilasiz.",
+hero_lede:"MC raqamingiz ostida yuk topamiz, narxini kelishamiz va band qilamiz, broker hujjatlari va check call'larni olib boramiz, har bir yukni sizga tasdiqlash uchun yuboramiz. Yukdan {fee}. Shartnoma yo'q.",
+hero_cta:"Dispetcherni ulash", hero_cta2:"Sizga qancha qoladi",
+chip1:"Shartnoma yo'q", chip2:"Har bir yukni siz tasdiqlaysiz", chip3:"Broker sizga to'g'ridan-to'g'ri to'laydi", chip4:"Istalgan haftada to'xtatish",
+lc_title:"Tasdiqlash uchun yuk", lc_tag:"Yangi", lc_pick:"Yuklash du 8:00", lc_drop:"Tushirish se 14:00",
+lc_miles:"Mil", lc_rate:"Narx", lc_rpm:"Milga", lc_ok:"Tasdiqlash", lc_no:"O'tkazib yuborish",
+tl1:"Narx $2,200 dan ko'tarildi", tl2:"Broker paketi yuborildi", tl3:"Rate con tekshirildi va imzolandi", tl4:"Tushirguncha check call",
+lc_example:"Misol uchun ko'rsatilgan yuk.",
+oneliner:"Biz band qilamiz. <b>Siz haydaysiz.</b> Broker sizga to'laydi.",
+svc_eyebrow:"Nima qilamiz", svc_h2:"Rulidan boshqa hamma narsa",
+s1_t:"Yuk qidirish va narx", s1_d:"Load board'lar va brokerlar bilan to'g'ridan-to'g'ri aloqa. Yuk sizga yetguncha narxini ko'taramiz.",
+s2_t:"Broker paketlari", s2_d:"MC authority, W-9, sug'urta va NOA har bir yangi brokerga yuboriladi, tez tasdiqlanasiz.",
+s3_t:"Rate con tekshiruvi", s3_d:"Har bir rate confirmation'ni imzodan oldin o'qiymiz: narx, vaqt, detention shartlari va qo'shimcha stoplar.",
+s4_t:"Check call'lar", s4_d:"Brokerlar yangiliklarni bizdan oladi, siz haydayotganda telefoningiz jim turadi.",
+s5_t:"Detention va TONU", s5_d:"Kutish vaqtini kuzatamiz, detention, layover va TONU to'lovlarini talab qilamiz.",
+s6_t:"Hujjatlar", s6_d:"BOL va POD o'sha kuniyoq brokerga yoki factoring kompaniyangizga yuboriladi.",
+s7_t:"Uyga qaytish rejasi", s7_d:"Yuklarni siz aytgan vaqtda uyda bo'lishingizga qarab tanlaymiz, faqat eng yuqori narxga emas.",
+s8_t:"Haftalik raqamlar", s8_d:"Har hafta mil, gross va milga narx: nima ishlayotgani ko'rinib turadi.",
+how_eyebrow:"Qanday boshlanadi", how_h2:"Bir necha kunda yo'ldasiz",
+st1_t:"Formani yuboring", st1_d:"Trak, yo'nalishlar va kerakli narx haqida yozing. Ikki daqiqa.",
+st2_t:"Qisqa qo'ng'iroq", st2_d:"Uyga qaytish, yo'nalishlar va ish uslubingizni kelishamiz, istalgan haftada bekor qilsa bo'ladigan bir sahifalik kelishuvga imzo chekamiz.",
+st3_t:"Yuklarni tasdiqlaysiz", st3_d:"Har bir yukni narx, mil va vaqt bilan yuboramiz. Ha yoki yo'q deysiz, faqat tasdiqlanganini band qilamiz.",
+st4_t:"Pul olasiz", st4_d:"Broker yoki factoring kompaniyangiz sizga to'g'ridan-to'g'ri to'laydi. Biz {fee} ni yetkazilgandan keyin hisoblaymiz.",
+calc_eyebrow:"Oddiy narx", calc_h2:"Yukdan {fee}. Boshqa hech narsa.",
+calc_lede:"Ulanish to'lovi yo'q, oylik to'lov yo'q, shartnoma yo'q. Trak yurmasa, to'lamaysiz.",
+calc_label:"Haftalik gross", calc_fee:"Bizning haq", calc_keep:"Sizga qoladi", calc_month:"Oyiga taxminan",
+calc_note:"Ko'pchilik dispetcherlik xizmatlari gross'ning 5–10% ini oladi. Yoqilg'i, sug'urta va trak xarajatlari, har qanday dispetcherdagidek, sizniki.",
+rules_eyebrow:"Qoidalarimiz", rules_h2:"MC sizniki, pul sizniki, qaror sizniki",
+r1_t:"MC'ingiz ostida ishlaymiz", r1_d:"Rate con kompaniyangiz nomiga bo'ladi. Authority va brokerlar bilan aloqalar sizda qoladi.",
+r2_t:"Broker puliga tegmaymiz", r2_d:"Broker sizga yoki factoring'ga to'laydi. Biz o'z hisobimizni yetkazilgandan keyin alohida yuboramiz.",
+r3_t:"Yukni qayta brokerlik qilmaymiz", r3_d:"Hech qachon double brokering yo'q. Har bir yukni siz tasdiqlagansiz va o'z trakingiz olib boradi.",
+r4_t:"Istalgan haftada ketish mumkin", r4_d:"Uzoq shartnoma va bekor qilish jarimasi yo'q. Yuklar yaxshi bo'lgani uchun qolasiz.",
+req_eyebrow:"Kim bilan ishlaymiz", req_h2:"Boshlash uchun nima kerak",
+q1:"Faol MC va USDOT", q2:"Sug'urta: $1M auto liability va $100K cargo", q3:"Dry van, reefer, flatbed, step deck, power only yoki 26' box truck", q4:"Trakda ELD", q5:"WhatsApp yoki Telegram bor telefon", q6:"MC yangimi? Muammo emas, birinchi kundan brokerlar ro'yxatini tuzamiz",
+faq_h2:"Ko'p beriladigan savollar",
+f1_q:"Narxi qancha?", f1_a:"Siz uchun band qilgan har bir yuk gross'ining {fee} qismi. Ulanish to'lovi, oylik to'lov va shartnoma yo'q. Yuk yo'q — to'lov yo'q.",
+f2_q:"Broker kimga to'laydi, sizgami yoki menga?", f2_a:"Sizga. Rate con kompaniyangiz nomiga bo'ladi, broker yoki factoring kompaniyangiz sizga to'g'ridan-to'g'ri to'laydi. Biz hisobni yetkazilgandan keyin yuboramiz.",
+f3_q:"Yukdan voz kechsam bo'ladimi?", f3_a:"Har doim. Yukni narx, mil va vaqt bilan yuboramiz va faqat siz tasdiqlaganini band qilamiz.",
+f4_q:"MC'im yangi. Yordam bera olasizmi?", f4_a:"Ha. Ba'zi brokerlar 30–90 kunlik authority so'raydi, lekin ko'plari yangi MC bilan ishlaydi. Birinchi kundan paketlar va brokerlar ro'yxatini tayyorlaymiz.",
+f5_q:"Qaysi uskunalar bilan ishlaysiz?", f5_a:"Dry van, reefer, flatbed, step deck, power only va 26' box truck.",
+f6_q:"Qaysi tillarda gaplashasiz?", f6_a:"Ingliz, rus va o'zbek tillarida.",
+join_eyebrow:"Boshlash", join_h2:"Trakingiz haqida yozing",
+join_lede:"Formani yuboring, bir ish kuni ichida qo'ng'iroq qilamiz yoki yozamiz.",
+join_t1:"Birinchi qo'ng'iroq bepul, majburiyatsiz", join_t2:"Bir sahifalik kelishuv, istalgan haftada bekor qilish", join_t3:"Ingliz, rus yoki o'zbek tilida",
+docs_h:"Tayyorlab qo'ying", docs_list:"MC authority xati, W-9, sug'urta sertifikati (COI) va factoring ishlatsangiz NOA.",
+f_name:"Ismingiz", f_company:"Kompaniya nomi", f_optional:"ixtiyoriy", f_phone:"Telefon",
+f_contact:"Qanday bog'langan ma'qul", c_call:"Qo'ng'iroq", c_text:"SMS",
+f_equipment:"Uskuna", eq_box:"Box truck 26'",
+f_trucks:"Traklar", f_team:"Haydovchilar", solo:"Yakka", team:"Jamoa",
+f_home:"Qayerda turasiz", f_home_ph:"masalan, Chicago, IL", f_rpm:"Milga eng kam narx",
+f_lanes:"Yoqadigan (yoki yoqmaydigan) yo'nalishlar", f_lanes_ph:"masalan, Midwest — Southeast, NYC'siz",
+f_start:"Qachon boshlamoqchisiz?", start1:"Shu hafta", start2:"Keyingi hafta", start3:"Hozircha qarayapman",
+f_notes:"Yana nimadir?", f_submit:"Yuborish va qo'ng'iroq olish",
+f_note:"Ma'lumotlaringizdan faqat dispetcherlik bo'yicha bog'lanish uchun foydalanamiz.",
+done_h:"Qabul qilindi. Tez orada qo'ng'iroq qilamiz.", done_p:"Tezroq boshlash uchun MC authority, W-9 va COI ni Telegram'da yuboring.",
+done_bot:"Hujjatlarni Telegram'da yuborish",
+form_need_contact:"Bog'lanishimiz uchun telefon yoki email yozing.",
+form_sending:"Yuborilmoqda…",
+form_error:"Yuborib bo'lmadi. Internetni tekshirib qayta urinib ko'ring yoki Telegram'da yozing.",
+form_error_tg:"Telegram'da yozish",
+form_rate:"Juda ko'p urinish. Birozdan keyin qayta urinib ko'ring.",
+foot_note:"Mustaqil dispetcherlik xizmati. Broker ham, tashuvchi ham emas.", foot_contact:"Telegram'da yozing",
+mobile_calc:"Narx", mobile_join:"Ulash"
+}};
+// Put the fee from config.js into every text.
+Object.keys(D).forEach(function(l){Object.keys(D[l]).forEach(function(k){D[l][k]=String(D[l][k]).split("{fee}").join(FEE);});});
+M.initLang(D,{langs:['en','ru','uz'],fallback:'en',defaultLang:'en',englishForEnglishBrowsers:true});
+M.trackView('dispatch');
+
+// Calculator
+var r=document.getElementById('gross'), used=false;
+function calc(){
+  var g=+r.value, fee=g*PCT/100;
+  document.getElementById('gross-out').textContent=M.money(g);
+  document.getElementById('fee-out').textContent=M.money(fee);
+  document.getElementById('keep-out').textContent=M.money(g-fee);
+  document.getElementById('month-out').textContent=M.money(fee*4.33);
+  r.style.setProperty('--pct',((g-3000)/(17000)*100)+'%');
+}
+r.addEventListener('input',function(){calc();if(!used){used=true;M.event('calc_use','dispatch',+r.value);}});
+calc();
+
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});}else{document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});}
+})();
+</script>
+</body>
+</html>

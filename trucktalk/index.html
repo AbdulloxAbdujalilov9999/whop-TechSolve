@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Truck Talk — live English classes for truck drivers</title>
+<meta name="description" content="Answer the DOT officer in English. Live classes, mock roadside inspections and road signs, explained in Uzbek and Russian.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0A1931">
+<meta property="og:title" content="Truck Talk — jonli ingliz tili darslari haydovchilar uchun">
+<meta property="og:description" content="DOT tekshiruvida inglizcha javob bering. Bepul test va birinchi dars bepul.">
+<link rel="icon" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+:root{
+  --bg:#F6FAFD; --bg-alt:#EAF2F9; --surface:#FFFFFF; --ink:#0A1931; --muted:#4D6684; --line:#D3E2EF; --line-strong:#B3CFE5;
+  --accent:#1A3D63; --accent-ink:#FFFFFF; --accent-soft:#DDEAF5; --eyebrow:#4A7FA7;
+  --yellow:#F5B301; --yellow-ink:#0A1931; --danger:#C0392B;
+  --header-bg:rgba(246,250,253,.88); --radius:18px; --btn-radius:12px;
+  --font-display:"Oswald","Arial Narrow",sans-serif; --font-body:"Inter",-apple-system,"Segoe UI",Roboto,sans-serif;
+  --display-tracking:0; --display-weight:600;
+  --card-shadow:0 1px 2px rgba(10,25,49,.06),0 8px 24px rgba(10,25,49,.06);
+}
+h1,h2{text-transform:uppercase}
+.btn-yellow{background:var(--yellow);border-color:var(--yellow);color:var(--yellow-ink);box-shadow:0 8px 24px rgba(245,179,1,.28)}
+.hero{position:relative;overflow:hidden;color:#F6FAFD;background:radial-gradient(1200px 500px at 80% -10%,#1A3D63 0%,rgba(26,61,99,0) 60%),linear-gradient(180deg,#0A1931 0%,#0D2242 100%);padding:44px 0 72px}
+.hero::after{content:"";position:absolute;left:-10%;right:-10%;bottom:-2px;height:120px;background:linear-gradient(180deg,rgba(10,25,49,0),rgba(10,25,49,.6)),repeating-linear-gradient(90deg,transparent 0 60px,rgba(245,179,1,.9) 60px 120px) center 92px/100% 8px no-repeat,#13223b;transform:perspective(400px) rotateX(45deg);transform-origin:bottom;opacity:.55;pointer-events:none}
+.hero .wrap{position:relative;z-index:1;display:grid;gap:36px}
+@media(min-width:980px){.hero .wrap{grid-template-columns:1.15fr .85fr;align-items:center}.hero{padding:72px 0 110px}}
+.hero .eyebrow{color:var(--yellow)}
+.hero .lede{color:#C9D8E8}
+.hero .btn-ghost{color:#F6FAFD;border-color:rgba(179,207,229,.45)}
+.hero .chips li{background:rgba(255,255,255,.07);border-color:rgba(179,207,229,.22);color:#E6EEF6}
+.dialog{background:#0F2340;border:1px solid rgba(179,207,229,.2);border-radius:22px;padding:18px;box-shadow:0 30px 60px rgba(0,0,0,.35)}
+.dialog-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:4px 6px 14px;border-bottom:1px solid rgba(179,207,229,.15);margin-bottom:14px}
+.dialog-head b{font-family:var(--font-display);letter-spacing:.04em;text-transform:uppercase;font-size:15px;color:#E6EEF6}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#e74c3c;box-shadow:0 0 0 4px rgba(231,76,60,.18);margin-right:8px;animation:blink 1.6s infinite}
+@keyframes blink{50%{opacity:.35}}
+.bubble{max-width:86%;padding:11px 14px;border-radius:16px;margin:0 0 10px;font-size:15.5px;line-height:1.4}
+.bubble small{display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;opacity:.7;margin-bottom:2px;font-weight:700}
+.officer{background:#1A3D63;color:#F6FAFD;border-bottom-left-radius:4px}
+.driver{background:var(--yellow);color:#0A1931;margin-left:auto;border-bottom-right-radius:4px}
+.dialog-note{margin:12px 0 0;font-size:13px;color:#9FB6CC;display:flex;gap:8px;align-items:flex-start}
+.js .bubble{opacity:0;transform:translateY(8px);animation:pop .45s ease forwards}
+.js .bubble:nth-child(2){animation-delay:.2s}.js .bubble:nth-child(3){animation-delay:.7s}.js .bubble:nth-child(4){animation-delay:1.2s}.js .bubble:nth-child(5){animation-delay:1.7s}.js .bubble:nth-child(6){animation-delay:2.2s}.js .bubble:nth-child(7){animation-delay:2.7s}
+@keyframes pop{to{opacity:1;transform:none}}
+.stats{background:#0A1931;color:#F6FAFD;padding:34px 0}
+.stats .grid{gap:22px}
+.stat b{display:block;font-family:var(--font-display);font-size:44px;line-height:1;color:var(--yellow)}
+.stat span{color:#C9D8E8;font-size:15px}
+.parts .card h3{font-family:var(--font-display);text-transform:uppercase;letter-spacing:.02em;font-size:22px}
+.warn{margin-top:18px;padding:16px 18px;border-radius:14px;background:#FFF4D6;border:1px solid #F5D68A;color:#5A4300;font-weight:600}
+.src{font-size:13px;color:var(--muted);margin-top:14px}
+.signs{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.signs svg{width:84px;height:auto}
+.teacher{display:grid;gap:26px;align-items:center}
+@media(min-width:900px){.teacher{grid-template-columns:.9fr 1.1fr}}
+.teacher-card{background:linear-gradient(160deg,#1A3D63,#0A1931);color:#F6FAFD;border-radius:22px;padding:28px}
+.teacher-card .big{font-family:var(--font-display);font-size:30px;text-transform:uppercase;line-height:1.1;margin-bottom:12px}
+.teacher-card .ticks li::before{--tick-bg:var(--yellow)}
+.join{background:linear-gradient(180deg,var(--bg) 0%,var(--bg-alt) 100%)}
+.join .wrap{display:grid;gap:30px}
+@media(min-width:980px){.join .wrap{grid-template-columns:.8fr 1.2fr;align-items:start}}
+.pay-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+</style>
+</head>
+<body class="has-mobile-cta">
+<script>document.documentElement.classList.add('js')</script>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#"><img src="icons/icon-192.png" alt=""><span>TRUCK TALK</span></a>
+    <div class="spacer"></div>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button type="button" data-lang="uz">UZ</button><button type="button" data-lang="ru">RU</button><button type="button" data-lang="en">EN</button>
+    </div>
+    <a class="btn btn-small btn-yellow" href="check/" data-cta="nav_test" data-product="trucktalk" data-t="nav_test">Free test</a>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" data-t="hero_eyebrow">Live classes for drivers in the US</span>
+      <h1 data-t="hero_h1">Answer the DOT officer in English and keep your truck rolling</h1>
+      <p class="lede" data-t="hero_lede">Since June 2025, drivers who can't answer in English are put out of service on the spot.</p>
+      <div class="btn-row">
+        <a class="btn btn-yellow" href="check/" data-cta="hero_test" data-product="trucktalk" data-t="hero_cta_test">Take the free test (5 min)</a>
+        <a class="btn btn-ghost" href="#join" data-cta="hero_join" data-product="trucktalk" data-t="hero_cta_join">Book your free first class</a>
+      </div>
+      <ul class="chips">
+        <li data-t="chip1">3 live classes a week</li>
+        <li data-t="chip2">Groups of up to 8</li>
+        <li data-t="chip3">First class free</li>
+        <li data-t="chip4">App + 60 lessons</li>
+      </ul>
+    </div>
+    <div class="dialog" aria-label="Example roadside conversation">
+      <div class="dialog-head"><b><span class="dot"></span><span data-t="dlg_title">Roadside check</span></b><span class="small" style="color:#9FB6CC">I-40 · Weigh station</span></div>
+      <p class="bubble officer"><small>Officer</small>Where are you coming from?</p>
+      <p class="bubble driver"><small>Driver</small>From Dallas, Texas, officer.</p>
+      <p class="bubble officer"><small>Officer</small>How long have you been on duty today?</p>
+      <p class="bubble driver"><small>Driver</small>About six hours. I started at 5 a.m.</p>
+      <p class="bubble officer"><small>Officer</small>What are you hauling?</p>
+      <p class="bubble driver"><small>Driver</small>Paper towels. Here is my bill of lading.</p>
+      <p class="dialog-note"><span aria-hidden="true">⚠️</span><span data-t="dlg_note">No interpreters, cue cards or phone apps allowed</span></p>
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="wrap grid grid-3">
+    <div class="stat"><b>26&nbsp;000+</b><span data-t="stat1">drivers put out of service over English (DOT, Aug 2026)</span></div>
+    <div class="stat"><b>0</b><span data-t="stat2">interpreters or apps allowed during the interview</span></div>
+    <div class="stat"><b>2</b><span data-t="stat3">parts: officer interview and road signs</span></div>
+  </div>
+</div>
+
+<section class="parts">
+  <div class="wrap">
+    <span class="eyebrow" data-t="chk_eyebrow">How the check works</span>
+    <h2 data-t="chk_h2">What does the officer ask?</h2>
+    <p class="lede" data-t="chk_lede">The check has two parts.</p>
+    <div class="grid grid-2" style="margin-top:28px">
+      <div class="card reveal">
+        <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <h3 data-t="part1_title">1. Interview in English</h3>
+        <ul class="ticks">
+          <li data-t="part1_1">Where you're coming from and going</li>
+          <li data-t="part1_2">Hours on duty today</li>
+          <li data-t="part1_3">Showing your logbook or ELD</li>
+          <li data-t="part1_4">Your CDL and medical card</li>
+          <li data-t="part1_5">Shipping papers (bill of lading)</li>
+          <li data-t="part1_6">Your truck and equipment</li>
+        </ul>
+      </div>
+      <div class="card reveal">
+        <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l9 9-9 9-9-9z"/><path d="M12 8v4M12 16h.01"/></svg></div>
+        <h3 data-t="part2_title">2. Road signs</h3>
+        <ul class="ticks">
+          <li data-t="part2_1">Standard signs: weigh station, no trucks, low clearance and more</li>
+          <li data-t="part2_2">Electronic message boards: crash ahead, lane closed, detour</li>
+          <li data-t="part2_3">You explain what each sign means</li>
+        </ul>
+        <div class="signs" aria-hidden="true">
+          <svg viewBox="0 0 120 90"><rect x="3" y="3" width="114" height="84" rx="10" fill="#0B6E3E" stroke="#fff" stroke-width="4"/><text x="60" y="38" fill="#fff" font-family="Arial" font-weight="700" font-size="15" text-anchor="middle">WEIGH</text><text x="60" y="56" fill="#fff" font-family="Arial" font-weight="700" font-size="15" text-anchor="middle">STATION</text><text x="60" y="76" fill="#F5B301" font-family="Arial" font-weight="700" font-size="12" text-anchor="middle">NEXT RIGHT</text></svg>
+          <svg viewBox="0 0 120 90"><rect x="3" y="3" width="114" height="84" rx="8" fill="#fff" stroke="#111" stroke-width="4"/><g transform="translate(36 10)"><rect x="6" y="20" width="30" height="16" fill="#111"/><rect x="36" y="25" width="10" height="11" fill="#111"/><circle cx="14" cy="40" r="4" fill="#111"/><circle cx="38" cy="40" r="4" fill="#111"/><circle cx="24" cy="30" r="24" fill="none" stroke="#D0021B" stroke-width="5"/><line x1="7" y1="13" x2="41" y2="47" stroke="#D0021B" stroke-width="5"/></g><text x="60" y="82" fill="#111" font-family="Arial" font-weight="700" font-size="12" text-anchor="middle">NO TRUCKS</text></svg>
+          <svg viewBox="0 0 120 90"><rect x="3" y="3" width="114" height="84" rx="8" fill="#F5C400" stroke="#111" stroke-width="4"/><text x="60" y="34" fill="#111" font-family="Arial" font-weight="700" font-size="13" text-anchor="middle">LOW</text><text x="60" y="50" fill="#111" font-family="Arial" font-weight="700" font-size="13" text-anchor="middle">CLEARANCE</text><text x="60" y="74" fill="#111" font-family="Arial" font-weight="800" font-size="19" text-anchor="middle">12'-6"</text></svg>
+          <svg viewBox="0 0 120 90"><rect x="3" y="3" width="114" height="84" rx="6" fill="#111" stroke="#555" stroke-width="4"/><text x="60" y="32" fill="#FFB000" font-family="Courier New,monospace" font-weight="700" font-size="13" text-anchor="middle">CRASH AHEAD</text><text x="60" y="52" fill="#FFB000" font-family="Courier New,monospace" font-weight="700" font-size="12" text-anchor="middle">LEFT LANE</text><text x="60" y="70" fill="#FFB000" font-family="Courier New,monospace" font-weight="700" font-size="12" text-anchor="middle">CLOSED</text></svg>
+        </div>
+      </div>
+    </div>
+    <p class="warn" data-t="chk_warn">If you fail the interview, the officer doesn't go on to the signs: you're placed out of service.</p>
+    <p class="src" data-t="chk_src">Source: FMCSA internal enforcement policy (May 2025) and CVSA out-of-service criteria from 25 June 2025.</p>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap">
+    <span class="eyebrow" data-t="prog_eyebrow">What you get</span>
+    <h2 data-t="prog_h2">Exactly what the check needs, without extra grammar</h2>
+    <div class="grid grid-3" style="margin-top:30px">
+      <div class="card reveal"><div class="icon" aria-hidden="true">🎥</div><h3 data-t="p1_t">3 live classes a week</h3><p class="muted" data-t="p1_d"></p></div>
+      <div class="card reveal"><div class="icon" aria-hidden="true">👮</div><h3 data-t="p2_t">Weekly mock inspection</h3><p class="muted" data-t="p2_d"></p></div>
+      <div class="card reveal"><div class="icon" aria-hidden="true">🚧</div><h3 data-t="p3_t">Road signs and message boards</h3><p class="muted" data-t="p3_d"></p></div>
+      <div class="card reveal"><div class="icon" aria-hidden="true">📞</div><h3 data-t="p4_t">Calls with brokers, dispatch and shippers</h3><p class="muted" data-t="p4_d"></p></div>
+      <div class="card reveal"><div class="icon" aria-hidden="true">📱</div><h3 data-t="p5_t">Truck Talk app</h3><p class="muted" data-t="p5_d"></p></div>
+      <div class="card reveal"><div class="icon" aria-hidden="true">💬</div><h3 data-t="p6_t">Telegram group</h3><p class="muted" data-t="p6_d"></p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="eyebrow" data-t="how_eyebrow">How it works</span>
+    <h2 data-t="how_h2">Four steps</h2>
+    <ol class="steps" style="margin-top:28px">
+      <li><h3 data-t="s1_t">Free test</h3><p data-t="s1_d"></p></li>
+      <li><h3 data-t="s2_t">Free first class</h3><p data-t="s2_d"></p></li>
+      <li><h3 data-t="s3_t">Pick a plan</h3><p data-t="s3_d"></p></li>
+      <li><h3 data-t="s4_t">Answer with confidence</h3><p data-t="s4_d"></p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="section-alt" id="prices">
+  <div class="wrap">
+    <span class="eyebrow" data-t="price_eyebrow">Pricing</span>
+    <h2 data-t="price_h2">One parked day costs more than a month of classes</h2>
+    <div class="prices" style="margin-top:34px">
+      <div class="card price reveal">
+        <h3 data-t="pr_m_name">Monthly</h3>
+        <div class="amount" data-price="ttMonthly">$149</div>
+        <div class="per" data-t="pr_m_per">per month</div>
+        <ul class="ticks"><li data-t="pr_m_1"></li><li data-t="pr_m_2"></li><li data-t="pr_m_3"></li><li data-t="pr_m_4"></li></ul>
+        <a class="btn btn-ghost btn-block" href="#join" data-plan="monthly" data-t="pr_cta">Book a free class</a>
+      </div>
+      <div class="card price featured reveal">
+        <span class="badge" data-t="pr_badge">Best value</span>
+        <h3 data-t="pr_3_name">3 months</h3>
+        <div class="amount" data-price="tt3m">$399</div>
+        <div class="per" data-t="pr_3_per">for 3 months · save $48</div>
+        <ul class="ticks"><li data-t="pr_3_1"></li><li data-t="pr_3_2"></li><li data-t="pr_3_3"></li><li data-t="pr_3_4"></li></ul>
+        <a class="btn btn-yellow btn-block" href="#join" data-plan="3m" data-t="pr_cta">Book a free class</a>
+      </div>
+      <div class="card price reveal">
+        <h3 data-t="pr_c_name">For carriers</h3>
+        <div class="amount"><span data-price="ttCompany">$600</span>+</div>
+        <div class="per" data-t="pr_c_per">per month · 5+ drivers</div>
+        <ul class="ticks"><li data-t="pr_c_1"></li><li data-t="pr_c_2"></li><li data-t="pr_c_3"></li></ul>
+        <a class="btn btn-ghost btn-block" href="#join" data-plan="company" data-t="pr_cta_c">Get a quote</a>
+      </div>
+    </div>
+    <p class="src" data-t="pr_note">First class free.</p>
+    <div class="pay-row">
+      <a class="btn btn-small" data-need="whop.trucktalkMonthly" data-href="$" hidden target="_blank" rel="noopener" data-cta="pay_monthly" data-product="trucktalk" data-t="pay_m">Pay monthly</a>
+      <a class="btn btn-small" data-need="whop.trucktalk3m" data-href="$" hidden target="_blank" rel="noopener" data-cta="pay_3m" data-product="trucktalk" data-t="pay_3">Pay for 3 months</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap teacher">
+    <div class="teacher-card reveal">
+      <div class="big" data-t="teach_card">Real trucking English, not school English</div>
+      <ul class="ticks">
+        <li data-t="teach_1"></li>
+        <li data-t="teach_2"></li>
+        <li data-t="teach_3"></li>
+      </ul>
+    </div>
+    <div>
+      <span class="eyebrow" data-t="teach_eyebrow">Your teacher</span>
+      <h2 data-t="teach_h2">Learn from someone who works in US trucking every day</h2>
+      <p class="lede" data-t="teach_p"></p>
+      <a class="btn btn-ghost" data-demo="trucktalkApp" href="#" target="_blank" rel="noopener" data-t="teach_app">See the Truck Talk app</a>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap">
+    <span class="eyebrow">FAQ</span>
+    <h2 data-t="faq_h2">Questions</h2>
+    <div class="faq" style="margin-top:24px">
+      <details><summary data-t="f1_q"></summary><p data-t="f1_a"></p></details>
+      <details><summary data-t="f2_q"></summary><p data-t="f2_a"></p></details>
+      <details><summary data-t="f3_q"></summary><p data-t="f3_a"></p></details>
+      <details><summary data-t="f4_q"></summary><p data-t="f4_a"></p></details>
+      <details><summary data-t="f5_q"></summary><p data-t="f5_a"></p></details>
+      <details><summary data-t="f6_q"></summary><p data-t="f6_a"></p></details>
+    </div>
+  </div>
+</section>
+
+<section class="join" id="join">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" data-t="join_eyebrow">Sign up</span>
+      <h2 data-t="join_h2">Your first class is free</h2>
+      <p class="lede" data-t="join_lede"></p>
+      <ul class="ticks" style="margin-top:20px">
+        <li data-t="join_t1"></li>
+        <li data-t="join_t2"></li>
+        <li data-t="join_t3"></li>
+      </ul>
+    </div>
+    <div class="form-card">
+      <form data-lead="trucktalk" novalidate>
+        <div class="fields two">
+          <div class="field"><label for="f-name" data-t="f_name">Your name</label><input id="f-name" name="name" autocomplete="name" required></div>
+          <div class="field"><label for="f-phone" data-t="f_phone">Phone</label><input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+1 312 555 0100"></div>
+          <div class="field"><label for="f-tg"><span data-t="f_tg">Telegram username</span> <span class="hint" data-t="f_optional">optional</span></label><input id="f-tg" name="telegram" placeholder="@username" autocapitalize="off"></div>
+          <div class="field"><label for="f-state" data-t="f_state">Home state</label><input id="f-state" name="state" data-tp="f_state_ph" placeholder="Illinois"></div>
+          <div class="field full"><span class="label" data-t="f_role">You are</span>
+            <div class="pills">
+              <label><input type="radio" name="role" value="driver" checked><span data-t="role_driver">Driver</span></label>
+              <label><input type="radio" name="role" value="owner-operator"><span>Owner-operator</span></label>
+              <label><input type="radio" name="role" value="company"><span data-t="role_company">Carrier / safety</span></label>
+            </div>
+          </div>
+          <div class="field full"><span class="label" data-t="f_level">Your English</span>
+            <div class="pills">
+              <label><input type="radio" name="level" value="none"><span data-t="lvl0">None</span></label>
+              <label><input type="radio" name="level" value="a little" checked><span data-t="lvl1">A little</span></label>
+              <label><input type="radio" name="level" value="can talk"><span data-t="lvl2">I can talk</span></label>
+            </div>
+          </div>
+          <div class="field full"><span class="label" data-t="f_time">Best time (US)</span>
+            <div class="pills">
+              <label><input type="checkbox" name="time" value="morning"><span data-t="t_morning">Morning</span></label>
+              <label><input type="checkbox" name="time" value="evening" checked><span data-t="t_evening">Evening</span></label>
+              <label><input type="checkbox" name="time" value="weekend"><span data-t="t_weekend">Weekend</span></label>
+            </div>
+          </div>
+          <div class="field full"><span class="label" data-t="f_plan">Which plan?</span>
+            <div class="pills">
+              <label><input type="radio" name="plan" value="monthly"><span data-t="plan_m">Monthly</span></label>
+              <label><input type="radio" name="plan" value="3 months" checked><span data-t="plan_3">3 months</span></label>
+              <label><input type="radio" name="plan" value="company"><span data-t="plan_c">Carrier</span></label>
+            </div>
+          </div>
+          <div class="hp" aria-hidden="true"><label>Leave empty<input name="hp" tabindex="-1" autocomplete="off"></label></div>
+        </div>
+        <button class="btn btn-yellow btn-block" type="submit" style="margin-top:20px" data-t="f_submit">Book my free class</button>
+        <p class="form-msg" role="status" aria-live="polite"></p>
+        <p class="form-note" data-t="f_note">We only use your details to contact you.</p>
+      </form>
+      <div class="form-done" hidden>
+        <div class="big" aria-hidden="true">✅</div>
+        <h3 data-t="done_h">Thanks! You're on the list</h3>
+        <p class="muted" data-t="done_p"></p>
+        <div class="btn-row">
+          <a class="btn btn-yellow" href="check/" data-t="done_test">Take the free test</a>
+          <a class="btn btn-ghost" data-bot="tt" hidden target="_blank" rel="noopener" data-t="done_bot">Open the Telegram bot</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div><b>Truck Talk English</b> · © <span data-year></span></div>
+    <div data-t="foot_note">Truck Talk is not affiliated with FMCSA, DOT or CVSA.</div>
+    <div><a data-contact href="#" target="_blank" rel="noopener" data-t="foot_contact">Message us on Telegram</a></div>
+  </div>
+</footer>
+
+<div class="mobile-cta">
+  <a class="btn btn-ghost" href="check/" data-cta="mobile_test" data-product="trucktalk" data-t="mobile_test">Free test</a>
+  <a class="btn btn-yellow" href="#join" data-cta="mobile_join" data-product="trucktalk" data-t="mobile_join">Sign up</a>
+</div>
+
+<script src="config.js"></script>
+<script src="money.js"></script>
+<script>
+(function(){
+var P = (window.MONEY_CFG||{}).prices||{};
+var m = P.ttMonthly||149, q = P.tt3m||399, c = P.ttCompany||600, save = m*3-q;
+var D = {
+uz:{
+meta_title:"Truck Talk — haydovchilar uchun jonli ingliz tili darslari",
+meta_desc:"DOT tekshiruvida inglizcha javob bering. Jonli darslar, mock-inspeksiya, yo'l belgilari. O'zbek va rus tilida tushuntirish.",
+nav_test:"Bepul test",
+hero_eyebrow:"AQShdagi haydovchilar uchun jonli darslar",
+hero_h1:"DOT tekshiruvida inglizcha javob bering — mashinangiz yo'lda qolsin",
+hero_lede:"2025-yil iyundan beri ingliz tilida javob bera olmagan haydovchilar joyida out-of-service qilinmoqda. Inspektor savollari, yo'l belgilari va broker bilan gaplashishni jonli mashq qilamiz — o'zbek va rus tilida tushuntirib.",
+hero_cta_test:"🎧 Bepul test — 5 daqiqa",
+hero_cta_join:"Birinchi bepul darsga yozilish",
+chip1:"Haftasiga 3 ta jonli dars", chip2:"8 kishigacha guruh", chip3:"Birinchi dars bepul", chip4:"Ilova + 60 ta dars",
+dlg_title:"Yo'l chetidagi tekshiruv",
+dlg_note:"Suhbat paytida tarjimon, kartochka va telefon ilovasi taqiqlangan",
+stat1:"haydovchi ingliz tili sababli yo'ldan olingan (DOT, 2026-yil avgust)",
+stat2:"tarjimon yoki ilova — suhbat paytida ruxsat yo'q",
+stat3:"qism: inspektor bilan suhbat va yo'l belgilari",
+chk_eyebrow:"Tekshiruv qanday o'tadi",
+chk_h2:"Inspektor nimani so'raydi?",
+chk_lede:"Tekshiruv ikki qismdan iborat: avval inglizcha suhbat, keyin yo'l belgilari.",
+part1_title:"1. Inglizcha suhbat",
+part1_1:"Qayerdan kelyapsiz, qayerga ketyapsiz",
+part1_2:"Bugun necha soatdan beri ishdasiz (on duty)",
+part1_3:"Logbook yoki ELD ni ko'rsatish",
+part1_4:"Guvohnoma (CDL) va medical card",
+part1_5:"Yuk hujjatlari (bill of lading)",
+part1_6:"Mashina va uskunalar haqida savollar",
+part2_title:"2. Yo'l belgilari",
+part2_1:"Oddiy belgilar: weigh station, no trucks, low clearance va boshqalar",
+part2_2:"Elektron tablolar: avariya, yopiq yo'lak, aylanma yo'l",
+part2_3:"Har bir belgining ma'nosini tushuntirib berasiz",
+chk_warn:"Suhbatdan o'ta olmasangiz, belgilarga o'tilmaydi — mashinangiz shu yerda to'xtatiladi (out-of-service).",
+chk_src:"Manba: FMCSA ichki ko'rsatmasi (2025-yil may) va CVSA out-of-service mezonlari, 25.06.2025 dan.",
+prog_eyebrow:"Darslarda nima bor",
+prog_h2:"Faqat tekshiruvga kerak narsalar — ortiqcha grammatikasiz",
+p1_t:"Haftasiga 3 ta jonli dars", p1_d:"60 daqiqalik onlayn darslar (Zoom yoki Google Meet). Kichik guruh — hamma gapiradi.",
+p2_t:"Har hafta mock-inspeksiya", p2_d:"O'qituvchi inspektor rolida savol beradi, siz javob berasiz. Xuddi haqiqiy tekshiruvdagidek.",
+p3_t:"Yo'l belgilari va tablolar", p3_d:"Eng ko'p uchraydigan belgilar va elektron tablolarni inglizcha tushuntirishni o'rganasiz.",
+p4_t:"Broker, dispatcher, shipper bilan gaplashish", p4_d:"Telefonda yuk, kechikish, detention va tamir haqida gaplashish — real vaziyatlar.",
+p5_t:"Truck Talk ilovasi", p5_d:"60 ta dars o'zbekcha tarjima bilan va AI ovozli o'qituvchi — darslar orasida mashq qilish uchun.",
+p6_t:"Telegram guruh", p6_d:"Uy vazifasi, ovozli xabar bilan mashq va savollar — o'qituvchi javob beradi.",
+how_eyebrow:"Qanday boshlanadi", how_h2:"4 qadam",
+s1_t:"Bepul test", s1_d:"5 daqiqada darajangizni bilib oling.",
+s2_t:"Bepul birinchi dars", s2_d:"Guruhga qo'shilib ko'ring — yoqmasa, to'lamaysiz.",
+s3_t:"Tarifni tanlang", s3_d:"1 oy yoki 3 oy. AQSh kartasi bilan to'lov.",
+s4_t:"Ishonch bilan javob bering", s4_d:"Haftasiga 3 marta mashq — tekshiruvda qo'rqmaysiz.",
+price_eyebrow:"Narxlar",
+price_h2:"Bir kun to'xtab turish darslardan qimmatroq",
+pr_m_name:"1 oy", pr_m_per:"oyiga",
+pr_m_1:"12 ta jonli dars", pr_m_2:"Har hafta mock-inspeksiya", pr_m_3:"Truck Talk ilovasi", pr_m_4:"Telegram guruh",
+pr_badge:"Eng foydali",
+pr_3_name:"3 oy", pr_3_per:"3 oy uchun · $"+save+" tejaysiz",
+pr_3_1:"36 ta jonli dars", pr_3_2:"Har oy shaxsiy mock-inspeksiya (1:1)", pr_3_3:"Truck Talk ilovasi", pr_3_4:"Telegram guruh",
+pr_c_name:"Kompaniya uchun", pr_c_per:"oyiga · 5 haydovchidan",
+pr_c_1:"Haydovchilaringiz uchun alohida guruh", pr_c_2:"Safety menejerga oylik hisobot", pr_c_3:"Invoice bilan to'lov",
+pr_cta:"Bepul darsga yozilish", pr_cta_c:"Taklif olish",
+pr_note:"Birinchi dars bepul. To'lov istalgan AQSh kartasi bilan, xavfsiz Whop sahifasi orqali. Istalgan payt bekor qilasiz.",
+pay_m:"To'lash — 1 oy", pay_3:"To'lash — 3 oy",
+teach_card:"Maktab inglizchasi emas — yo'l inglizchasi",
+teach_1:"Real yuk va real qo'ng'iroqlardan misollar", teach_2:"Haydovchi jadvaliga mos vaqtlar", teach_3:"Faqat kerakli so'z va iboralar",
+teach_eyebrow:"O'qituvchi",
+teach_h2:"AQSh yuk tashish sohasida har kuni ishlaydigan odamdan o'rganing",
+teach_p:"O'qituvchingiz AQSh kompaniyasida dispatcher bo'lib ishlaydi: har kuni broker, haydovchi va shipperlar bilan inglizcha gaplashadi. O'zbek, rus va ingliz tillarida tushuntiradi.",
+teach_app:"Truck Talk ilovasini ko'rish",
+faq_h2:"Savollar",
+f1_q:"Umuman ingliz tilini bilmayman. Bo'ladimi?", f1_a:"Ha. Guruhlar darajaga qarab bo'linadi. Noldan boshlaganlar uchun ilovada SpeakUp asosiy kursi ham bor.",
+f2_q:"Darslar qachon bo'ladi?", f2_a:"AQSh vaqti bilan ertalab, kechqurun va dam olish kunlari guruhlar bor. Yozilayotganda qulay vaqtni tanlaysiz.",
+f3_q:"Tekshiruvda tarjimon ilovadan foydalansam bo'ladimi?", f3_a:"Yo'q. FMCSA ko'rsatmasiga ko'ra suhbat paytida tarjimon, kartochka yoki telefon ilovasi ishlatilmaydi. Shuning uchun javoblarni oldindan mashq qilish kerak.",
+f4_q:"Yo'lda bo'lsam-chi?", f4_a:"Rul ortida darsga qo'shilmang. Dam olish vaqtida qatnashing, o'tkazib yuborgan mavzuni ilovada va Telegram guruhda takrorlaysiz.",
+f5_q:"Tekshiruvdan o'tishga kafolat berasizmi?", f5_a:"Hech kim kafolat bera olmaydi — qarorni inspektor qiladi. Biz aynan tekshiruvda so'raladigan mavzularni mashq qildiramiz.",
+f6_q:"Qanday to'layman?", f6_a:"AQSh kartasi bilan xavfsiz Whop sahifasi orqali. Kompaniyalar uchun invoice beramiz.",
+join_eyebrow:"Yozilish", join_h2:"Birinchi darsingiz bepul",
+join_lede:"Ma'lumot qoldiring — 24 soat ichida WhatsApp yoki Telegram orqali yozamiz va guruh vaqtini kelishamiz.",
+join_t1:"Hech qanday to'lov kerak emas", join_t2:"Darajangizga mos guruh", join_t3:"O'zbek yoki rus tilida tushuntirish",
+f_name:"Ismingiz", f_phone:"Telefon (WhatsApp/Telegram)", f_tg:"Telegram username", f_optional:"ixtiyoriy",
+f_state:"Qaysi shtatda yashaysiz?", f_state_ph:"Masalan, Illinois",
+f_role:"Siz kimsiz?", role_driver:"Haydovchi", role_company:"Kompaniya / safety",
+f_level:"Ingliz tili darajangiz", lvl0:"Umuman bilmayman", lvl1:"Ozgina", lvl2:"Gaplasha olaman",
+f_time:"Qulay vaqt (AQSh vaqti)", t_morning:"Ertalab", t_evening:"Kechqurun", t_weekend:"Dam olish kunlari",
+f_plan:"Qaysi tarif qiziq?", plan_m:"1 oy", plan_3:"3 oy", plan_c:"Kompaniya",
+f_submit:"Bepul darsga yozilish",
+f_note:"Ma'lumotingiz faqat siz bilan bog'lanish uchun ishlatiladi.",
+done_h:"Rahmat! So'rovingiz qabul qilindi", done_p:"24 soat ichida yozamiz. Kutayotganingizda bepul testdan o'tib ko'ring.",
+done_test:"Bepul testni boshlash", done_bot:"Telegram botni ochish",
+form_need_contact:"Telefon raqam yoki Telegram username yozing.",
+form_sending:"Yuborilmoqda…",
+form_error:"Yuborib bo'lmadi. Internetni tekshirib qayta urinib ko'ring yoki bizga Telegram'da yozing.",
+form_error_tg:"Telegram'da yozish",
+form_rate:"Juda ko'p urinish. Birozdan keyin qayta urinib ko'ring.",
+foot_note:"Truck Talk FMCSA, DOT yoki CVSA bilan bog'liq emas.", foot_contact:"Telegram'da yozish",
+mobile_test:"Bepul test", mobile_join:"Yozilish"
+},
+ru:{
+meta_title:"Truck Talk — живые уроки английского для водителей траков",
+meta_desc:"Отвечайте инспектору DOT по-английски. Живые уроки, пробная инспекция, дорожные знаки. Объяснения на узбекском и русском.",
+nav_test:"Бесплатный тест",
+hero_eyebrow:"Живые уроки для водителей в США",
+hero_h1:"Отвечайте инспектору DOT по-английски — и продолжайте ехать",
+hero_lede:"С июня 2025 года водителей, которые не могут ответить по-английски, снимают с рейса (out-of-service) прямо на месте. Мы вживую тренируем вопросы инспектора, дорожные знаки и разговоры с брокерами — с объяснениями на русском и узбекском.",
+hero_cta_test:"🎧 Бесплатный тест — 5 минут",
+hero_cta_join:"Записаться на бесплатный первый урок",
+chip1:"3 живых урока в неделю", chip2:"Группы до 8 человек", chip3:"Первый урок бесплатно", chip4:"Приложение + 60 уроков",
+dlg_title:"Проверка на дороге",
+dlg_note:"Во время беседы нельзя: переводчик, карточки, приложения",
+stat1:"водителей сняты с рейса из-за английского (DOT, август 2026)",
+stat2:"переводчиков или приложений — во время беседы нельзя",
+stat3:"части: беседа с инспектором и дорожные знаки",
+chk_eyebrow:"Как проходит проверка",
+chk_h2:"О чём спрашивает инспектор?",
+chk_lede:"Проверка состоит из двух частей: сначала беседа на английском, потом дорожные знаки.",
+part1_title:"1. Беседа на английском",
+part1_1:"Откуда и куда едете",
+part1_2:"Сколько часов вы сегодня на смене (on duty)",
+part1_3:"Показать логбук или ELD",
+part1_4:"Права (CDL) и медкарта",
+part1_5:"Документы на груз (bill of lading)",
+part1_6:"Вопросы о траке и оборудовании",
+part2_title:"2. Дорожные знаки",
+part2_1:"Обычные знаки: weigh station, no trucks, low clearance и другие",
+part2_2:"Электронные табло: авария, закрытая полоса, объезд",
+part2_3:"Нужно объяснить, что значит каждый знак",
+chk_warn:"Если вы не прошли беседу, до знаков дело не дойдёт — вас снимут с рейса на месте (out-of-service).",
+chk_src:"Источник: внутренняя инструкция FMCSA (май 2025) и критерии CVSA out-of-service с 25.06.2025.",
+prog_eyebrow:"Что входит в курс",
+prog_h2:"Только то, что нужно на проверке — без лишней грамматики",
+p1_t:"3 живых урока в неделю", p1_d:"Онлайн-уроки по 60 минут (Zoom или Google Meet). Маленькая группа — говорит каждый.",
+p2_t:"Пробная инспекция каждую неделю", p2_d:"Преподаватель задаёт вопросы как инспектор, вы отвечаете. Как на настоящей проверке.",
+p3_t:"Знаки и электронные табло", p3_d:"Учимся объяснять по-английски самые частые знаки и электронные табло.",
+p4_t:"Разговоры с брокером, диспетчером, шиппером", p4_d:"Телефонные разговоры о грузе, опоздании, detention и ремонте — реальные ситуации.",
+p5_t:"Приложение Truck Talk", p5_d:"60 уроков с переводом и голосовой AI-учитель — чтобы тренироваться между занятиями.",
+p6_t:"Группа в Telegram", p6_d:"Домашние задания, практика голосовыми и вопросы — преподаватель отвечает.",
+how_eyebrow:"Как начать", how_h2:"4 шага",
+s1_t:"Бесплатный тест", s1_d:"За 5 минут узнайте свой уровень.",
+s2_t:"Бесплатный первый урок", s2_d:"Попробуйте группу — не понравится, не платите.",
+s3_t:"Выберите тариф", s3_d:"1 или 3 месяца. Оплата картой США.",
+s4_t:"Отвечайте уверенно", s4_d:"Практика 3 раза в неделю — на проверке без страха.",
+price_eyebrow:"Цены",
+price_h2:"Один день простоя дороже месяца уроков",
+pr_m_name:"1 месяц", pr_m_per:"в месяц",
+pr_m_1:"12 живых уроков", pr_m_2:"Пробная инспекция каждую неделю", pr_m_3:"Приложение Truck Talk", pr_m_4:"Группа в Telegram",
+pr_badge:"Выгоднее всего",
+pr_3_name:"3 месяца", pr_3_per:"за 3 месяца · экономия $"+save,
+pr_3_1:"36 живых уроков", pr_3_2:"Личная пробная инспекция каждый месяц (1:1)", pr_3_3:"Приложение Truck Talk", pr_3_4:"Группа в Telegram",
+pr_c_name:"Для компании", pr_c_per:"в месяц · от 5 водителей",
+pr_c_1:"Отдельная группа для ваших водителей", pr_c_2:"Ежемесячный отчёт для safety-менеджера", pr_c_3:"Оплата по инвойсу",
+pr_cta:"Записаться на бесплатный урок", pr_cta_c:"Получить предложение",
+pr_note:"Первый урок бесплатно. Оплата любой картой США через защищённую страницу Whop. Отменить можно в любой момент.",
+pay_m:"Оплатить — 1 месяц", pay_3:"Оплатить — 3 месяца",
+teach_card:"Английский дороги, а не школьный",
+teach_1:"Примеры из реальных грузов и звонков", teach_2:"Время уроков под график водителя", teach_3:"Только нужные слова и фразы",
+teach_eyebrow:"Преподаватель",
+teach_h2:"Учитесь у человека, который каждый день работает в грузоперевозках США",
+teach_p:"Ваш преподаватель работает диспетчером в американской компании: каждый день говорит по-английски с брокерами, водителями и шипперами. Объясняет на русском, узбекском и английском.",
+teach_app:"Посмотреть приложение Truck Talk",
+faq_h2:"Вопросы",
+f1_q:"Я совсем не знаю английский. Подойдёт?", f1_a:"Да. Группы делятся по уровню. Для начинающих с нуля в приложении есть базовый курс SpeakUp.",
+f2_q:"Когда проходят уроки?", f2_a:"Есть группы утром, вечером и по выходным по времени США. Удобное время выбираете при записи.",
+f3_q:"Можно ли на проверке пользоваться переводчиком?", f3_a:"Нет. По инструкции FMCSA во время беседы нельзя пользоваться переводчиком, карточками или приложениями. Поэтому ответы нужно отработать заранее.",
+f4_q:"А если я в рейсе?", f4_a:"Никогда не подключайтесь за рулём. Занимайтесь на отдыхе, а пропущенное повторите в приложении и группе Telegram.",
+f5_q:"Вы гарантируете, что я пройду проверку?", f5_a:"Гарантировать не может никто — решает инспектор. Мы тренируем именно те темы, о которых спрашивают на проверке.",
+f6_q:"Как оплатить?", f6_a:"Картой США через защищённую страницу Whop. Компаниям выставляем инвойс.",
+join_eyebrow:"Запись", join_h2:"Первый урок — бесплатно",
+join_lede:"Оставьте данные — в течение 24 часов напишем в WhatsApp или Telegram и подберём время группы.",
+join_t1:"Никакой оплаты сейчас", join_t2:"Группа по вашему уровню", join_t3:"Объяснения на русском или узбекском",
+f_name:"Ваше имя", f_phone:"Телефон (WhatsApp/Telegram)", f_tg:"Telegram username", f_optional:"необязательно",
+f_state:"В каком штате живёте?", f_state_ph:"Например, Illinois",
+f_role:"Кто вы?", role_driver:"Водитель", role_company:"Компания / safety",
+f_level:"Ваш уровень английского", lvl0:"Совсем не знаю", lvl1:"Немного", lvl2:"Могу общаться",
+f_time:"Удобное время (по США)", t_morning:"Утром", t_evening:"Вечером", t_weekend:"Выходные",
+f_plan:"Какой тариф интересен?", plan_m:"1 месяц", plan_3:"3 месяца", plan_c:"Компания",
+f_submit:"Записаться на бесплатный урок",
+f_note:"Ваши данные используются только чтобы связаться с вами.",
+done_h:"Спасибо! Заявка принята", done_p:"Напишем в течение 24 часов. Пока ждёте — пройдите бесплатный тест.",
+done_test:"Начать бесплатный тест", done_bot:"Открыть Telegram-бота",
+form_need_contact:"Укажите телефон или Telegram username.",
+form_sending:"Отправляем…",
+form_error:"Не удалось отправить. Проверьте интернет и попробуйте ещё раз или напишите нам в Telegram.",
+form_error_tg:"Написать в Telegram",
+form_rate:"Слишком много попыток. Попробуйте чуть позже.",
+foot_note:"Truck Talk не связан с FMCSA, DOT или CVSA.", foot_contact:"Написать в Telegram",
+mobile_test:"Тест", mobile_join:"Записаться"
+},
+en:{
+meta_title:"Truck Talk — live English classes for truck drivers",
+meta_desc:"Answer the DOT officer in English. Live classes, mock roadside inspections and road signs, explained in Uzbek and Russian.",
+nav_test:"Free test",
+hero_eyebrow:"Live classes for drivers in the US",
+hero_h1:"Answer the DOT officer in English and keep your truck rolling",
+hero_lede:"Since June 2025, drivers who can't answer in English are put out of service on the spot. We practise the officer's questions, road signs and broker calls live, with explanations in Uzbek and Russian.",
+hero_cta_test:"🎧 Free test (5 min)",
+hero_cta_join:"Book your free first class",
+chip1:"3 live classes a week", chip2:"Groups of up to 8", chip3:"First class free", chip4:"App + 60 lessons",
+dlg_title:"Roadside check",
+dlg_note:"No interpreters, cue cards or phone apps during the interview",
+stat1:"drivers put out of service over English (DOT, Aug 2026)",
+stat2:"interpreters or apps allowed during the interview",
+stat3:"parts: officer interview and road signs",
+chk_eyebrow:"How the check works",
+chk_h2:"What does the officer ask?",
+chk_lede:"The check has two parts: first an interview in English, then road signs.",
+part1_title:"1. Interview in English",
+part1_1:"Where you're coming from and where you're going",
+part1_2:"How long you've been on duty today",
+part1_3:"Showing your logbook or ELD",
+part1_4:"Your CDL and medical card",
+part1_5:"Shipping papers (bill of lading)",
+part1_6:"Questions about your truck and equipment",
+part2_title:"2. Road signs",
+part2_1:"Standard signs: weigh station, no trucks, low clearance and more",
+part2_2:"Electronic message boards: crash ahead, lane closed, detour",
+part2_3:"You explain what each sign means",
+chk_warn:"Fail the interview and the officer doesn't go on to the signs: you're placed out of service on the spot.",
+chk_src:"Source: FMCSA internal enforcement policy (May 2025) and CVSA out-of-service criteria from 25 June 2025.",
+prog_eyebrow:"What you get",
+prog_h2:"Exactly what the check needs, without extra grammar",
+p1_t:"3 live classes a week", p1_d:"60-minute online classes on Zoom or Google Meet. Small groups, so everyone speaks.",
+p2_t:"Weekly mock inspection", p2_d:"Your teacher plays the officer and you answer, just like a real roadside check.",
+p3_t:"Road signs and message boards", p3_d:"Learn to explain the most common signs and electronic boards in English.",
+p4_t:"Calls with brokers, dispatch and shippers", p4_d:"Phone English for loads, delays, detention and breakdowns, all from real situations.",
+p5_t:"Truck Talk app", p5_d:"60 lessons with Uzbek translation and an AI voice teacher for practice between classes.",
+p6_t:"Telegram group", p6_d:"Homework, voice-message practice and questions, answered by your teacher.",
+how_eyebrow:"How it works", how_h2:"Four steps",
+s1_t:"Free test", s1_d:"Find your level in 5 minutes.",
+s2_t:"Free first class", s2_d:"Try a group. If it's not for you, you don't pay.",
+s3_t:"Pick a plan", s3_d:"1 or 3 months, paid with a US card.",
+s4_t:"Answer with confidence", s4_d:"Practise 3 times a week and stop fearing the check.",
+price_eyebrow:"Pricing",
+price_h2:"One parked day costs more than a month of classes",
+pr_m_name:"Monthly", pr_m_per:"per month",
+pr_m_1:"12 live classes", pr_m_2:"Weekly mock inspection", pr_m_3:"Truck Talk app", pr_m_4:"Telegram group",
+pr_badge:"Best value",
+pr_3_name:"3 months", pr_3_per:"for 3 months · save $"+save,
+pr_3_1:"36 live classes", pr_3_2:"A 1-on-1 mock inspection every month", pr_3_3:"Truck Talk app", pr_3_4:"Telegram group",
+pr_c_name:"For carriers", pr_c_per:"per month · 5+ drivers",
+pr_c_1:"A private group for your drivers", pr_c_2:"Monthly report for your safety manager", pr_c_3:"Pay by invoice",
+pr_cta:"Book a free class", pr_cta_c:"Get a quote",
+pr_note:"First class free. Pay with any US card through secure Whop checkout. Cancel any time.",
+pay_m:"Pay monthly", pay_3:"Pay for 3 months",
+teach_card:"Real trucking English, not school English",
+teach_1:"Examples from real loads and real calls", teach_2:"Class times that fit a driver's schedule", teach_3:"Only the words and phrases you need",
+teach_eyebrow:"Your teacher",
+teach_h2:"Learn from someone who works in US trucking every day",
+teach_p:"Your teacher works as a dispatcher for a US carrier and speaks English with brokers, drivers and shippers every day. Lessons are explained in Uzbek, Russian and English.",
+teach_app:"See the Truck Talk app",
+faq_h2:"Questions",
+f1_q:"I don't speak any English. Can I join?", f1_a:"Yes. Groups are split by level, and the app includes the SpeakUp basics course for complete beginners.",
+f2_q:"When are the classes?", f2_a:"There are morning, evening and weekend groups (US time). Pick what suits you when you sign up.",
+f3_q:"Can I use a translator app at the check?", f3_a:"No. Under FMCSA's policy, interpreters, cue cards and phone apps can't be used during the interview. That's why you practise the answers in advance.",
+f4_q:"What if I'm on the road?", f4_a:"Never join while driving. Join on your break and catch up on missed topics in the app and the Telegram group.",
+f5_q:"Do you guarantee I'll pass?", f5_a:"Nobody can promise that: the officer decides. We train exactly the topics the check covers.",
+f6_q:"How do I pay?", f6_a:"With a US card on a secure Whop checkout page. Carriers can pay by invoice.",
+join_eyebrow:"Sign up", join_h2:"Your first class is free",
+join_lede:"Leave your details and we'll message you on WhatsApp or Telegram within 24 hours to pick a group time.",
+join_t1:"No payment now", join_t2:"A group at your level", join_t3:"Explanations in Uzbek or Russian",
+f_name:"Your name", f_phone:"Phone (WhatsApp/Telegram)", f_tg:"Telegram username", f_optional:"optional",
+f_state:"Which state do you live in?", f_state_ph:"e.g. Illinois",
+f_role:"You are", role_driver:"Driver", role_company:"Carrier / safety",
+f_level:"Your English", lvl0:"None", lvl1:"A little", lvl2:"I can talk",
+f_time:"Best time (US time)", t_morning:"Morning", t_evening:"Evening", t_weekend:"Weekend",
+f_plan:"Which plan?", plan_m:"Monthly", plan_3:"3 months", plan_c:"Carrier",
+f_submit:"Book my free class",
+f_note:"We only use your details to contact you.",
+done_h:"Thanks! You're on the list", done_p:"We'll message you within 24 hours. While you wait, try the free test.",
+done_test:"Start the free test", done_bot:"Open the Telegram bot",
+form_need_contact:"Add a phone number or Telegram username.",
+form_sending:"Sending…",
+form_error:"Couldn't send. Check your connection and try again, or message us on Telegram.",
+form_error_tg:"Message us on Telegram",
+form_rate:"Too many tries. Please try again a bit later.",
+foot_note:"Truck Talk is not affiliated with FMCSA, DOT or CVSA.", foot_contact:"Message us on Telegram",
+mobile_test:"Free test", mobile_join:"Sign up"
+}};
+document.querySelectorAll('[data-price]').forEach(function(el){var k=el.getAttribute('data-price');if(P[k])el.textContent='$'+P[k];});
+M.initLang(D,{langs:['uz','ru','en'],fallback:'uz',defaultLang:'uz'});
+M.trackView('trucktalk');
+document.querySelectorAll('[data-plan]').forEach(function(a){a.addEventListener('click',function(){var v={monthly:'monthly','3m':'3 months',company:'company'}[a.getAttribute('data-plan')];var r=document.querySelector('input[name=plan][value="'+v+'"]');if(r)r.checked=true;if(v==='company'){var c=document.querySelector('input[name=role][value=company]');if(c)c.checked=true;}});});
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});}else{document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});}
+})();
+</script>
+</body>
+</html>

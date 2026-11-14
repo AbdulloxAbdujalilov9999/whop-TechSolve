@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Roadside English Check — Truck Talk</title>
+<meta name="description" content="Free 5-minute test: can you answer the DOT officer in English?">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0A1931">
+<meta property="og:title" content="Roadside English Check — 5 daqiqalik bepul test">
+<meta property="og:description" content="DOT inspektori savollarini tushunasizmi? 10 ta savol, natija darhol.">
+<link rel="icon" href="../icons/favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../base.css">
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+:root{
+  --bg:#0A1931; --bg-alt:#0F2340; --surface:#12294A; --ink:#F2F6FB; --muted:#A9BFD6; --line:#24426A; --line-strong:#3A5E8A;
+  --accent:#F5B301; --accent-ink:#0A1931; --accent-soft:rgba(245,179,1,.18); --eyebrow:#F5B301;
+  --good:#2ECC71; --bad:#FF6B5B; --danger:#FF8F7E;
+  --header-bg:rgba(10,25,49,.9); --radius:18px; --btn-radius:12px; --input-bg:#0D2140; --input-line:#2C4D78;
+  --font-display:"Oswald","Arial Narrow",sans-serif; --font-body:"Inter",-apple-system,"Segoe UI",Roboto,sans-serif;
+  --display-tracking:0; --display-weight:600;
+}
+body{background:radial-gradient(900px 400px at 50% -10%,#1A3D63 0%,rgba(26,61,99,0) 70%),#0A1931;min-height:100vh}
+.in-telegram .top{display:none}
+h1,h2{text-transform:uppercase}
+.stage{max-width:720px;margin:0 auto;padding:22px 16px 40px}
+.screen[hidden]{display:none}
+.intro h1{font-size:clamp(32px,8vw,52px);margin-top:10px}
+.intro .lede{color:var(--muted)}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 26px;padding:0;list-style:none}
+.meta li{padding:7px 12px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid var(--line);font-size:14px;font-weight:600}
+.progress{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.bar{flex:1;height:8px;border-radius:999px;background:#163055;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--accent);border-radius:999px;transition:width .35s ease}
+.count{font-weight:800;font-size:14px;color:var(--muted);min-width:52px;text-align:right}
+.qcard{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:20px}
+@media(min-width:620px){.qcard{padding:28px}}
+.prompt{font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+.say{display:flex;gap:12px;align-items:flex-start;background:#1A3D63;border-radius:18px;border-bottom-left-radius:5px;padding:14px 16px;margin-bottom:18px}
+.say .who{font-size:28px;line-height:1}
+.say p{margin:0;font-size:21px;font-weight:700;line-height:1.3}
+.listen{margin-left:auto;flex:0 0 auto;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;border-radius:999px;min-height:40px;padding:0 14px;font:inherit;font-weight:700;font-size:14px;cursor:pointer}
+.sign{display:grid;place-items:center;background:#0D2140;border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:18px}
+.sign svg{width:min(260px,70vw);height:auto}
+.opts{display:grid;gap:10px}
+.opt{display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;min-height:58px;padding:14px 16px;border-radius:14px;border:1.5px solid var(--input-line);background:var(--input-bg);color:var(--ink);font:inherit;font-size:17px;font-weight:600;cursor:pointer;transition:border-color .15s,background .15s}
+.opt:hover{border-color:var(--line-strong)}
+.opt .k{flex:0 0 28px;height:28px;border-radius:8px;display:grid;place-items:center;background:#1B3A62;font-size:14px;font-weight:800}
+.opt.correct{border-color:var(--good);background:rgba(46,204,113,.12)}
+.opt.correct .k{background:var(--good);color:#06240f}
+.opt.wrong{border-color:var(--bad);background:rgba(255,107,91,.12)}
+.opt.wrong .k{background:var(--bad);color:#2a0702}
+.opt[disabled]{cursor:default}
+.explain{margin-top:16px;padding:14px 16px;border-radius:14px;background:rgba(245,179,1,.1);border:1px solid rgba(245,179,1,.35);font-size:15.5px}
+.explain b{display:block;margin-bottom:4px}
+.next{margin-top:18px}
+.result-top{display:grid;gap:22px;align-items:center;text-align:center}
+@media(min-width:620px){.result-top{grid-template-columns:auto 1fr;text-align:left}}
+.ring{position:relative;width:170px;height:170px;margin:0 auto}
+.ring svg{width:170px;height:170px;transform:rotate(-90deg)}
+.ring .num{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--font-display);font-size:48px;font-weight:700}
+.ring .num small{font-size:20px;color:var(--muted)}
+.tier{display:inline-block;padding:6px 12px;border-radius:999px;font-weight:800;font-size:13px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+.tier.high{background:rgba(255,107,91,.18);color:#FFB3A8}
+.tier.mid{background:rgba(245,179,1,.18);color:#FFD66B}
+.tier.low{background:rgba(46,204,113,.18);color:#8EF0B8}
+.review{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:8px}
+.review li{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid var(--line);font-size:15px}
+.review .mk{flex:0 0 22px;font-weight:800}
+.speak{margin-top:20px;padding:16px 18px;border-radius:16px;background:#12294A;border:1px dashed var(--line-strong)}
+.share{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.form-card{background:var(--surface)}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js')</script>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="../"><img src="../icons/icon-192.png" alt=""><span>TRUCK TALK</span></a>
+    <div class="spacer"></div>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button type="button" data-lang="uz">UZ</button><button type="button" data-lang="ru">RU</button><button type="button" data-lang="en">EN</button>
+    </div>
+  </div>
+</header>
+
+<main class="stage">
+  <!-- Intro -->
+  <section class="screen intro" id="s-intro" style="padding:12px 0">
+    <div class="lang-switch in-tg-only" role="group" aria-label="Language" style="margin-bottom:14px">
+      <button type="button" data-lang="uz">UZ</button><button type="button" data-lang="ru">RU</button><button type="button" data-lang="en">EN</button>
+    </div>
+    <span class="eyebrow" data-t="in_eyebrow">Free test · 5 minutes</span>
+    <h1 data-t="in_h1">Roadside English Check</h1>
+    <p class="lede" data-t="in_lede">Can you understand the DOT officer? 10 questions like the ones asked at a roadside inspection, plus road signs.</p>
+    <ul class="meta">
+      <li data-t="in_m1">6 officer questions</li>
+      <li data-t="in_m2">4 road signs</li>
+      <li data-t="in_m3">Result right away</li>
+    </ul>
+    <button class="btn btn-block" id="start" type="button" data-t="in_start">Start the test</button>
+    <p class="form-note" data-t="in_note">Practice questions written by Truck Talk teachers. Not an official FMCSA test.</p>
+  </section>
+
+  <!-- Question -->
+  <section class="screen" id="s-quiz" hidden>
+    <div class="progress"><div class="bar"><i id="bar"></i></div><div class="count" id="count">1 / 10</div></div>
+    <div class="qcard">
+      <div class="prompt" id="q-prompt"></div>
+      <div id="q-visual"></div>
+      <div class="opts" id="q-opts"></div>
+      <div class="explain" id="q-explain" hidden></div>
+      <button class="btn btn-block next" id="q-next" type="button" hidden data-t="q_next">Next</button>
+    </div>
+  </section>
+
+  <!-- Result -->
+  <section class="screen" id="s-result" hidden>
+    <div class="qcard">
+      <div class="result-top">
+        <div class="ring" aria-hidden="true">
+          <svg viewBox="0 0 170 170"><circle cx="85" cy="85" r="74" fill="none" stroke="#163055" stroke-width="14"/><circle id="ring-arc" cx="85" cy="85" r="74" fill="none" stroke="#F5B301" stroke-width="14" stroke-linecap="round" stroke-dasharray="465" stroke-dashoffset="465" style="transition:stroke-dashoffset 1s ease"/></svg>
+          <div class="num"><span><span id="score">0</span><small>/10</small></span></div>
+        </div>
+        <div>
+          <span class="tier" id="tier"></span>
+          <h2 id="r-title" style="font-size:clamp(26px,5vw,36px)"></h2>
+          <p class="muted" id="r-text"></p>
+        </div>
+      </div>
+      <div class="speak"><b data-t="r_speak_t">The real check is spoken.</b><p class="muted" style="margin:6px 0 0" data-t="r_speak_p"></p></div>
+      <ul class="review" id="review"></ul>
+      <div class="share">
+        <button class="btn btn-small btn-ghost" id="retry" type="button" data-t="r_retry">Try again</button>
+        <a class="btn btn-small btn-ghost" id="share" href="#" target="_blank" rel="noopener" data-t="r_share">Send to a friend</a>
+      </div>
+    </div>
+
+    <div class="form-card" style="margin-top:18px">
+      <h2 style="font-size:28px" data-t="r_form_h">Get your free first class</h2>
+      <p class="muted" data-t="r_form_p"></p>
+      <form data-lead="trucktalk" data-manual novalidate>
+        <div class="fields two">
+          <div class="field"><label for="r-name" data-t="f_name">Your name</label><input id="r-name" name="name" autocomplete="name"></div>
+          <div class="field"><label for="r-phone" data-t="f_phone">Phone (WhatsApp/Telegram)</label><input id="r-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+1 312 555 0100"></div>
+          <div class="field full"><label for="r-tg"><span data-t="f_tg">Telegram username</span> <span class="hint" data-t="f_optional">optional</span></label><input id="r-tg" name="telegram" placeholder="@username" autocapitalize="off"></div>
+          <div class="field full"><span class="label" data-t="f_time">Best time (US)</span>
+            <div class="pills">
+              <label><input type="checkbox" name="time" value="morning"><span data-t="t_morning">Morning</span></label>
+              <label><input type="checkbox" name="time" value="evening" checked><span data-t="t_evening">Evening</span></label>
+              <label><input type="checkbox" name="time" value="weekend"><span data-t="t_weekend">Weekend</span></label>
+            </div>
+          </div>
+          <div class="hp" aria-hidden="true"><label>Leave empty<input name="hp" tabindex="-1" autocomplete="off"></label></div>
+        </div>
+        <button class="btn btn-block" type="submit" style="margin-top:18px" data-t="r_submit">Book my free class</button>
+        <p class="form-msg" role="status" aria-live="polite"></p>
+      </form>
+      <div class="form-done" hidden>
+        <div class="big" aria-hidden="true">✅</div>
+        <h3 data-t="done_h">Thanks! You're on the list</h3>
+        <p class="muted" data-t="done_p"></p>
+        <div class="btn-row">
+          <a class="btn" href="../" data-t="done_more">See classes and prices</a>
+          <a class="btn btn-ghost" data-bot="tt" hidden target="_blank" rel="noopener" data-t="done_bot">Open the Telegram bot</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="../config.js"></script>
+<script src="../money.js"></script>
+<script>
+(function(){
+"use strict";
+var SIGNS = {
+  weigh:'<svg viewBox="0 0 240 170" role="img" aria-label="Green sign: WEIGH STATION, NEXT RIGHT, OPEN"><rect x="4" y="4" width="232" height="162" rx="16" fill="#0B6E3E" stroke="#fff" stroke-width="6"/><text x="120" y="58" fill="#fff" font-family="Arial,Helvetica" font-weight="700" font-size="30" text-anchor="middle">WEIGH STATION</text><text x="120" y="98" fill="#fff" font-family="Arial,Helvetica" font-weight="700" font-size="26" text-anchor="middle">NEXT RIGHT</text><rect x="70" y="114" width="100" height="36" rx="6" fill="#111"/><text x="120" y="141" fill="#FFB000" font-family="Courier New,monospace" font-weight="700" font-size="26" text-anchor="middle">OPEN</text></svg>',
+  notrucks:'<svg viewBox="0 0 200 220" role="img" aria-label="White sign with a truck crossed out by a red circle and the words NO TRUCKS"><rect x="4" y="4" width="192" height="212" rx="12" fill="#fff" stroke="#111" stroke-width="6"/><g transform="translate(36 22)"><rect x="18" y="52" width="70" height="38" fill="#111"/><path d="M88 62h22l12 14v14H88z" fill="#111"/><circle cx="36" cy="96" r="10" fill="#111"/><circle cx="104" cy="96" r="10" fill="#111"/><circle cx="64" cy="74" r="60" fill="none" stroke="#D0021B" stroke-width="12"/><line x1="22" y1="32" x2="106" y2="116" stroke="#D0021B" stroke-width="12"/></g><text x="100" y="196" fill="#111" font-family="Arial,Helvetica" font-weight="700" font-size="28" text-anchor="middle">NO TRUCKS</text></svg>',
+  clearance:'<svg viewBox="0 0 240 170" role="img" aria-label="Yellow sign: LOW CLEARANCE 12 feet 6 inches"><rect x="4" y="4" width="232" height="162" rx="12" fill="#F5C400" stroke="#111" stroke-width="6"/><text x="120" y="52" fill="#111" font-family="Arial,Helvetica" font-weight="700" font-size="28" text-anchor="middle">LOW</text><text x="120" y="88" fill="#111" font-family="Arial,Helvetica" font-weight="700" font-size="28" text-anchor="middle">CLEARANCE</text><text x="120" y="146" fill="#111" font-family="Arial,Helvetica" font-weight="800" font-size="46" text-anchor="middle">12\'-6"</text></svg>',
+  dms:'<svg viewBox="0 0 260 170" role="img" aria-label="Electronic message board: CRASH AHEAD, LEFT LANE CLOSED, 2 MILES"><rect x="4" y="4" width="252" height="162" rx="8" fill="#0b0b0b" stroke="#555" stroke-width="6"/><text x="130" y="56" fill="#FFB000" font-family="Courier New,monospace" font-weight="700" font-size="28" text-anchor="middle">CRASH AHEAD</text><text x="130" y="98" fill="#FFB000" font-family="Courier New,monospace" font-weight="700" font-size="24" text-anchor="middle">LEFT LANE CLOSED</text><text x="130" y="138" fill="#FFB000" font-family="Courier New,monospace" font-weight="700" font-size="24" text-anchor="middle">2 MILES</text></svg>'
+};
+
+/* c = index of the correct option (before shuffling) */
+var QS = [
+ {id:"origin", say:"Where are you coming from?", o:["From Dallas, Texas. I picked up this morning.","I'm going to Chicago, Illinois.","I'm from Uzbekistan, sir."], c:0,
+  tr:{uz:"Qayerdan kelyapsiz?",ru:"Откуда вы едете?",en:"Where did this trip start?"},
+  ex:{uz:"Inspektor reys qayerdan boshlanganini so'raydi — vataningizni emas. Shahar va shtatni ayting.",ru:"Инспектор спрашивает, откуда начался рейс, а не вашу родину. Назовите город и штат.",en:"The officer wants where this trip started, not your home country. Say the city and state."}},
+ {id:"dest", say:"Where are you headed?", o:["To Atlanta, Georgia. Delivery is tomorrow at 8 a.m.","Yes, I am headed.","From Memphis, Tennessee."], c:0,
+  tr:{uz:"Qayerga ketyapsiz?",ru:"Куда вы едете?",en:"Where are you going?"},
+  ex:{uz:"Shahar, shtat va yetkazib berish vaqtini ayting.",ru:"Назовите город, штат и время доставки.",en:"Say the city, the state and when you deliver."}},
+ {id:"duty", say:"How long have you been on duty today?", o:["About six hours. I started at 5 a.m.","I have been a driver for five years.","My duty is to drive safely."], c:0,
+  tr:{uz:"Bugun necha soatdan beri ishdasiz?",ru:"Сколько часов вы сегодня на смене?",en:"How many hours have you worked today?"},
+  ex:{uz:"\"On duty today\" — bugungi ish soatlari. Stajingizni emas, bugun qachon boshlaganingizni ayting.",ru:"«On duty today» — сегодняшние рабочие часы. Не стаж, а когда вы сегодня начали.",en:"'On duty today' is today's hours, not your years of experience."}},
+ {id:"logs", say:"Can you show me your logs on the ELD?", o:["Yes, officer. One moment, I'll open the inspection screen.","My logs are at the truck stop.","I don't have time today."], c:0,
+  tr:{uz:"ELD dagi loglaringizni ko'rsata olasizmi?",ru:"Покажите ваши логи на ELD.",en:"Show me your hours on the ELD."},
+  ex:{uz:"Logs — ish va dam olish soatlari yozuvi. ELD da \"inspection\" (DOT) rejimini ochib ko'rsatasiz.",ru:"Logs — записи часов работы и отдыха. Откройте на ELD режим inspection (DOT) и покажите.",en:"Logs are your driving and rest records. Open the ELD's inspection (DOT) mode and show it."}},
+ {id:"license", say:"May I see your license and your medical card?", o:["Sure. Here is my CDL and my DOT medical card.","Here is my bill of lading and my registration.","Here is my insurance and a fuel receipt."], c:0,
+  tr:{uz:"Guvohnomangiz va medical card'ingizni ko'rsating.",ru:"Покажите права и медицинскую карту.",en:"Show your license and medical card."},
+  ex:{uz:"License — haydovchilik guvohnomasi (CDL). Medical card — DOT tibbiy guvohnomasi.",ru:"License — права (CDL). Medical card — медицинская карта DOT.",en:"License = your CDL. Medical card = your DOT medical certificate."}},
+ {id:"cargo", say:"What are you hauling?", o:["Paper towels, dry goods. Here is the bill of lading.","I'm hauling to Ohio.","My truck is a Freightliner Cascadia."], c:0,
+  tr:{uz:"Nima olib ketyapsiz?",ru:"Что вы везёте?",en:"What cargo do you have?"},
+  ex:{uz:"\"Hauling\" — olib ketayotgan yukingiz. Yuk nomini ayting va bill of lading (yuk hujjati)ni ko'rsating.",ru:"«Hauling» — ваш груз. Назовите его и покажите bill of lading (накладную).",en:"'Hauling' means your cargo. Name it and show the bill of lading."}},
+ {id:"weigh", sign:"weigh", o:["Weigh station ahead: trucks take the next exit to the scale when it's open.","Rest area with parking in the next mile.","The road on the right is closed."], c:0,
+  ex:{uz:"Weigh station — tarozi punkti. \"OPEN\" yonib tursa, yuk mashinalari o'ngdagi chiqishdan kirishi shart.",ru:"Weigh station — весовой пункт. Если горит «OPEN», траки обязаны съехать направо на весы.",en:"When OPEN is lit, trucks must take the exit to the scale."}},
+ {id:"notrucks", sign:"notrucks", o:["Trucks are not allowed on this road.","Truck parking is here.","Truck stop ahead."], c:0,
+  ex:{uz:"No trucks — bu yo'lga yuk mashinalari kira olmaydi. Boshqa marshrut toping.",ru:"No trucks — тракам сюда нельзя. Ищите другой маршрут.",en:"Trucks are prohibited here. Find another route."}},
+ {id:"clearance", sign:"clearance", o:["The bridge is only 12 feet 6 inches high, so a standard trailer won't fit.","The speed limit is 12 miles per hour.","The road is 12 feet 6 inches wide."], c:0,
+  ex:{uz:"Low clearance — ko'prik balandligi past: 12 fut 6 dyuym (~3,8 m). Oddiy 53 futlik treyler ~13 fut 6 dyuym — o'tmaydi, boshqa yo'ldan yuring.",ru:"Low clearance — низкий проезд: 12 футов 6 дюймов (~3,8 м). Обычный 53-футовый прицеп ~13 футов 6 дюймов — не пройдёт, ищите объезд.",en:"12 ft 6 in is about 3.8 m. A standard 53-foot trailer is about 13 ft 6 in, so take another route."}},
+ {id:"dms", sign:"dms", o:["There's a crash ahead and the left lane is closed in 2 miles, so move right.","Turn left in 2 miles.","Speed camera in 2 miles."], c:0,
+  ex:{uz:"Elektron tablo: oldinda avariya, 2 mildan keyin chap yo'lak yopiq — o'ng yo'lakka o'ting va sekinlashing.",ru:"Электронное табло: впереди авария, через 2 мили левая полоса закрыта — перестройтесь вправо и сбавьте скорость.",en:"Crash ahead, left lane closed in 2 miles: move right and slow down."}}
+];
+
+var D = {
+uz:{meta_title:"Roadside English Check — Truck Talk bepul test",in_eyebrow:"Bepul test · 5 daqiqa",in_h1:"Roadside English Check",in_lede:"DOT inspektorini tushunasizmi? Yo'l chetidagi tekshiruvdagiga o'xshash 10 ta savol va yo'l belgilari.",in_m1:"6 ta inspektor savoli",in_m2:"4 ta yo'l belgisi",in_m3:"Natija darhol",in_start:"Testni boshlash",in_note:"Mashq savollarini Truck Talk o'qituvchilari tuzgan. Bu FMCSA'ning rasmiy testi emas.",
+p_ask:"Inspektor so'raydi. Eng to'g'ri javobni tanlang:",p_sign:"Bu belgi nimani anglatadi?",listen:"🔊 Tinglash",q_next:"Keyingi",q_finish:"Natijani ko'rish",right:"To'g'ri!",wrong:"Noto'g'ri.",means:"Ma'nosi:",
+tier_high:"Xavf yuqori",tier_mid:"O'rtacha xavf",tier_low:"Yaxshi natija",
+r_high_t:"Hozir tekshiruvdan o'tish qiyin bo'ladi",r_high_p:"Ko'p savollar tushunarsiz bo'ldi. Yaxshi xabar: bu savollar har doim bir xil mavzularda — 3–4 haftalik mashq bilan o'rganib olsa bo'ladi.",
+r_mid_t:"Asosini bilasiz, lekin xavf bor",r_mid_p:"Ba'zi savollar chalkashtirdi. Tekshiruvda bitta tushunmaslik ham out-of-service bilan tugashi mumkin.",
+r_low_t:"Zo'r! Savollarni yaxshi tushunasiz",r_low_p:"Endi og'zaki javob berishni mashq qiling: haqiqiy tekshiruvda javobni variantdan tanlamaysiz, o'zingiz aytasiz.",
+r_speak_t:"Haqiqiy tekshiruv og'zaki bo'ladi.",r_speak_p:"Inspektor savol beradi — siz darhol inglizcha javob berasiz. Tarjimon va ilova mumkin emas. Jonli darslarda aynan shuni mashq qilamiz.",
+r_retry:"Qayta urinish",r_share:"Do'stga yuborish",share_text:"DOT tekshiruvida inglizcha javob bera olasizmi? 5 daqiqalik bepul test:",
+r_form_h:"Birinchi darsingiz bepul",r_form_p:"Ma'lumot qoldiring — 24 soat ichida yozamiz va darajangizga mos guruhni taklif qilamiz.",
+f_name:"Ismingiz",f_phone:"Telefon (WhatsApp/Telegram)",f_tg:"Telegram username",f_optional:"ixtiyoriy",f_time:"Qulay vaqt (AQSh vaqti)",t_morning:"Ertalab",t_evening:"Kechqurun",t_weekend:"Dam olish kunlari",r_submit:"Bepul darsga yozilish",
+done_h:"Rahmat! So'rovingiz qabul qilindi",done_p:"24 soat ichida WhatsApp yoki Telegram orqali yozamiz.",done_more:"Darslar va narxlar",done_bot:"Telegram botni ochish",
+form_need_contact:"Telefon raqam yoki Telegram username yozing.",form_sending:"Yuborilmoqda…",form_error:"Yuborib bo'lmadi. Qayta urinib ko'ring yoki Telegram'da yozing.",form_error_tg:"Telegram'da yozish",form_rate:"Juda ko'p urinish. Birozdan keyin qayta urinib ko'ring."},
+ru:{meta_title:"Roadside English Check — бесплатный тест Truck Talk",in_eyebrow:"Бесплатный тест · 5 минут",in_h1:"Roadside English Check",in_lede:"Понимаете ли вы инспектора DOT? 10 вопросов, как на проверке у дороги, и дорожные знаки.",in_m1:"6 вопросов инспектора",in_m2:"4 дорожных знака",in_m3:"Результат сразу",in_start:"Начать тест",in_note:"Тренировочные вопросы составили преподаватели Truck Talk. Это не официальный тест FMCSA.",
+p_ask:"Инспектор спрашивает. Выберите лучший ответ:",p_sign:"Что означает этот знак?",listen:"🔊 Слушать",q_next:"Дальше",q_finish:"Посмотреть результат",right:"Верно!",wrong:"Неверно.",means:"Перевод:",
+tier_high:"Высокий риск",tier_mid:"Средний риск",tier_low:"Хороший результат",
+r_high_t:"Сейчас пройти проверку будет трудно",r_high_p:"Многие вопросы оказались непонятными. Хорошая новость: темы всегда одни и те же — за 3–4 недели практики их можно выучить.",
+r_mid_t:"Основу знаете, но риск есть",r_mid_p:"Некоторые вопросы запутали. На проверке даже одно непонимание может закончиться out-of-service.",
+r_low_t:"Отлично! Вы хорошо понимаете вопросы",r_low_p:"Теперь тренируйте устные ответы: на настоящей проверке вариантов нет — отвечать нужно самому.",
+r_speak_t:"Настоящая проверка — устная.",r_speak_p:"Инспектор спрашивает — вы сразу отвечаете по-английски. Переводчики и приложения нельзя. Именно это мы тренируем на живых уроках.",
+r_retry:"Пройти ещё раз",r_share:"Отправить другу",share_text:"Сможете ответить инспектору DOT по-английски? Бесплатный тест на 5 минут:",
+r_form_h:"Первый урок — бесплатно",r_form_p:"Оставьте данные — напишем в течение 24 часов и предложим группу под ваш уровень.",
+f_name:"Ваше имя",f_phone:"Телефон (WhatsApp/Telegram)",f_tg:"Telegram username",f_optional:"необязательно",f_time:"Удобное время (по США)",t_morning:"Утром",t_evening:"Вечером",t_weekend:"Выходные",r_submit:"Записаться на бесплатный урок",
+done_h:"Спасибо! Заявка принята",done_p:"Напишем в WhatsApp или Telegram в течение 24 часов.",done_more:"Уроки и цены",done_bot:"Открыть Telegram-бота",
+form_need_contact:"Укажите телефон или Telegram username.",form_sending:"Отправляем…",form_error:"Не удалось отправить. Попробуйте ещё раз или напишите в Telegram.",form_error_tg:"Написать в Telegram",form_rate:"Слишком много попыток. Попробуйте чуть позже."},
+en:{meta_title:"Roadside English Check — free Truck Talk test",in_eyebrow:"Free test · 5 minutes",in_h1:"Roadside English Check",in_lede:"Can you understand the DOT officer? 10 questions like the ones at a roadside inspection, plus road signs.",in_m1:"6 officer questions",in_m2:"4 road signs",in_m3:"Result right away",in_start:"Start the test",in_note:"Practice questions written by Truck Talk teachers. Not an official FMCSA test.",
+p_ask:"The officer asks. Pick the best answer:",p_sign:"What does this sign mean?",listen:"🔊 Listen",q_next:"Next",q_finish:"See my result",right:"Correct!",wrong:"Not quite.",means:"Meaning:",
+tier_high:"High risk",tier_mid:"Some risk",tier_low:"Good result",
+r_high_t:"Passing the check would be hard right now",r_high_p:"Many questions were unclear. The good news: the topics are always the same, and 3 to 4 weeks of practice covers them.",
+r_mid_t:"You know the basics, but there's risk",r_mid_p:"Some questions tripped you up. At a real check, one misunderstanding can end in out-of-service.",
+r_low_t:"Great! You understand the questions",r_low_p:"Now practise answering out loud: at a real check there are no options to pick from, you answer yourself.",
+r_speak_t:"The real check is spoken.",r_speak_p:"The officer asks and you answer in English right away. No interpreters or apps. That's exactly what we practise in live classes.",
+r_retry:"Try again",r_share:"Send to a friend",share_text:"Could you answer a DOT officer in English? Free 5-minute test:",
+r_form_h:"Your first class is free",r_form_p:"Leave your details and we'll message you within 24 hours with a group at your level.",
+f_name:"Your name",f_phone:"Phone (WhatsApp/Telegram)",f_tg:"Telegram username",f_optional:"optional",f_time:"Best time (US time)",t_morning:"Morning",t_evening:"Evening",t_weekend:"Weekend",r_submit:"Book my free class",
+done_h:"Thanks! You're on the list",done_p:"We'll message you on WhatsApp or Telegram within 24 hours.",done_more:"See classes and prices",done_bot:"Open the Telegram bot",
+form_need_contact:"Add a phone number or Telegram username.",form_sending:"Sending…",form_error:"Couldn't send. Try again or message us on Telegram.",form_error_tg:"Message us on Telegram",form_rate:"Too many tries. Please try again a bit later."}
+};
+
+var $ = function(id){return document.getElementById(id);};
+var order = [], idx = 0, answers = [], score = 0, cur = null;
+var canSpeak = !!(window.speechSynthesis && window.SpeechSynthesisUtterance);
+
+function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+function show(id){["s-intro","s-quiz","s-result"].forEach(function(s){$(s).hidden = s!==id;});window.scrollTo(0,0);}
+function speak(text){
+  if(!canSpeak) return;
+  try{window.speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(text);u.lang="en-US";u.rate=.9;
+    var vs=window.speechSynthesis.getVoices()||[];for(var i=0;i<vs.length;i++){if(/en[-_]US/i.test(vs[i].lang)){u.voice=vs[i];break;}}
+    window.speechSynthesis.speak(u);}catch(e){}
+}
+
+function render(){
+  var q = QS[order[idx]];
+  cur = {q:q, opts: shuffle(q.o.map(function(t,i){return {t:t, ok:i===q.c};}))};
+  $("bar").style.width = (idx/QS.length*100)+"%";
+  $("count").textContent = (idx+1)+" / "+QS.length;
+  $("q-prompt").textContent = M.t(q.sign ? "p_sign" : "p_ask");
+  var v = "";
+  if(q.sign){ v = '<div class="sign">'+SIGNS[q.sign]+'</div>'; }
+  else {
+    v = '<div class="say"><span class="who" aria-hidden="true">👮</span><p>'+esc(q.say)+'</p>'+(canSpeak?'<button type="button" class="listen" id="listen">'+esc(M.t("listen"))+'</button>':'')+'</div>';
+  }
+  $("q-visual").innerHTML = v;
+  if($("listen")) $("listen").onclick = function(){speak(q.say);};
+  var html = "";
+  cur.opts.forEach(function(o,i){ html += '<button type="button" class="opt" data-i="'+i+'"><span class="k">'+"ABC"[i]+'</span><span>'+esc(o.t)+'</span></button>'; });
+  $("q-opts").innerHTML = html;
+  Array.prototype.forEach.call($("q-opts").querySelectorAll(".opt"), function(b){ b.onclick = function(){ pick(+b.getAttribute("data-i")); }; });
+  $("q-explain").hidden = true; $("q-next").hidden = true;
+  if(!q.sign && canSpeak && idx===0){ /* first question reads aloud only after a tap, to respect autoplay rules */ }
+}
+
+function pick(i){
+  var q = cur.q, ok = cur.opts[i].ok;
+  if(ok) score++;
+  answers.push({id:q.id, ok:ok});
+  Array.prototype.forEach.call($("q-opts").querySelectorAll(".opt"), function(b,j){
+    b.disabled = true;
+    if(cur.opts[j].ok) b.classList.add("correct"); else if(j===i) b.classList.add("wrong");
+  });
+  var lang = M.lang();
+  var t = '<b>'+(ok?"✅ "+esc(M.t("right")):"❌ "+esc(M.t("wrong")))+'</b>';
+  if(q.tr) t += '<div><i>'+esc(M.t("means"))+'</i> '+esc(q.tr[lang]||q.tr.en)+'</div>';
+  t += '<div>'+esc(q.ex[lang]||q.ex.en)+'</div>';
+  $("q-explain").innerHTML = t; $("q-explain").hidden = false;
+  $("q-next").textContent = M.t(idx===QS.length-1 ? "q_finish" : "q_next");
+  $("q-next").hidden = false;
+  $("q-next").focus({preventScroll:true});
+}
+
+function finish(){
+  $("bar").style.width = "100%";
+  var tier = score>=9 ? "low" : score>=6 ? "mid" : "high";
+  $("score").textContent = score;
+  $("tier").className = "tier "+tier;
+  $("tier").textContent = M.t("tier_"+tier);
+  $("r-title").textContent = M.t("r_"+tier+"_t");
+  $("r-text").textContent = M.t("r_"+tier+"_p");
+  var list = "";
+  answers.forEach(function(a){
+    var q = QS.filter(function(x){return x.id===a.id;})[0];
+    var label = q.say ? q.say : ({weigh:"WEIGH STATION — NEXT RIGHT",notrucks:"NO TRUCKS",clearance:"LOW CLEARANCE 12'-6\"",dms:"CRASH AHEAD — LEFT LANE CLOSED"})[q.sign];
+    list += '<li><span class="mk" style="color:'+(a.ok?'var(--good)':'var(--bad)')+'">'+(a.ok?'✓':'✗')+'</span><span>'+esc(label)+'</span></li>';
+  });
+  $("review").innerHTML = list;
+  show("s-result");
+  setTimeout(function(){ $("ring-arc").style.strokeDashoffset = String(465 - 465*score/QS.length); }, 80);
+  var wrong = answers.filter(function(a){return !a.ok;}).map(function(a){return a.id;});
+  M.event("quiz_done","trucktalk",score,{wrong:wrong.join(","),lang:M.lang()});
+  M.store.sset("tt_quiz", JSON.stringify({score:score, wrong:wrong}));
+  var url = location.origin + location.pathname + "?src=share";
+  $("share").href = "https://t.me/share/url?url="+encodeURIComponent(url)+"&text="+encodeURIComponent(M.t("share_text"));
+}
+
+M.onLang = function(){
+  if(!$("s-quiz").hidden && cur){ $("q-prompt").textContent = M.t(cur.q.sign ? "p_sign" : "p_ask"); if($("listen")) $("listen").textContent = M.t("listen"); }
+  if(!$("s-result").hidden){ var tier = score>=9 ? "low" : score>=6 ? "mid" : "high"; $("tier").textContent=M.t("tier_"+tier); $("r-title").textContent=M.t("r_"+tier+"_t"); $("r-text").textContent=M.t("r_"+tier+"_p"); }
+};
+M.initLang(D,{langs:["uz","ru","en"],fallback:"uz",defaultLang:"uz"});
+if(!M.tgUser){ var tgOnly=document.querySelector(".in-tg-only"); if(tgOnly) tgOnly.style.display="none"; }
+M.trackView("trucktalk");
+
+$("start").onclick = function(){
+  order = shuffle(QS.slice(0,6).map(function(_,i){return i;})).concat(shuffle([6,7,8,9]));
+  idx = 0; answers = []; score = 0;
+  M.event("quiz_start","trucktalk");
+  show("s-quiz"); render();
+};
+$("q-next").onclick = function(){ idx++; if(idx>=QS.length) finish(); else render(); };
+$("retry").onclick = function(){ $("start").onclick(); };
+
+var form = document.querySelector("form[data-lead]");
+M.bindLeadForm(form, { extra: function(){
+  var w = answers.filter(function(a){return !a.ok;}).map(function(a){return a.id;});
+  return { quiz_score: score+"/"+QS.length, quiz_wrong: w.join(",") || "none", level: score>=9?"good":score>=6?"medium":"low" };
+}});
+})();
+</script>
+</body>
+</html>
