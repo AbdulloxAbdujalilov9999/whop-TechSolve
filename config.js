@@ -4,7 +4,7 @@ window.SITE = {
 
   // Your public Whop store page (NOT the /dashboard/ link — that one is private).
   // Find it on Whop: your business → "View store". It looks like https://whop.com/your-store/
-  whopUrl: "https://whop.com/",
+  whopUrl: "https://whop.com/techsolve-2be4/",
 
   // Where "Message me" / "Start a project" goes. Telegram link, email (mailto:...), or Discord invite.
   contactUrl: "https://t.me/Jordan_722",
